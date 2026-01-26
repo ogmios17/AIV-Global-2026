@@ -6,10 +6,12 @@ using UnityEngine.Rendering;
 public class StateMachine
 {
     private StateNode current;
+    private StateNode previous;
     private Dictionary<Type, StateNode> nodes = new();
     private HashSet<TransitionInterface> anyTransition = new();
 
     public StateNode CurrentNode { get => current; }
+    public StateNode PreviousNode { get => previous; }
 
     public void Update()
     {
@@ -29,6 +31,10 @@ public class StateMachine
 
     public void SetState(StateInterface state)
     {
+        if(current != null)
+        {
+            previous = current;
+        }
         current = nodes[state.GetType()];
         current.state?.OnStateEnter();
     }
@@ -36,9 +42,9 @@ public class StateMachine
     void ChangeState(StateInterface state)
     {
         if (state == current.state) return;
-        var previousState = current.state;
+        previous = current;
         var nextState = nodes[state.GetType()].state;
-        previousState?.OnStateExit();
+        previous.state?.OnStateExit();
         nextState?.OnStateEnter();
         current = nodes[state.GetType()];
     }

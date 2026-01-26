@@ -10,6 +10,11 @@ public class ChooseMoveState : BaseState
     public override void OnStateStay()
     {
         //Wait for input
-        //Then resolve
+        //on input received then resolve
+    }
+
+    public void Resolve()
+    {
+
     }
 }

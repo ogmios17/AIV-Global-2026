@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class StateManager : MonoBehaviour
@@ -7,14 +8,20 @@ public class StateManager : MonoBehaviour
 
     private void Start()
     {
-        
+        ConnectState connectState = new ConnectState();
+        CharacterSelectionState characterSelectionState = new CharacterSelectionState();
+        gameStateMachine.AddTransition(connectState, characterSelectionState, 
+            new FuncPredicate(() => ControllerHandler.instance.BindingComplete && gameStateMachine.PreviousNode.GetType() == typeof(StartGameState)));
+        gameStateMachine.AddAnyTransition(connectState, 
+            new FuncPredicate(() => ControllerHandler.instance.ResetConnection));
     }
-    void Awake()
+        void Awake()
     {
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this);
+            gameStateMachine.SetState(new StartGameState());
         }
         gameStateMachine = new StateMachine();
     }
