@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class ConnectState : BaseState
 {
+    private ControllerHandler controllerHandler;
     public override void OnStateEnter()
     {
         // ControllerHandler.instance.StartLookingForControllers();
-        ControllerHandler.instance.CheckNumOfPlayers();
+        controllerHandler.CheckNumOfPlayers();
        
     }
 
@@ -15,5 +16,8 @@ public class ConnectState : BaseState
         //ControllerHandler.instance.StopLookingForControllers();
     }
 
-    
+    public ConnectState(ControllerHandler controllerHandler)
+    {
+        this.controllerHandler = controllerHandler;
+    }
 }

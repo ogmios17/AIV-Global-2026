@@ -12,39 +12,23 @@ public enum PlayerType
     CPU
 }
 
-public class ControllerHandler : MonoBehaviour
+public class ControllerHandler: MonoBehaviour
 {  
     string[] joystickNames;
-    public static ControllerHandler instance;
     private Jammer player1;
     private Jammer player2;
     private bool bindingComplete;
     private bool resetConnection;
     private int numOfPlayers = 0;
+    [SerializeField]
     private PlayerInputManager playerInput;
     public bool BindingComplete { get => bindingComplete; }
     public bool ResetConnection { get => resetConnection; }
     public Jammer Player1 { get => player1; }
     public Jammer Player2 { get => player2; }
 
+    public PlayerInputManager PlayerInput { set => playerInput = value; }
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this);
-        }
-        player1 = new Jammer();
-        player2 = new Jammer();
-        
-        resetConnection = false;
-    }
-
-    private void Start()
-    {
-        playerInput = gameObject.GetComponent<PlayerInputManager>();
-    }
     //public void StartLookingForControllers()
     //{
     //    resetConnection = false;
@@ -62,8 +46,15 @@ public class ControllerHandler : MonoBehaviour
 
     //}
 
+    private void Start()
+    {
+        player1 = new Jammer();
+        player2 = new Jammer();
+    }
+
     public void CheckNumOfPlayers()
     {
+        Debug.Log("Player count: " + playerInput.playerCount);
         if (playerInput.playerCount > 1)
         {
             bindingComplete = true;
@@ -71,6 +62,7 @@ public class ControllerHandler : MonoBehaviour
     }
     public void BindPlayer()
     {
+        Debug.Log("bind player");
         ////joystickNames = Input.GetJoystickNames();
         if (numOfPlayers == 0)
         {
@@ -84,7 +76,7 @@ public class ControllerHandler : MonoBehaviour
             //player2.Controller = joystickNames[1];
         }
         numOfPlayers++;
-
+        CheckNumOfPlayers();
     }
     //public IEnumerator CheckControllers()
     //{

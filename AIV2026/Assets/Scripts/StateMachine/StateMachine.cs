@@ -41,6 +41,7 @@ public class StateMachine
         }
         current = nodes[state.GetType()];
         current.state?.OnStateEnter();
+        Debug.Log("state set! " +state);
     }
 
     void ChangeState(StateInterface state)
@@ -52,6 +53,7 @@ public class StateMachine
         previous.state?.OnStateExit();
         nextState?.OnStateEnter();
         current = nodes[state.GetType()];
+        Debug.Log("state changed! " + state);
     }
 
     TransitionInterface GetTransition()

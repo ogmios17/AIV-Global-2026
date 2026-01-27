@@ -4,28 +4,25 @@ using UnityEngine;
 public class StateManager : MonoBehaviour
 {
     private StateMachine gameStateMachine;
-    public static StateManager instance;
+    [SerializeField]
+    private ControllerHandler controllerHandler;
+    private ConnectState connectState;
+    private ChooseMoveState chooseMoveState;
+     
 
     private void Start()
     {
-        ConnectState connectState = new ConnectState();
-        ChooseMoveState chooseMoveState = new ChooseMoveState();
+        gameStateMachine = new StateMachine();
+        DontDestroyOnLoad(this);
+        connectState = new ConnectState(controllerHandler);
+        chooseMoveState = new ChooseMoveState();
         gameStateMachine.AddTransition(connectState, chooseMoveState,
-            new FuncPredicate(() => ControllerHandler.instance.BindingComplete && gameStateMachine.PreviousNode.GetType() == typeof(StartGameState)));
+            new FuncPredicate(() => controllerHandler.BindingComplete ));
         gameStateMachine.AddAnyTransition(connectState,
-            new FuncPredicate(() => ControllerHandler.instance.ResetConnection));
-    }
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            instance = this;
-            DontDestroyOnLoad(this);
-            gameStateMachine = new StateMachine();
-            gameStateMachine.GetOrAddNode(new ConnectState());
-            gameStateMachine.SetState(new ConnectState());
-        }
+            new FuncPredicate(() => controllerHandler.ResetConnection));
+
+
+        gameStateMachine.SetState(connectState);
     }
 
     public void Update()
