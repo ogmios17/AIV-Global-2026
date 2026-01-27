@@ -75,7 +75,7 @@ public class StateMachine
         anyTransition.Add(new Transition(GetOrAddNode(to).state,condition));
     }
 
-    StateNode GetOrAddNode(StateInterface state)
+   public StateNode GetOrAddNode(StateInterface state)
     {
         var node = nodes.GetValueOrDefault(state.GetType());  
         

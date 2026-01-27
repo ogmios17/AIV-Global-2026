@@ -9,21 +9,23 @@ public class StateManager : MonoBehaviour
     private void Start()
     {
         ConnectState connectState = new ConnectState();
-        CharacterSelectionState characterSelectionState = new CharacterSelectionState();
-        gameStateMachine.AddTransition(connectState, characterSelectionState, 
+        ChooseMoveState chooseMoveState = new ChooseMoveState();
+        gameStateMachine.AddTransition(connectState, chooseMoveState,
             new FuncPredicate(() => ControllerHandler.instance.BindingComplete && gameStateMachine.PreviousNode.GetType() == typeof(StartGameState)));
-        gameStateMachine.AddAnyTransition(connectState, 
+        gameStateMachine.AddAnyTransition(connectState,
             new FuncPredicate(() => ControllerHandler.instance.ResetConnection));
     }
-        void Awake()
+    void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            instance = this;
             DontDestroyOnLoad(this);
-            gameStateMachine.SetState(new ChooseMoveState());
+            gameStateMachine = new StateMachine();
+            gameStateMachine.GetOrAddNode(new ConnectState());
+            gameStateMachine.SetState(new ConnectState());
         }
-        gameStateMachine = new StateMachine();
     }
 
     public void Update()
@@ -33,17 +35,17 @@ public class StateManager : MonoBehaviour
 
     public void FixedUpdate()
     {
-        gameStateMachine.FixedUpdate(); 
+        gameStateMachine.FixedUpdate();
     }
 
     public StateNode GetCurrentNode()
     {
         return gameStateMachine.CurrentNode;
     }
-    
+
     public void GoToNextState()
     {
-        if(gameStateMachine.NextNode != null)
+        if (gameStateMachine.NextNode != null)
         {
             gameStateMachine.SetState(gameStateMachine.NextNode.state);
         }
