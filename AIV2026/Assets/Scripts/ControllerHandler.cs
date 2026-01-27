@@ -17,6 +17,7 @@ public class ControllerHandler : MonoBehaviour
     private Jammer player2;
     private bool bindingComplete;
     private bool resetConnection;
+    private int numOfPlayers = 0;
 
     public bool BindingComplete { get => bindingComplete; }
     public bool ResetConnection { get => resetConnection; }
@@ -37,24 +38,15 @@ public class ControllerHandler : MonoBehaviour
     {
         resetConnection = false;
         bindingComplete = false;
-        StartCoroutine(GetConnectedControllers());
+        GetConnectedControllers();
     }
 
-    public void StopLookingForControllers()
-    {
-        StopCoroutine(GetConnectedControllers());
-    }
-
-    public IEnumerator GetConnectedControllers()
+    public void GetConnectedControllers()
     {
         joystickNames = Input.GetJoystickNames();
-        if (joystickNames.Count() != 2)
-        {
-            yield return new WaitForSecondsRealtime(2f);
-        }
-        player1.Controller = joystickNames[0];
-        player2.Controller = joystickNames[1];
+        numOfPlayers = joystickNames.Length;
         bindingComplete = true;
+        StartCoroutine(CheckControllers());
     }
 
     public IEnumerator CheckControllers()

@@ -7,11 +7,14 @@ public class StateMachine
 {
     private StateNode current;
     private StateNode previous;
+    private StateNode next;
     private Dictionary<Type, StateNode> nodes = new();
     private HashSet<TransitionInterface> anyTransition = new();
 
     public StateNode CurrentNode { get => current; }
     public StateNode PreviousNode { get => previous; }
+
+    public StateNode NextNode { get => next; set => next = value; }
 
     public void Update()
     {
@@ -31,6 +34,7 @@ public class StateMachine
 
     public void SetState(StateInterface state)
     {
+        next = null;
         if(current != null)
         {
             previous = current;
@@ -42,6 +46,7 @@ public class StateMachine
     void ChangeState(StateInterface state)
     {
         if (state == current.state) return;
+        next = null;
         previous = current;
         var nextState = nodes[state.GetType()].state;
         previous.state?.OnStateExit();

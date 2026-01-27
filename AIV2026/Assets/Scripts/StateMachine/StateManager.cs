@@ -41,5 +41,17 @@ public class StateManager : MonoBehaviour
         return gameStateMachine.CurrentNode;
     }
     
+    public void GoToNextState()
+    {
+        if(gameStateMachine.NextNode != null)
+        {
+            gameStateMachine.SetState(gameStateMachine.NextNode.state);
+        }
+    }
+
+    public void SetNextNode(StateNode node)
+    {
+        gameStateMachine.NextNode = node;
+    }
 
 }

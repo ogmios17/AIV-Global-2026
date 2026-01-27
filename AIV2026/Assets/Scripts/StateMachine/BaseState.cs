@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BaseState:StateInterface
+public class BaseState:StateInterface
 {
     public virtual void OnStateEnter() { }
     public virtual void OnStateExit() { }
