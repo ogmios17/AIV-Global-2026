@@ -21,7 +21,7 @@ public class StateManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this);
-            gameStateMachine.SetState(new StartGameState());
+            gameStateMachine.SetState(new ChooseMoveState());
         }
         gameStateMachine = new StateMachine();
     }
