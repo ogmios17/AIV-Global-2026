@@ -1,14 +1,10 @@
 using UnityEngine;
 
-public class IdleState : BaseState
+[CreateAssetMenu(fileName = "IdelState", menuName = "Scriptable Objects/IdleState")]
+public class IdleState : ScriptableObject, StateInterface
 {
-    public override void OnStateEnter()
-    {
-        base.OnStateEnter();
-    }
-
-    public override void OnStateExit()
-    {
-        base.OnStateExit();
-    }
+    public void OnStateEnter() { }
+    public void OnStateExit() { }
+    public void OnStateStay() { }
+    public void OnFixedStateStay() { }
 }

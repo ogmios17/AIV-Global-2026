@@ -1,17 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
-public class ConnectState : BaseState
+[CreateAssetMenu(fileName = "ConnectState", menuName = "Scriptable Objects/ConnectState")]
+public class ConnectState : ScriptableObject, StateInterface
 {
     private ControllerHandler controllerHandler;
-    public override void OnStateEnter()
+    public void OnStateEnter()
     {
         // ControllerHandler.instance.StartLookingForControllers();
         controllerHandler.CheckNumOfPlayers();
        
     }
 
-    public override void OnStateExit()
+    public void OnStateExit()
     {
         //ControllerHandler.instance.StopLookingForControllers();
     }
@@ -20,4 +21,7 @@ public class ConnectState : BaseState
     {
         this.controllerHandler = controllerHandler;
     }
+
+    public void OnStateStay() { }
+    public void OnFixedStateStay() { }
 }

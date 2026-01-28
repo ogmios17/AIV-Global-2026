@@ -6,9 +6,18 @@ public class StateManager : MonoBehaviour
     private StateMachine gameStateMachine;
     [SerializeField]
     private ControllerHandler controllerHandler;
+    [Header ("States")]
+    [SerializeField]
     private ConnectState connectState;
+    [SerializeField]
     private ChooseMoveState chooseMoveState;
-     
+    [SerializeField]
+    private CharacterSelectionState characterSelectionState;
+    [SerializeField]
+    private IdleState idleState;
+    [SerializeField]
+    private StartGameState startGameState;
+
 
     private void Start()
     {

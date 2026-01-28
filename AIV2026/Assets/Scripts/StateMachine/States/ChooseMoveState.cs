@@ -1,7 +1,8 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class ChooseMoveState : BaseState
+[CreateAssetMenu(fileName = "ChooseMoveState", menuName = "Scriptable Objects/ChooseMoveState")]
+public class ChooseMoveState : ScriptableObject, StateInterface
 {
     public Jammer player1;
     public Jammer player2;
@@ -10,12 +11,12 @@ public class ChooseMoveState : BaseState
     public MoveCard block;
     public MoveCard grapple;
     public MoveCard shove;
-    public override void OnStateEnter()
+    public void OnStateEnter()
     {
-        base.OnStateEnter();
+
     }
 
-    public override void OnStateStay()
+    public void OnStateStay()
     {
         HandlePlayer(player1);
         HandlePlayer(player2);
@@ -72,6 +73,16 @@ public class ChooseMoveState : BaseState
 
         p2.ChosenMove = null;
         p1.ChosenMove = null;
+    }
+
+    public void OnFixedStateStay()
+    {
+
+    }
+
+    public void OnStateExit()
+    {
+
     }
     
 }
