@@ -1,15 +1,11 @@
 using UnityEngine;
 
-public class StartGameState : BaseState
+[CreateAssetMenu(fileName = "StartGameState", menuName = "Scriptable Objects/StartGameState")]
+public class StartGameState : ScriptableObject, StateInterface
 {
-    public override void OnStateEnter()
-    {
-        
-    }
-
-    public override void OnStateStay()
-    {
-        
-    }
+    public void OnStateEnter() { }
+    public void OnStateExit() { }
+    public void OnStateStay() { }
+    public void OnFixedStateStay() { }
 }
 
