@@ -41,7 +41,6 @@ public class CharacterSelectionManager : MonoBehaviour
         Vector2 pixelPivot = spriteImage.sprite.pivot;
         Vector2 uiPivot = new Vector2(pixelPivot.x / pixelSize.x, pixelPivot.y / pixelSize.y);
 
-        Debug.Log($"Converted Pivot for {spriteImage.name}: {uiPivot}");
         return uiPivot;
     }
 }
