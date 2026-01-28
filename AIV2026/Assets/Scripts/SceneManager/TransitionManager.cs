@@ -18,7 +18,6 @@ public class TransitionManager : MonoBehaviour
     void Awake()
     {
         TransitionLayer = GetComponentInChildren<TransitionLayer>();
-        Debug.Log("Transition Layer: " + TransitionLayer.GetType().Name);
     }
 
     void Start()
