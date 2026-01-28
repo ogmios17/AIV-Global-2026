@@ -1,11 +1,24 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
+public enum CardTypes
+{
+    Attack,
+    Block,
+    Shove,
+    Grapple
+}
 
 [CreateAssetMenu(fileName = "ChooseMoveState", menuName = "Scriptable Objects/ChooseMoveState")]
 public class ChooseMoveState : ScriptableObject, StateInterface
 {
+    private PlayerInput playerInput;
+    private CardTypes selectedCard1;
+    private CardTypes selectedCard2;
     public Jammer player1;
     public Jammer player2;
+
+    public GameObject player1Prefab;
 
     public MoveCard attack;
     public MoveCard block;
@@ -13,6 +26,12 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     public MoveCard shove;
     public void OnStateEnter()
     {
+        player1 = GlobalData.Instance.Player1;
+        Debug.Log("player1 " + player1.PlayerType);
+        player2 = GlobalData.Instance.Player2;
+
+        playerInput = player1Prefab.GetComponent<PlayerInput>();
+        playerInput.SwitchCurrentActionMap("CardSelection");
 
     }
 
@@ -35,7 +54,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
         if (jammer.PlayerType == PlayerType.Player1 || jammer.PlayerType == PlayerType.Player2)
         {
-            HandleHumanInput(jammer);
+            //HandleHumanInput(jammer);
         }
     }
     private void HandleHumanInput(Jammer jammer)
@@ -84,5 +103,28 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     {
 
     }
-    
+    private void Attack(InputAction.CallbackContext context)
+    {
+        selectedCard1 = CardTypes.Attack;
+        Debug.Log("p " + playerInput.playerIndex);
+    }
+
+    private void Block(InputAction.CallbackContext context)
+    {
+        selectedCard1 = CardTypes.Block;
+        Debug.Log("p " + playerInput.playerIndex);
+    }
+
+    private void Shove(InputAction.CallbackContext context)
+    {
+        Debug.Log("p " + playerInput.playerIndex);
+        selectedCard1 = CardTypes.Shove;
+    }
+
+    private void Grapple(InputAction.CallbackContext context)
+    {
+        Debug.Log("p " + playerInput.playerIndex);
+        selectedCard1 = CardTypes.Grapple;
+    }
+
 }

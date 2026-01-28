@@ -6,17 +6,20 @@ public class StateManager : MonoBehaviour
     private StateMachine gameStateMachine;
     [SerializeField]
     private ControllerHandler controllerHandler;
-    [Header ("States")]
-    [SerializeField]
     private ConnectState connectState;
-    [SerializeField]
     private ChooseMoveState chooseMoveState;
+
     [SerializeField]
     private CharacterSelectionState characterSelectionState;
     [SerializeField]
     private IdleState idleState;
     [SerializeField]
     private StartGameState startGameState;
+    private Jammer player1;
+    private Jammer player2;
+
+    public Jammer Player1 { get => player1; set => player1 = value; }
+    public Jammer Player2 { get => player2; set => player2 = value; }
 
 
     private void Start()
@@ -27,8 +30,6 @@ public class StateManager : MonoBehaviour
         chooseMoveState = new ChooseMoveState();
         gameStateMachine.AddTransition(connectState, chooseMoveState,
             new FuncPredicate(() => controllerHandler.BindingComplete ));
-        gameStateMachine.AddAnyTransition(connectState,
-            new FuncPredicate(() => controllerHandler.ResetConnection));
 
 
         gameStateMachine.SetState(connectState);
