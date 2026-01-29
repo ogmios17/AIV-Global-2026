@@ -2,41 +2,21 @@ using UnityEngine;
 
 public class GlobalData : MonoBehaviour
 {
-    private Jammer player1;
-    private Jammer player2;
+    public static GlobalData Instance { get; private set; }
 
-    private static GlobalData instance;
+    public Jammer Player1;
+    public Jammer Player2;
 
-    public static GlobalData Instance
+    private void Awake()
     {
-        get
+        if (Instance != null && Instance != this)
         {
-            if (instance == null)
-            {
-                instance = new GlobalData();
-            }
-            return instance;
+            Destroy(gameObject);
+            return;
         }
-    }
 
-    public Jammer Player1
-    {
-        get
-        {
-            if (player1 == null)
-                player1 = new Jammer();
-            return player1;
-        }
-        set => player1 = value;
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
-    public Jammer Player2
-    {
-        get
-        {
-            if (player2 == null)
-                player2 = new Jammer();
-            return player2;
-        }
-        set => player2 = value;
-    }
+  
 }

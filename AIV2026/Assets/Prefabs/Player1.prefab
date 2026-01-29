@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 3619551824936372517}
   - component: {fileID: 680297516631450003}
   - component: {fileID: 2802715431922758475}
+  - component: {fileID: 7384990228849923153}
+  - component: {fileID: 1647129735725488762}
   m_Layer: 0
   m_Name: Player1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -175,23 +177,99 @@ MonoBehaviour:
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1647129735725488762}
+        m_TargetAssemblyTypeName: PlayerMoveInput, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3730bcb5-642d-4d69-9774-8aa34cfe1b23
     m_ActionName: 'CardSelection/Attack[/DualSenseGamepadHID/buttonSouth,/DualSenseGamepadHID1/buttonSouth]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1647129735725488762}
+        m_TargetAssemblyTypeName: PlayerMoveInput, Assembly-CSharp
+        m_MethodName: Block
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b50f4e3e-e1e5-47c0-ba2c-1a0a54197b2f
     m_ActionName: 'CardSelection/Block[/DualSenseGamepadHID/buttonEast,/DualSenseGamepadHID1/buttonEast]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1647129735725488762}
+        m_TargetAssemblyTypeName: PlayerMoveInput, Assembly-CSharp
+        m_MethodName: Grapple
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: bc0782da-a4d6-4adc-a12d-02814497fc51
     m_ActionName: 'CardSelection/Grapple[/DualSenseGamepadHID/buttonNorth,/DualSenseGamepadHID1/buttonNorth]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1647129735725488762}
+        m_TargetAssemblyTypeName: PlayerMoveInput, Assembly-CSharp
+        m_MethodName: Shove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e8eef054-7269-460e-9c84-40c89739bc09
     m_ActionName: 'CardSelection/Shove[/DualSenseGamepadHID/buttonWest,/DualSenseGamepadHID1/buttonWest]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
-  m_DefaultActionMap: UI
+  m_DefaultActionMap: CardSelection
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7384990228849923153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860056793942186639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2e182501378ada4c9cc6af6af7ffb40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1647129735725488762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860056793942186639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8e28bddb7b85d44bbb47453d7fd7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: {fileID: 11400000, guid: 96c812eeab7b7bd4a912e045313c3420, type: 2}
+  block: {fileID: 11400000, guid: deedce562fbabdc4393926caf3958233, type: 2}
+  grapple: {fileID: 11400000, guid: afae40f2ee318994080bf3c7d883d965, type: 2}
+  shove: {fileID: 11400000, guid: 5a9c8d9bd837f714d81c4c0ab6d0cedf, type: 2}

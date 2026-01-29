@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public enum CardTypes
@@ -12,66 +13,29 @@ public enum CardTypes
 [CreateAssetMenu(fileName = "ChooseMoveState", menuName = "Scriptable Objects/ChooseMoveState")]
 public class ChooseMoveState : ScriptableObject, StateInterface
 {
-    private PlayerInput playerInput;
-    private CardTypes selectedCard1;
-    private CardTypes selectedCard2;
     public Jammer player1;
     public Jammer player2;
 
-    public GameObject player1Prefab;
-
-    public MoveCard attack;
-    public MoveCard block;
-    public MoveCard grapple;
-    public MoveCard shove;
     public void OnStateEnter()
     {
         player1 = GlobalData.Instance.Player1;
         Debug.Log("player1 " + player1.PlayerType);
         player2 = GlobalData.Instance.Player2;
 
-        playerInput = player1Prefab.GetComponent<PlayerInput>();
-        playerInput.SwitchCurrentActionMap("CardSelection");
+        Debug.Log(GlobalData.Instance.Player1);
+        Debug.Log(GlobalData.Instance.Player2);
 
     }
 
     public void OnStateStay()
     {
-        HandlePlayer(player1);
-        HandlePlayer(player2);
 
         if (player1.ChosenMove != null && player2.ChosenMove != null)
         {
             Resolve(player1, player2);
         }
     }
-    private void HandlePlayer(Jammer jammer)
-    {
-        if (jammer.ChosenMove != null)
-        {
-            return;
-        }
-
-        if (jammer.PlayerType == PlayerType.Player1 || jammer.PlayerType == PlayerType.Player2)
-        {
-            //HandleHumanInput(jammer);
-        }
-    }
-    private void HandleHumanInput(Jammer jammer)
-    {
-        string c = jammer.Controller;
-
-        if (Input.GetButtonDown(c + "_Attack")) jammer.ChosenMove = attack;
-        if (Input.GetButtonDown(c + "_Block")) jammer.ChosenMove = block;
-        if (Input.GetButtonDown(c + "_Grapple")) jammer.ChosenMove = grapple;
-        if (Input.GetButtonDown(c + "_Shove")) jammer.ChosenMove = shove;
-    }
-
-    private void HandleAI(Jammer jammer)
-    {
-        MoveCard[] moves = { attack, block, grapple, shove };
-        jammer.ChosenMove = moves[UnityEngine.Random.Range(0, moves.Length)];
-    }
+  
     private void Resolve(Jammer p1, Jammer p2)
     {
         MoveCard c1 = p1.ChosenMove;
@@ -103,28 +67,5 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     {
 
     }
-    private void Attack(InputAction.CallbackContext context)
-    {
-        selectedCard1 = CardTypes.Attack;
-        Debug.Log("p " + playerInput.playerIndex);
-    }
-
-    private void Block(InputAction.CallbackContext context)
-    {
-        selectedCard1 = CardTypes.Block;
-        Debug.Log("p " + playerInput.playerIndex);
-    }
-
-    private void Shove(InputAction.CallbackContext context)
-    {
-        Debug.Log("p " + playerInput.playerIndex);
-        selectedCard1 = CardTypes.Shove;
-    }
-
-    private void Grapple(InputAction.CallbackContext context)
-    {
-        Debug.Log("p " + playerInput.playerIndex);
-        selectedCard1 = CardTypes.Grapple;
-    }
-
+    
 }

@@ -4,9 +4,12 @@ using UnityEngine;
 public class StateManager : MonoBehaviour
 {
     private StateMachine gameStateMachine;
+
     [SerializeField]
     private ControllerHandler controllerHandler;
+    [SerializeField]
     private ConnectState connectState;
+    [SerializeField]
     private ChooseMoveState chooseMoveState;
 
     [SerializeField]
@@ -14,20 +17,21 @@ public class StateManager : MonoBehaviour
     [SerializeField]
     private IdleState idleState;
     [SerializeField]
+
     private StartGameState startGameState;
     private Jammer player1;
     private Jammer player2;
 
-    public Jammer Player1 { get => player1; set => player1 = value; }
-    public Jammer Player2 { get => player2; set => player2 = value; }
+    //public Jammer Player1 { get => player1; set => player1 = value; }
+    //public Jammer Player2 { get => player2; set => player2 = value; }
 
 
     private void Start()
     {
         gameStateMachine = new StateMachine();
         DontDestroyOnLoad(this);
-        connectState = new ConnectState(controllerHandler);
-        chooseMoveState = new ChooseMoveState();
+        //connectState = new ConnectState(controllerHandler);
+        //chooseMoveState = new ChooseMoveState();
         gameStateMachine.AddTransition(connectState, chooseMoveState,
             new FuncPredicate(() => controllerHandler.BindingComplete ));
 
