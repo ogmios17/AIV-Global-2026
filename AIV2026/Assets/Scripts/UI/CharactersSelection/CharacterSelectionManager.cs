@@ -8,7 +8,7 @@ public class CharacterSelectionManager : MonoBehaviour
     public GameObject characterCardPrefab;
     public List<CharacterSelectionCard> characterCards = new List<CharacterSelectionCard>();
 
-    void Start()
+    void Awake()
     {
         foreach (CharacterSelectionCard characterCard in characterCards)
         {
