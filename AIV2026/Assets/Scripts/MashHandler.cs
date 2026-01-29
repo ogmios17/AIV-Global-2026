@@ -61,17 +61,11 @@ public class MashHandler : MonoBehaviour
 
     public void Onp1Mash()
     {
-        Debug.Log("A bucchin i sort");
-        Debug.Log("changing points from " + points + " to " + (points + mashStrength + Random.Range(0, modifierRange)));
         points -= mashStrength + Random.Range(0, modifierRange);
-        Debug.Log("changing points after change: " + points);
     }
 
     public void Onp2Mash()
     {
-        Debug.Log("A bucchin i mammt");
-        Debug.Log("changing points from " + points + " to " + (points + mashStrength + Random.Range(0, modifierRange)));
         points += mashStrength + Random.Range(0, modifierRange);
-        Debug.Log("changing points after change: " + points);
     }
 }

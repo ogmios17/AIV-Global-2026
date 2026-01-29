@@ -5,12 +5,13 @@ public class MiniMashState : ScriptableObject, StateInterface
 {
     public GameObject prefab;
     private MashHandler handler;
+    private GameObject prefabClone;
 
     public MashHandler Handler { get { return handler; } }
     public void OnStateEnter()
     {
-        Instantiate(prefab, new Vector3(0,0,0),Quaternion.identity);
-        handler = prefab.GetComponent<MashHandler>();
+        prefabClone = Instantiate(prefab, new Vector3(0,0,0),Quaternion.identity);
+        handler = prefabClone.GetComponent<MashHandler>();
     }
 
     public void OnStateExit()

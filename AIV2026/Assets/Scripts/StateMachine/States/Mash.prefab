@@ -460,10 +460,10 @@ MonoBehaviour:
   targetLeft: {fileID: 5655489678376434263}
   targetRight: {fileID: 8687441494994215709}
   divider: {fileID: 7673418094666019625}
-  modifierRange: 0.079
+  modifierRange: 0.03
   randomAdvantage_chance: 3
   randomizeAdvantage: 1
-  advantageStrength: 0.001
+  advantageStrength: 0.01
 --- !u!1 &5655489678376434263
 GameObject:
   m_ObjectHideFlags: 0
