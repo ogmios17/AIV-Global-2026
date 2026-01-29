@@ -13,6 +13,7 @@ public class PlayerMashScript : MonoBehaviour
     private void Awake()
     {
         stateManager = GlobalData.Instance.stateManager;
+        Debug.Log(" state manager: ", stateManager);
         binder = GetComponent<PlayerBinder>();
         playerType = binder.Jammer.PlayerType;
         miniMashState = stateManager.MiniMashState;
@@ -32,11 +33,11 @@ public class PlayerMashScript : MonoBehaviour
         if (!ctx.performed) return;
         if(playerType == PlayerType.Player1)
         {
-            miniMashState.Onp1Mash();
+            miniMashState.Handler.Onp1Mash();
         }
         if (playerType == PlayerType.Player2)
         {
-            miniMashState.Onp2Mash();
+            miniMashState.Handler.Onp2Mash();
         }
 
     }
