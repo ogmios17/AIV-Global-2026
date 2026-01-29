@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CrackKen
   m_EditorClassIdentifier: 
   characterName: Crack-Ken
-  characterImage: {fileID: 21300000, guid: acf9403f0ae38d549b53ed52442ad43f, type: 3}
+  characterImage: {fileID: 21300000, guid: b9c0d503a5fc01b40b454b3e8f124e05, type: 3}
   zoom: 1
