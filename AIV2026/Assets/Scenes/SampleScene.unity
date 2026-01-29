@@ -467,6 +467,7 @@ MonoBehaviour:
   characterSelectionState: {fileID: 11400000, guid: 687972300838cd543a05a9659c125a57, type: 2}
   idleState: {fileID: 11400000, guid: bf4d4a0c9a895f349ace553e3873d961, type: 2}
   startGameState: {fileID: 11400000, guid: 515fc1532fd94b7458fb4c93b0ed728d, type: 2}
+  miniMashState: {fileID: 11400000, guid: e4519727d1e040f44a66898ecfac63e7, type: 2}
 --- !u!4 &1118542935
 Transform:
   m_ObjectHideFlags: 0
@@ -511,6 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daff2e9de4c329d40b9b6bf01febe91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stateManager: {fileID: 1118542934}
 --- !u!4 &1264248043
 Transform:
   m_ObjectHideFlags: 0
