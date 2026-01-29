@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2802715431922758475}
   - component: {fileID: 7384990228849923153}
   - component: {fileID: 1647129735725488762}
+  - component: {fileID: -4245972322267878909}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -240,6 +241,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e8eef054-7269-460e-9c84-40c89739bc09
     m_ActionName: 'CardSelection/Shove[/DualSenseGamepadHID/buttonWest,/DualSenseGamepadHID1/buttonWest]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -4245972322267878909}
+        m_TargetAssemblyTypeName: PlayerMashScript, Assembly-CSharp
+        m_MethodName: Mash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 62c95749-6685-447f-bad2-c8426819fbcd
+    m_ActionName: Mash/Mash
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: CardSelection
@@ -273,3 +290,16 @@ MonoBehaviour:
   block: {fileID: 11400000, guid: deedce562fbabdc4393926caf3958233, type: 2}
   grapple: {fileID: 11400000, guid: afae40f2ee318994080bf3c7d883d965, type: 2}
   shove: {fileID: 11400000, guid: 5a9c8d9bd837f714d81c4c0ab6d0cedf, type: 2}
+--- !u!114 &-4245972322267878909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860056793942186639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09bdeeed37d39a443bc92a0d2a170c2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requestedMashes: 50

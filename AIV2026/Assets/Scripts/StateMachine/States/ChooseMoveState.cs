@@ -15,6 +15,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 {
     public Jammer player1;
     public Jammer player2;
+    public bool goToMinigame = false;
 
     public void OnStateEnter()
     {
@@ -24,6 +25,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
         Debug.Log(GlobalData.Instance.Player1);
         Debug.Log(GlobalData.Instance.Player2);
+        goToMinigame = false;
 
     }
 
@@ -56,6 +58,10 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
         p2.ChosenMove = null;
         p1.ChosenMove = null;
+
+        goToMinigame = true; //ELIMINA DOPO IL DEBUG 
+
+
     }
 
     public void OnFixedStateStay()

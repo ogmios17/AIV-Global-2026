@@ -3,6 +3,7 @@ using UnityEngine;
 public class GlobalData : MonoBehaviour
 {
     public static GlobalData Instance { get; private set; }
+    public StateManager stateManager;
 
     public Jammer Player1;
     public Jammer Player2;

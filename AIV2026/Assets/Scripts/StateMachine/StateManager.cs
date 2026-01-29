@@ -11,20 +11,21 @@ public class StateManager : MonoBehaviour
     private ConnectState connectState;
     [SerializeField]
     private ChooseMoveState chooseMoveState;
-
     [SerializeField]
     private CharacterSelectionState characterSelectionState;
     [SerializeField]
     private IdleState idleState;
     [SerializeField]
-
     private StartGameState startGameState;
+    [SerializeField]
+    private MiniMashState miniMashState;
     private Jammer player1;
     private Jammer player2;
 
     //public Jammer Player1 { get => player1; set => player1 = value; }
     //public Jammer Player2 { get => player2; set => player2 = value; }
 
+    public MiniMashState MiniMashState {  get { return miniMashState; } }
 
     private void Start()
     {
@@ -34,7 +35,8 @@ public class StateManager : MonoBehaviour
         //chooseMoveState = new ChooseMoveState();
         gameStateMachine.AddTransition(connectState, chooseMoveState,
             new FuncPredicate(() => controllerHandler.BindingComplete ));
-
+        gameStateMachine.AddTransition( chooseMoveState, miniMashState,
+            new FuncPredicate(() => chooseMoveState.goToMinigame));
 
         gameStateMachine.SetState(connectState);
     }
