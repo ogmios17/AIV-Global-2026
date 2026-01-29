@@ -8,6 +8,7 @@ public class PlayerBinder : MonoBehaviour
     {
         var input = GetComponent<PlayerInput>();
         Jammer = new Jammer();
+        Jammer.Input = input;
 
         if (input.playerIndex == 0)
         {
@@ -19,5 +20,6 @@ public class PlayerBinder : MonoBehaviour
             Jammer.PlayerType = PlayerType.Player2;
             GlobalData.Instance.Player2 = Jammer;
         }
+
     }
 }
