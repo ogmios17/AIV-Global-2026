@@ -21,11 +21,11 @@ public class CharacterSelectionManager : MonoBehaviour
         GameObject cardObject = Instantiate(characterCardPrefab, transform);
 
         // Update UI elements
-        Image characterImage = cardObject.transform.Find("CharacterImage").GetComponent<Image>();
-        TextMeshProUGUI characterName = cardObject.transform.Find("CharacterNameContainer").GetComponentInChildren<TextMeshProUGUI>();
+        Image characterImage = cardObject.transform.Find("CardContainer/CharacterImage").GetComponent<Image>();
+        // TextMeshProUGUI characterName = cardObject.transform.Find("CardContainer/CharacterNameContainer").GetComponentInChildren<TextMeshProUGUI>();
 
         characterImage.sprite = characterCard.characterImage;
-        characterName.text = characterCard.characterName;
+        // characterName.text = characterCard.characterName;
 
         // Changing image pivot
         Vector2 uiPivot = ConvertImagePivotToUIPivot(characterImage);
