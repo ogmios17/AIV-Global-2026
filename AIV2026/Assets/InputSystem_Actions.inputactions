@@ -687,6 +687,65 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Sequence",
+            "id": "fe76fa7e-89c8-4071-9a8e-532a99b48312",
+            "actions": [
+                {
+                    "name": "Press",
+                    "type": "Button",
+                    "id": "fea1ae60-12cd-4811-bdfc-23c1856189f4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Wrong",
+                    "type": "Button",
+                    "id": "3b7d9b3e-320b-4a2f-ab85-daffff26a81c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ea2b8024-22a7-444e-907f-168f129bbf73",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5ac9f906-3873-4b5a-a0ea-08711ea839ce",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Wrong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d09e28c6-7484-4587-8662-ae1e4a22304c",
+                    "path": "<Gamepad>/*",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Wrong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

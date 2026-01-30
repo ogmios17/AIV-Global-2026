@@ -19,6 +19,8 @@ public class StateManager : MonoBehaviour
     private StartGameState startGameState;
     [SerializeField]
     private MiniMashState miniMashState;
+    [SerializeField]
+    private MiniSequenceState miniSequenceState;
     private Jammer player1;
     private Jammer player2;
 
@@ -26,6 +28,7 @@ public class StateManager : MonoBehaviour
     //public Jammer Player2 { get => player2; set => player2 = value; }
 
     public MiniMashState MiniMashState {  get { return miniMashState; } }
+    public MiniSequenceState MiniSequenceState { get { return miniSequenceState; } }
 
     private void Start()
     {

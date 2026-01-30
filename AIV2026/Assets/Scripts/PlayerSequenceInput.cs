@@ -1,12 +1,10 @@
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMashScript : MonoBehaviour
+public class PlayerSequenceInput : MonoBehaviour
 {
-
     private StateManager stateManager;
-    private MiniMashState miniMashState;
+    private MiniSequenceState miniSequenceState;
     private PlayerBinder binder;
     private PlayerType playerType;
     private void Awake()
@@ -15,28 +13,29 @@ public class PlayerMashScript : MonoBehaviour
         Debug.Log(" state manager: ", stateManager);
         binder = GetComponent<PlayerBinder>();
         playerType = binder.Jammer.PlayerType;
-        miniMashState = stateManager.MiniMashState;
+        miniSequenceState = stateManager.MiniSequenceState;
     }
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        
+
     }
 
-    public void Mash(InputAction.CallbackContext ctx)
+    public void Press(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
-        if(playerType == PlayerType.Player1)
+        string pressed = ctx.control.path;
+        if (playerType == PlayerType.Player1)
         {
-            miniMashState.Handler.Onp1Mash();
+            miniSequenceState.Handler.Onp1Press(pressed);
         }
         if (playerType == PlayerType.Player2)
         {
-            miniMashState.Handler.Onp2Mash();
+            miniSequenceState.Handler.Onp2Press(pressed);
         }
 
     }
