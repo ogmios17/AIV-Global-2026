@@ -56,10 +56,12 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         }
         else if (c1.wins == c2)
         {
+            player1.TakeAHit();
             Debug.Log("PLAYER 1 WINS");
         }
         else if (c1.loses == c2)
         {
+            player2.TakeAHit();
             Debug.Log("PLAYER 1 LOSE");
         }
 
