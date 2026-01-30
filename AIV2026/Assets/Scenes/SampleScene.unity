@@ -468,6 +468,7 @@ MonoBehaviour:
   idleState: {fileID: 11400000, guid: bf4d4a0c9a895f349ace553e3873d961, type: 2}
   startGameState: {fileID: 11400000, guid: 515fc1532fd94b7458fb4c93b0ed728d, type: 2}
   miniMashState: {fileID: 11400000, guid: e4519727d1e040f44a66898ecfac63e7, type: 2}
+  miniSequenceState: {fileID: 11400000, guid: 6e42c7b429672d74ab5734022335ec3a, type: 2}
 --- !u!4 &1118542935
 Transform:
   m_ObjectHideFlags: 0
