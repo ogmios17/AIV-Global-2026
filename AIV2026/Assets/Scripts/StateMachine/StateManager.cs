@@ -38,7 +38,7 @@ public class StateManager : MonoBehaviour
         //chooseMoveState = new ChooseMoveState();
         gameStateMachine.AddTransition(connectState, chooseMoveState,
             new FuncPredicate(() => controllerHandler.BindingComplete ));
-        gameStateMachine.AddTransition( chooseMoveState, miniMashState,
+        gameStateMachine.AddTransition( chooseMoveState, miniSequenceState,
             new FuncPredicate(() => chooseMoveState.goToMinigame));
 
         gameStateMachine.SetState(connectState);

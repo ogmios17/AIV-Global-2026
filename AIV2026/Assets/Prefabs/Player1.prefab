@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7384990228849923153}
   - component: {fileID: 1647129735725488762}
   - component: {fileID: -4245972322267878909}
+  - component: {fileID: 3614632510590720772}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -257,6 +258,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 62c95749-6685-447f-bad2-c8426819fbcd
     m_ActionName: Mash/Mash
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3614632510590720772}
+        m_TargetAssemblyTypeName: PlayerSequenceInput, Assembly-CSharp
+        m_MethodName: Press
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fea1ae60-12cd-4811-bdfc-23c1856189f4
+    m_ActionName: Sequence/Press
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: CardSelection
@@ -281,7 +298,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860056793942186639}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd8e28bddb7b85d44bbb47453d7fd7a1, type: 3}
   m_Name: 
@@ -297,9 +314,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860056793942186639}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09bdeeed37d39a443bc92a0d2a170c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requestedMashes: 50
+--- !u!114 &3614632510590720772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5860056793942186639}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10ede13bdaac1046a38806a1a204ec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

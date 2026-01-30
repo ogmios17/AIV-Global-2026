@@ -14,12 +14,12 @@ public class SequenceHandler : MonoBehaviour
     private int modifier;
     private Queue<string> sequence1 = new Queue<string>();
     private Queue<string> sequence2 = new Queue<string>();
-    private string[] controllerInputs = {"<Gamepad>/dpad/up",
-                    "<Gamepad>/dpad/down",
-                    "<Gamepad>/dpad/left",
-                    "<Gamepad>/dpad/right"
+    private string[] controllerInputs = {"/dpad/up",
+                    "/dpad/down",
+                    "/dpad/left",
+                    "/dpad/right"
     };
-    private string[] keyboardInputs = {"<Keyboard>/up", "<Keyboard>/down", "<Keyboard>/left", "<Keyboard>/right"
+    private string[] keyboardInputs = {"/up", "/down", "/left", "/right"
     };
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,15 +31,15 @@ public class SequenceHandler : MonoBehaviour
         player1.Input.SwitchCurrentActionMap("Sequence");
         player2.Input.SwitchCurrentActionMap("Sequence");
 
-        if (player1.Controller.Contains("keyboard"))
+        if (player1.Controller.Contains("Keyboard"))
             InitSetup(keyboardInputs, sequence1);
         else InitSetup(controllerInputs, sequence1);
-        player1.Input.actions.FindActionMap("Sequence").FindAction("Press").ApplyBindingOverride(sequence1.Dequeue());
+        //player1.Input.actions.FindActionMap("Sequence").FindAction("Press").ApplyBindingOverride(sequence1.Dequeue());
 
-        if (player2.Controller.Contains("keyboard"))
+        if (player2.Controller.Contains("Keyboard"))
             InitSetup(keyboardInputs, sequence2);
         else InitSetup(controllerInputs, sequence2);
-        player2.Input.actions.FindActionMap("Sequence").FindAction("Press").ApplyBindingOverride(sequence1.Dequeue());
+        //player2.Input.actions.FindActionMap("Sequence").FindAction("Press").ApplyBindingOverride(sequence1.Dequeue());
 
     }
 
@@ -62,10 +62,31 @@ public class SequenceHandler : MonoBehaviour
     public void Onp1Press(string pressed)
     {
         // se pressed = dequeue allora tutto apposto senò muori
+        if (pressed.ToLower().Contains(sequence1.Dequeue().ToLower()))
+        {
+            if (sequence1.Count <= 0)
+            {
+                Debug.Log("p1 wins!");
+            }
+        }
+        else
+        {
+            Debug.Log("p1 loses...");
+        }
     }
 
     public void Onp2Press(string pressed)
     {
-        
+        if (pressed.Contains(sequence2.Dequeue().ToLower()))
+        {
+            if (sequence2.Count <= 0)
+            {
+                Debug.Log("p2 wins!");
+            }
+        }
+        else
+        {
+            Debug.Log("p2 loses...");
+        }
     }
 }

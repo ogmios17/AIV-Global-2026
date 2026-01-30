@@ -13,13 +13,15 @@ public class PlayerBinder : MonoBehaviour
         if (input.playerIndex == 0)
         {
             Jammer.PlayerType = PlayerType.Player1;
-            Jammer.Controller = Input.GetJoystickNames()[0];
+            Jammer.Controller = input.currentControlScheme;
+            Debug.Log("controller: " + Jammer.Controller);
             GlobalData.Instance.Player1 = Jammer;
         }
         else if (input.playerIndex == 1)
         {
             Jammer.PlayerType = PlayerType.Player2;
-            Jammer.Controller = Input.GetJoystickNames()[1];
+            Jammer.Controller = input.currentControlScheme;
+            Debug.Log("controller: " + Jammer.Controller);
             GlobalData.Instance.Player2 = Jammer;
         }
 

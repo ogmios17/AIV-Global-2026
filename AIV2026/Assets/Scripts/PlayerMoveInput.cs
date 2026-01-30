@@ -19,24 +19,28 @@ public class PlayerMoveInput : MonoBehaviour
     {
         if (!ctx.performed) return;
         binder.Jammer.ChosenMove = attack;
+        Debug.Log("Attack");
     }
 
     public void Block(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
         binder.Jammer.ChosenMove = block;
+        Debug.Log("Block");
     }
 
     public void Grapple(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
         binder.Jammer.ChosenMove = grapple;
+        Debug.Log("Grapple");
     }
 
     public void Shove(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
         binder.Jammer.ChosenMove = shove;
+        Debug.Log("Shove");
     }
 
     

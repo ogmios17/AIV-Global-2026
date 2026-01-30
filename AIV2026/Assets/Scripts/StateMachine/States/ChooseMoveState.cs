@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public enum CardTypes
@@ -16,16 +17,22 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     public Jammer player1;
     public Jammer player2;
     public bool goToMinigame = false;
+    public GameObject prefab;
+    private GameObject prefabClone;
+
 
     public void OnStateEnter()
     {
         player1 = GlobalData.Instance.Player1;
-        Debug.Log("player1 " + player1.PlayerType);
         player2 = GlobalData.Instance.Player2;
 
         Debug.Log(GlobalData.Instance.Player1);
         Debug.Log(GlobalData.Instance.Player2);
         goToMinigame = false;
+
+        prefabClone = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
+        player1.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = true;
+        player2.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = true;
 
     }
 
@@ -71,7 +78,8 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
     public void OnStateExit()
     {
-
+        player1.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = false;
+        player2.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = false;
     }
     
 }
