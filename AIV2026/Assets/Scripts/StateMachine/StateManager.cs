@@ -36,12 +36,10 @@ public class StateManager : MonoBehaviour
         DontDestroyOnLoad(this);
         //connectState = new ConnectState(controllerHandler);
         //chooseMoveState = new ChooseMoveState();
-        gameStateMachine.AddTransition(connectState, chooseMoveState,
-            new FuncPredicate(() => controllerHandler.BindingComplete ));
         gameStateMachine.AddTransition( chooseMoveState, miniSequenceState,
             new FuncPredicate(() => chooseMoveState.goToMinigame));
 
-        gameStateMachine.SetState(connectState);
+        gameStateMachine.SetState(chooseMoveState);
     }
 
     public void Update()
