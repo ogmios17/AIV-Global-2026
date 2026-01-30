@@ -18,6 +18,15 @@ public class CharacterSelectionInputManager : MonoBehaviour
     [SerializeField] private Sprite _player1Image;
     [SerializeField] private Sprite _player2Image;
 
+    [Header("Player Characters GameObjects")]
+    [SerializeField] private GameObject _player1CharacterGameObject;
+    [SerializeField] private GameObject _player2CharacterGameObject;
+
+    [Header("Player Characters Images")]
+    [SerializeField] private Sprite _notzillaCharacterImage;
+    [SerializeField] private Sprite _crackkenCharacterImage;
+    [SerializeField] private Sprite _casualCharacterImage;
+
     [Header("Navigation Settings")]
     [SerializeField] private float _navigationCooldown = 0.2f;
 
@@ -26,7 +35,7 @@ public class CharacterSelectionInputManager : MonoBehaviour
     
     // Current selection index for each player
     private int _player1Index = 0;
-    private int _player2Index = 0;
+    private int _player2Index = 1;
     
     // Navigation cooldown timers
     private float _player1CooldownTimer = 0f;
@@ -233,6 +242,7 @@ public class CharacterSelectionInputManager : MonoBehaviour
         if (newIndex >= 0 && newIndex < _characterItems.Count)
         {
             _characterItems[newIndex].SetPlayerHover(player, true);
+            UpdateCharacterImage(player, _characterItems[newIndex]);
         }
     }
 
@@ -255,5 +265,50 @@ public class CharacterSelectionInputManager : MonoBehaviour
         _player1SubmitAction?.Dispose();
         _player2SubmitAction?.Disable();
         _player2SubmitAction?.Dispose();
+    }
+
+    private void UpdateCharacterImage(PlayerType player, CharacterSelectionItem characterItem)
+    {
+        Sprite sprite = GetCharacterByCharacterItem(characterItem);
+        Debug.Log(sprite.name);
+
+        switch (player)
+        {
+            case PlayerType.Player1:
+                // Prendo la CharacterImage del Player1 (_player1CharacterGameObject.sprite)
+
+                // TODO Leggero slide verso sinistra
+
+                // Sostituisco l'immagine
+                //TODO Leggero slide verso sinistra
+                _player1CharacterGameObject.transform.GetComponent<Image>().sprite = sprite;
+                break;
+            case PlayerType.Player2:
+                _player2CharacterGameObject.transform.GetComponent<Image>().sprite = sprite;
+                break;
+            case PlayerType.CPU:
+                _player2CharacterGameObject.transform.GetComponent<Image>().sprite = sprite;
+                break;
+            default:
+                Debug.LogWarning($"[CharacterSelectionInputManager] Unknown character item name: {characterItem.name}");
+                break;
+        }
+    }
+
+    private Sprite GetCharacterByCharacterItem(CharacterSelectionItem characterItem)
+    {
+        string name = characterItem.name;
+
+        switch(name)
+        {
+            case "Notzilla":
+                return _notzillaCharacterImage;
+            case "Crack-Ken":
+                return _crackkenCharacterImage;
+            case "Casual":
+                return _casualCharacterImage;
+            default:
+                return _notzillaCharacterImage;
+        }
     }
 }

@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 6168393952790597302}
   - component: {fileID: 6420464934983604317}
   - component: {fileID: 4587075970611810960}
-  - component: {fileID: 6180753884569451380}
+  - component: {fileID: 5827570621514869103}
   m_Layer: 5
   m_Name: CharacterCardElement
   m_TagString: Untagged
@@ -623,7 +623,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3323659339488044131}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be8d0082ef0322d40afcb694a5d94b24, type: 3}
   m_Name: 
@@ -631,7 +631,7 @@ MonoBehaviour:
   _verticalMoveAmount: 30
   _moveDuration: 0.1
   _scaleAmount: 1.05
---- !u!114 &6180753884569451380
+--- !u!114 &5827570621514869103
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -643,10 +643,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd20c4ff38bdccb46ac9db15ef157429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player1Image: {fileID: 21300000, guid: ad88f587dc8825546918cb2a98727880, type: 3}
-  Player2Image: {fileID: 21300000, guid: 9af4908ce32ce57488684d5cfd2bcf1b, type: 3}
-  _player1Color: {r: 0.098039225, g: 0.8196079, b: 0.9960785, a: 1}
-  _player2Color: {r: 1, g: 0.118, b: 0.709, a: 1}
 --- !u!1 &3535216329990197698
 GameObject:
   m_ObjectHideFlags: 0
