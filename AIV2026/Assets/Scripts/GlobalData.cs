@@ -1,7 +1,7 @@
 using UnityEngine;
-
 public class GlobalData : MonoBehaviour
 {
+
     public static GlobalData Instance { get; private set; }
     public StateManager stateManager;
 
