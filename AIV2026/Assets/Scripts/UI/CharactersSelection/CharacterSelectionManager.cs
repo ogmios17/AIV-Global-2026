@@ -19,6 +19,7 @@ public class CharacterSelectionManager : MonoBehaviour
     private void SpawnCharacterCard(CharacterSelectionCard characterCard)
     {
         GameObject cardObject = Instantiate(characterCardPrefab, transform);
+        cardObject.name = characterCard.characterName;
 
         // Update UI elements
         Image characterImage = cardObject.transform.Find("CardContainer/CharacterImage").GetComponent<Image>();
