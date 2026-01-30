@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Workspace" id="{9405f9cf-376b-47c1-a262-c4770455bd29}">
 		<property name="builtBanksOutputDirectory">
-			<value>../../AIV-Global-2026/AIV2026/Assets/StreamingAssets</value>
+			<value>Build</value>
 		</property>
 		<relationship name="masterEventFolder">
 			<destination>{3d99f592-67c2-4f0e-97be-17187399a0ad}</destination>
