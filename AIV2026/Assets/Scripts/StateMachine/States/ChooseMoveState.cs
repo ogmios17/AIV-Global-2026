@@ -123,7 +123,8 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     
     public void ChooseMinigame()
     {
-        int index = Random.Range(0, 1);
+        // int index = Random.Range(0, 1);
+        int index = 1; // DEBUG: Sequence
         nextMinigame = index;
     }
 }

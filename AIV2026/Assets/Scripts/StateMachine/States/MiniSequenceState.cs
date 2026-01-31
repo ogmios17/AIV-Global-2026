@@ -21,13 +21,17 @@ public class MiniSequenceState : ScriptableObject, StateInterface
         handler = prefabClone.GetComponent<SequenceHandler>();
 
         player1.Input.gameObject.GetComponent<PlayerSequenceInput>().enabled = true;
-        player2.Input.gameObject.GetComponent<PlayerSequenceInput>().enabled = true;
+        
+        if (!player2.IsCPUMode)
+            player2.Input.gameObject.GetComponent<PlayerSequenceInput>().enabled = true;
     }
 
     public void OnStateExit()
     {
         player1.Input.gameObject.GetComponent<PlayerSequenceInput>().enabled = false;
-        player2.Input.gameObject.GetComponent<PlayerSequenceInput>().enabled = false;
+        
+        if (!player2.IsCPUMode)
+            player2.Input.gameObject.GetComponent<PlayerSequenceInput>().enabled = false;
     }
 
     public void OnStateStay()
