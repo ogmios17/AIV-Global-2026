@@ -66,7 +66,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             Resolve(player1, player2);
         }
     }
-  
+
     private void Resolve(Jammer p1, Jammer p2)
     {
         MoveCard c1 = p1.ChosenMove;
@@ -77,6 +77,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             player2.FighterAnim.SetTrigger("Next");
             player1.FighterAnim.SetTrigger("Next");
             Debug.Log("DRAW");
+            AudioManager.Instance.PlayCancelCard();
         }
         else if (c1.clashes.Contains(c2))
         {
@@ -84,17 +85,20 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             player1.FighterAnim.SetTrigger("Next");
             ChooseMinigame();
             Debug.Log("Clash");
+            AudioManager.Instance.PlayCancelCard();
         }
         else if (c1.wins == c2)
         {
             player2.FighterAnim.SetTrigger("Damage");
             player2.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player2);
+            AudioManager.Instance.PlayCardSound(c1);
             Debug.Log("PLAYER 1 WINS");
         }
         else if (c1.loses == c2)
         {
             player1.FighterAnim.SetTrigger("Damage");
             player1.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player1);
+            AudioManager.Instance.PlayCardSound(c2);
             Debug.Log("PLAYER 1 LOSE");
         }
 
@@ -105,7 +109,6 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
 
     }
-
     public void OnFixedStateStay()
     {
 
