@@ -56,23 +56,26 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         if (c1 == c2 || c1.draws.Contains(c2))
         {
             Debug.Log("DRAW");
-            //&inserire clash in card
+        }
+        else if (c1.clashes.Contains(c2))
+        {
+            Debug.Log("Clash");
         }
         else if (c1.wins == c2)
         {
-            player1.TakeAHit();
+            player2.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player2);
             Debug.Log("PLAYER 1 WINS");
         }
         else if (c1.loses == c2)
         {
-            player2.TakeAHit();
+            player1.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player1);
             Debug.Log("PLAYER 1 LOSE");
         }
 
         p2.ChosenMove = null;
         p1.ChosenMove = null;
 
-        goToMinigame = true; //ELIMINA DOPO IL DEBUG 
+        //goToMinigame = true; //ELIMINA DOPO IL DEBUG 
 
 
     }

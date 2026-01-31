@@ -280,7 +280,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: 9a5d35a68deb3d442bcc69aa82ca335a, type: 3}
-  m_Color: {r: 0.9725491, g: 0.27058825, b: 0.90196085, a: 1}
+  m_Color: {r: 0.972549, g: 0.27058825, b: 0.90196085, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -315,6 +315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7247196965698324129}
+  - component: {fileID: 2701954542484015640}
   m_Layer: 0
   m_Name: P2Fighter
   m_TagString: Untagged
@@ -330,7 +331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3627437899303586132}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -339,7 +340,29 @@ Transform:
   - {fileID: 7664600804816180334}
   - {fileID: 5158873134152365363}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2701954542484015640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3627437899303586132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 579b722a6ace961448fcb2a687c841d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBars:
+  - {fileID: 2896625858832367490}
+  - {fileID: 4225581045628967477}
+  - {fileID: 5651975999707582654}
+  - {fileID: 5374043513346008857}
+  - {fileID: 4756281055860186838}
+  - {fileID: 3650346370371431545}
+  - {fileID: 6853336810962982775}
+  - {fileID: 893770870272476900}
+  - {fileID: 4092084993324050602}
 --- !u!1 &3638636488844421711
 GameObject:
   m_ObjectHideFlags: 0

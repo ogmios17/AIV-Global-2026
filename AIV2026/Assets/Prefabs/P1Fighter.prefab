@@ -1125,6 +1125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8521625199449786305}
+  - component: {fileID: 262720815498079493}
   m_Layer: 0
   m_Name: P1Fighter
   m_TagString: Untagged
@@ -1140,7 +1141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8364574429403050944}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1150,6 +1151,28 @@ Transform:
   - {fileID: 4142227557571262752}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &262720815498079493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8364574429403050944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 579b722a6ace961448fcb2a687c841d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBars:
+  - {fileID: 2088429994672134624}
+  - {fileID: 1245999901155588832}
+  - {fileID: 8770207999273422699}
+  - {fileID: 2188530106827775376}
+  - {fileID: 4357252417357445014}
+  - {fileID: 3351021473840118796}
+  - {fileID: 2875709238344412769}
+  - {fileID: 5151828883931663395}
+  - {fileID: 6191198827243429302}
 --- !u!1 &8770207999273422699
 GameObject:
   m_ObjectHideFlags: 0

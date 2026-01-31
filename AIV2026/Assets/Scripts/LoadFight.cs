@@ -7,6 +7,10 @@ public class LoadFight : MonoBehaviour
     private Transform p1Position;
     [SerializeField]
     private Transform p2Position;
+    [SerializeField]
+    private GameObject notZilla;
+    [SerializeField]
+    private GameObject crackKen;
 
     private Jammer player1;
     private Jammer player2;
@@ -16,13 +20,24 @@ public class LoadFight : MonoBehaviour
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
 
-        Instantiate(player1.CharacterPrefab, p1Position);
-        Instantiate(player2.CharacterPrefab, p2Position).transform.rotation = new Quaternion(0,0,0,1); 
+        Debug.Log(player1.CharacterType + " "+ player2.CharacterType);
+        player1.CharacterPrefab = Instantiate(GetPrefab(player1.CharacterType), p1Position);
+        player2.CharacterPrefab = Instantiate(GetPrefab(player2.CharacterType), p2Position);
+        player2.CharacterPrefab.transform.rotation = new Quaternion(0, 0, 0, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private GameObject GetPrefab(CharacterType type)
+    {
+        return type switch
+        {
+            CharacterType.NotZilla => notZilla,
+            CharacterType.CrackKen => crackKen,
+        };
     }
 }
