@@ -33,6 +33,8 @@ public class CharacterSelectionInputManager : MonoBehaviour
     [Header("Player Prefabs")]
     [SerializeField] private GameObject Player1Prefab;
     [SerializeField] private GameObject Player2Prefab;
+    [SerializeField] private GameObject notZilla;
+    [SerializeField] private GameObject crackKen;
 
     [Header("Player Input Managers")]
     [SerializeField] private GameObject OldPlayerInputManager;
@@ -213,9 +215,18 @@ public class CharacterSelectionInputManager : MonoBehaviour
         if (_player1CharacterChoice != null && _player2CharacterChoice != null)
         {
             _choicesDone = true;
-            player1PrefabInstance.GetComponent<PlayerBinder>().Character = _player1CharacterChoice.Value;
+            player1PrefabInstance.GetComponent<PlayerBinder>().Jammer.CharacterType = _player1CharacterChoice.Value;
+            if (_player1CharacterChoice == CharacterType.NotZilla)
+            {
+                player1PrefabInstance.GetComponent<PlayerBinder>().Jammer.CharacterPrefab = notZilla;
+            }else player1PrefabInstance.GetComponent<PlayerBinder>().Jammer.CharacterPrefab = crackKen;
 
-            player1PrefabInstance.GetComponent<PlayerBinder>().Character = _player2CharacterChoice.Value;
+            if (_player2CharacterChoice == CharacterType.NotZilla)
+            {
+                player2PrefabInstance.GetComponent<PlayerBinder>().Jammer.CharacterPrefab = notZilla;
+            }
+            else player2PrefabInstance.GetComponent<PlayerBinder>().Jammer.CharacterPrefab = crackKen;
+            player1PrefabInstance.GetComponent<PlayerBinder>().Jammer.CharacterType = _player2CharacterChoice.Value;
 
             SceneLoader.Instance.Load("SampleScene");
 
