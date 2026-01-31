@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{d3e778bf-0490-43d9-a21a-7c95186580f4}">
 		<property name="assetPath">
-			<value>Menu Pausa Loop.wav</value>
+			<value>wave/MX/Menu Pausa Loop.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
