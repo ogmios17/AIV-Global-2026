@@ -464,6 +464,7 @@ MonoBehaviour:
   randomAdvantage_chance: 3
   randomizeAdvantage: 1
   advantageStrength: 0.01
+  cpuMashInterval: 0.15
 --- !u!1 &5655489678376434263
 GameObject:
   m_ObjectHideFlags: 0

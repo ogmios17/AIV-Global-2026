@@ -18,7 +18,8 @@ public class IdleState : ScriptableObject, StateInterface
 
         prefabClone = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
         handler = prefabClone.GetComponentInChildren<CharacterSelectionInputManager>();
-
+        handler.IsCPUMode = PlayerPrefs.GetInt("IsCPUMode") == 1;
+        
         //player1.Input.gameObject.GetComponent<PlayerUIInput>().enabled = true;
         //player2.Input.gameObject.GetComponent<PlayerUIInput>().enabled = true;
     }

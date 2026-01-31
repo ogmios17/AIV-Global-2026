@@ -19,6 +19,11 @@ public class MashHandler : MonoBehaviour
     public int randomAdvantage_chance;
     public bool randomizeAdvantage = true;
     public float advantageStrength;
+
+    [Header("CPU Settings")]
+    public float cpuMashInterval  = 0.15f; // CPU masha ogni {cpuMashInterval} secondi
+    private float cpuMashTimer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,21 +32,35 @@ public class MashHandler : MonoBehaviour
         player2 = GlobalData.Instance.Player2;
 
         player1.Input.SwitchCurrentActionMap("Mash");
-        player2.Input.SwitchCurrentActionMap("Mash");
+        if (!player2.IsCPUMode)
+            player2.Input.SwitchCurrentActionMap("Mash");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (player2.IsCPUMode)
+        {
+            cpuMashTimer += Time.deltaTime;
+            Debug.Log("cpuMashTimer: " + cpuMashTimer);
+
+            if (cpuMashTimer >= cpuMashInterval)
+            {
+                Onp2Mash();
+                cpuMashTimer = 0f;
+            }  
+        }
+            
         divider.transform.position = new Vector3(points,divider.transform.position.y,divider.transform.position.z);
-        Debug.Log("Kiss amount: " + points);
+        
+        // Debug.Log("Kiss amount: " + points);
         if (divider.transform.position.x <= targetLeft.transform.position.x)
         {
             Debug.Log("player 2 wins");
         }
         if (divider.transform.position.x >= targetRight.transform.position.x)
         {
-            Debug.Log("player 2 wins");
+            Debug.Log("player 1 wins");
         }
     }
 

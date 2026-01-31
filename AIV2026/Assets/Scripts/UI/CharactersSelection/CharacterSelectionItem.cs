@@ -30,12 +30,13 @@ public class CharacterSelectionItem : MonoBehaviour
     private bool _isPlayer1Hovering = false;
     private bool _isPlayer2Hovering = false;
 
-    void Awake()
+    void Start()
     {
-        _player1Color = transform.GetComponentInParent<CharacterSelectionInputManager>().Player1Color;
-        _player2Color = transform.GetComponentInParent<CharacterSelectionInputManager>().Player2Color;
-        Player1Image = transform.GetComponentInParent<CharacterSelectionInputManager>().Player1Image;
-        Player2Image = transform.GetComponentInParent<CharacterSelectionInputManager>().Player2Image;
+        CharacterSelectionInputManager inputManager = transform.GetComponentInParent<CharacterSelectionInputManager>();
+        _player1Color = inputManager.Player1Color;
+        _player2Color = inputManager.Player2Color;
+        Player1Image = inputManager.Player1Image;
+        Player2Image = inputManager.IsCPUMode ? inputManager.CPUImage : inputManager.Player2Image;
 
         // Player 1 elements (existing structure)
         _player1ImageObject = transform.Find("PlayerImage")?.gameObject;

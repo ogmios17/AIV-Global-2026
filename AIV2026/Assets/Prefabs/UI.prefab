@@ -733,10 +733,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1bc257e004f8304d9d86d1ee84306c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isCPUMode: 0
   _player1Color: {r: 0.09803922, g: 0.81960785, b: 0.99607843, a: 1}
   _player2Color: {r: 1, g: 0.118, b: 0.709, a: 1}
   _player1Image: {fileID: 21300000, guid: ad88f587dc8825546918cb2a98727880, type: 3}
   _player2Image: {fileID: 21300000, guid: 9af4908ce32ce57488684d5cfd2bcf1b, type: 3}
+  _cpuImage: {fileID: 21300000, guid: 663f302deff6ecb44ba8db5b12ed5607, type: 3}
   _player1CharacterGameObject: {fileID: 6098943505322515598}
   _player2CharacterGameObject: {fileID: 802528966405951850}
   _notzillaCharacterImage: {fileID: 21300000, guid: 3a17ea87fbd0ca2499d0a170fb2ac239, type: 3}
@@ -744,9 +746,7 @@ MonoBehaviour:
   _casualCharacterImage: {fileID: 21300000, guid: 2f4f3662b2f26b04fbc7d0eea3317eb0, type: 3}
   _navigationCooldown: 0
   Player1Prefab: {fileID: 5860056793942186639, guid: a0075e1e75d215748be03215645f440a, type: 3}
-  Player2Prefab: {fileID: 0}
   OldPlayerInputManager: {fileID: 0}
-  NewPlayerInputManager: {fileID: 0}
   _choicesDone: 0
 --- !u!1 &3498509976049947704
 GameObject:

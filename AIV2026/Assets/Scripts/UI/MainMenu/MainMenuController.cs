@@ -4,10 +4,12 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField] private SceneLoader sceneLoader;
+    [SerializeField] private StateManager stateManager;
 
-    public void OnPlayButtonPressed(string sceneToLoad)
+    public void OnPlayButtonPressed(bool isCPUMode)
     {
-        sceneLoader.Load(sceneToLoad);
+        PlayerPrefs.SetInt("IsCPUMode", isCPUMode ? 1 : 0);
+        sceneLoader.Load("CharacterSelection");
     }
 
     public void OnQuitButtonPressed()

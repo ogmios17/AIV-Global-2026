@@ -17,6 +17,7 @@ public class Jammer
     private GameObject characterPrefab;
     private List<GameObject> healthBars;
     private int health = 9;
+    private bool isCPUMode = false;
 
     public PlayerType PlayerType { get => playerType; set => playerType = value; }
     public CharacterType CharacterType { get => character; set => character = value; }
@@ -25,6 +26,7 @@ public class Jammer
     public MoveCard ChosenMove { get => chosenMove; set => chosenMove = value; }
     public GameObject CharacterPrefab { get => characterPrefab; set => characterPrefab = value; }
     public int Health { get => health;}
+    public bool IsCPUMode { get => isCPUMode; set => isCPUMode = value; }
 
     public void TakeAHit(int value = 1)
     {
