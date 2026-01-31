@@ -23,7 +23,7 @@ public class LoadFight : MonoBehaviour
         Debug.Log(player1.CharacterType + " "+ player2.CharacterType);
         player1.CharacterPrefab = Instantiate(GetPrefab(player1.CharacterType), p1Position);
         player2.CharacterPrefab = Instantiate(GetPrefab(player2.CharacterType), p2Position);
-        player2.CharacterPrefab.transform.rotation = new Quaternion(0, 0, 0, 1);
+        player2.CharacterPrefab.transform.rotation = new Quaternion(0, 180, 0, 1);
     }
 
     // Update is called once per frame
