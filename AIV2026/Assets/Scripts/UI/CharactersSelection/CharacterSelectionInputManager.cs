@@ -82,7 +82,6 @@ public class CharacterSelectionInputManager : MonoBehaviour
 
         player2PrefabInstance = Instantiate(Player1Prefab);
 
-
         var gamepads = Gamepad.all;
         // New Player 1
         //PlayerInput Player1 = NewPlayerInputManager.GetComponent<PlayerInputManager>().JoinPlayer(
@@ -260,17 +259,17 @@ public class CharacterSelectionInputManager : MonoBehaviour
         int newIndex = _player1Index;
         bool navigated = false;
 
-        // Horizontal navigation (left/right through the list)
-        //if (nav1.x > 0.5f && _player1PrevNav.x <= 0.5f)
-        //{
-        //    newIndex = (_player1Index + 1) % _characterItems.Count;
-        //    navigated = true;
-        //}
-        //else if (nav1.x < -0.5f && _player1PrevNav.x >= -0.5f)
-        //{
-        //    newIndex = (_player1Index - 1 + _characterItems.Count) % _characterItems.Count;
-        //    navigated = true;
-        //}
+        //Horizontal navigation(left/ right through the list)
+        if (nav1.x > 0.5f && _player1PrevNav.x <= 0.5f)
+        {
+            newIndex = (_player1Index + 1) % _characterItems.Count;
+            navigated = true;
+        }
+        else if (nav1.x < -0.5f && _player1PrevNav.x >= -0.5f)
+        {
+            newIndex = (_player1Index - 1 + _characterItems.Count) % _characterItems.Count;
+            navigated = true;
+        }
 
         if (navigated)
         {
@@ -321,16 +320,16 @@ public class CharacterSelectionInputManager : MonoBehaviour
         bool navigated = false;
 
         // Horizontal navigation (left/right through the list)
-        //if (nav2.x > 0.5f && _player2PrevNav.x <= 0.5f)
-        //{
-        //    newIndex = (_player2Index + 1) % _characterItems.Count;
-        //    navigated = true;
-        //}
-        //else if (nav2.x < -0.5f && _player2PrevNav.x >= -0.5f)
-        //{
-        //    newIndex = (_player2Index - 1 + _characterItems.Count) % _characterItems.Count;
-        //    navigated = true;
-        //}
+        if (nav2.x > 0.5f && _player2PrevNav.x <= 0.5f)
+        {
+            newIndex = (_player2Index + 1) % _characterItems.Count;
+            navigated = true;
+        }
+        else if (nav2.x < -0.5f && _player2PrevNav.x >= -0.5f)
+        {
+            newIndex = (_player2Index - 1 + _characterItems.Count) % _characterItems.Count;
+            navigated = true;
+        }
 
         if (navigated)
         {
