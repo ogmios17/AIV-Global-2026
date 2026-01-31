@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{eda8c3ba-cb0d-4bf0-9bb9-857828c2ee61}">
+		<property name="name">
+			<value>NotZilla Volume</value>
+		</property>
+		<relationship name="folder">
+			<destination>{29c344cf-cfd6-4d46-9e74-80e1b624ca31}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{9634854d-fdfc-4d89-aac5-41260d6cdf76}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{9634854d-fdfc-4d89-aac5-41260d6cdf76}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
