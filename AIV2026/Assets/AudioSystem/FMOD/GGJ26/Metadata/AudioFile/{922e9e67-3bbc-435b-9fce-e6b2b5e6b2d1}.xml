@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{922e9e67-3bbc-435b-9fce-e6b2b5e6b2d1}">
 		<property name="assetPath">
-			<value>Crowd Cheers 2.mp3</value>
+			<value>mp3/Crowd Cheers 2.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

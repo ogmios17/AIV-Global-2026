@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{5cb70cd5-ec3a-47f9-8ebe-0a9089707eca}">
 		<property name="assetPath">
-			<value>Default MEL nomix v1.mp3</value>
+			<value>mp3/Default MEL nomix v1.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

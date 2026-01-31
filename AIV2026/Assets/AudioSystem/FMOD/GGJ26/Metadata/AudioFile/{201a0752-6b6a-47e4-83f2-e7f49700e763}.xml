@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{201a0752-6b6a-47e4-83f2-e7f49700e763}">
 		<property name="assetPath">
-			<value>Crack-Ken nomix v1.mp3</value>
+			<value>mp3/Crack-Ken nomix v1.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

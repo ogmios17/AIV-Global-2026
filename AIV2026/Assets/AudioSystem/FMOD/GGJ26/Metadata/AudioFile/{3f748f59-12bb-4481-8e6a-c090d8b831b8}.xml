@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{3f748f59-12bb-4481-8e6a-c090d8b831b8}">
 		<property name="assetPath">
-			<value>UI Hover.mp3</value>
+			<value>mp3/UI Hover.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
