@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c3d9a7369d3704bb1f7dd608acc3df, type: 3}
   m_Name: MiniSequenceState
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 724572384529446853, guid: 8a1aa802ebc2ac34c9c21ccb20d0b27a, type: 3}
