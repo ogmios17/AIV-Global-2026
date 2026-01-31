@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="AudioFile" id="{918c2895-f18c-42c7-9cc9-dda886843f7c}">
+	<object class="AudioFile" id="{bd80c07a-42d5-49af-9ed9-98d0d89e6c7e}">
 		<property name="assetPath">
-			<value>mp3/Spam Button Player 2.mp3</value>
+			<value>wave/Minigame/Spam button Player 1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>1.0710204081632653</value>
+			<value>1.5</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{edc35293-a4a0-4d3c-b2f7-7990a28a7e99}</destination>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="AudioFile" id="{c90d1668-ecfd-4c9d-859c-4ae2ed908329}">
+	<object class="AudioFile" id="{8e652881-bcce-490b-abfd-a531abc1384c}">
 		<property name="assetPath">
-			<value>mp3/Elicottero.mp3</value>
+			<value>wave/Minigame/Carro Armato.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>6.4522448979591838</value>
+			<value>6</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{edc35293-a4a0-4d3c-b2f7-7990a28a7e99}</destination>

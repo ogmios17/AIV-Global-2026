@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="AudioFile" id="{558e2088-f62a-44b3-b5fc-877fa39754d1}">
+	<object class="AudioFile" id="{cd33467e-4354-4a2d-92ae-79d22f850be5}">
 		<property name="assetPath">
-			<value>mp3/Spam Button Player 1.mp3</value>
+			<value>wave/Combat/Last HP Signal.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>1.0710204081632653</value>
+			<value>2.25</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{edc35293-a4a0-4d3c-b2f7-7990a28a7e99}</destination>
