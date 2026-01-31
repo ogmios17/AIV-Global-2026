@@ -685,7 +685,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1741019460}
+      - m_Target: {fileID: 1371437601}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayUIClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1465264743}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -695,7 +707,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1465264743}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -841,6 +853,543 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &676361728
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2257019172857003156, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 692.57544
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257019172857003156, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 469.0275
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257019172857003156, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 504.11243
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257019172857003156, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257019172857003156, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257019172857003156, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257019172857003156, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257019172857003156, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257019172857003156, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257019172857003156, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759334712268469262, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowds.Path
+      value: event:/Music/Crowd
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIHover.Path
+      value: event:/SFX/UI/Hover
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: grabCard.Path
+      value: event:/SFX/Cards/Card Afferra
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: pushCard.Path
+      value: event:/SFX/Cards/Card Spingi
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: bellStart.Path
+      value: event:/SFX/Combat/Bell Start Match
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: blockCard.Path
+      value: event:/SFX/Cards/Card Blocca
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: HPRecovery.Path
+      value: event:/SFX/Minigame/HP Recovery
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: attackCard.Path
+      value: event:/SFX/Cards/Card Attacca
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: cancelCard.Path
+      value: event:/SFX/Cards/Card Annulla
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdPanic.Path
+      value: event:/SFX/Minigame/Crowd Panic
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: helicopter.Path
+      value: event:/SFX/Minigame/Elicottero
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIPauseMenu.Path
+      value: event:/SFX/UI/PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdsNomix.Path
+      value: event:/SFX/Combat/Crowd Claps Hey Boo
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIErrorClick.Path
+      value: event:/SFX/UI/ErrorClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowds.Guid.Data1
+      value: -512699001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowds.Guid.Data2
+      value: 1117377399
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowds.Guid.Data3
+      value: -478680442
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowds.Guid.Data4
+      value: -1577607745
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIHover.Guid.Data1
+      value: 681161272
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIHover.Guid.Data2
+      value: 1223929829
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIHover.Guid.Data3
+      value: 1649491348
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIHover.Guid.Data4
+      value: 829687342
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crackKenVerse.Path
+      value: event:/SFX/Combat/Crack-Ken Verses
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: mainTitleLoop.Path
+      value: event:/Music/Main Title MX
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: notZillaVerse.Path
+      value: event:/SFX/Combat/NotZilla Verses
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: grabCard.Guid.Data1
+      value: -503634418
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: grabCard.Guid.Data2
+      value: 1208127372
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: grabCard.Guid.Data3
+      value: -1451277696
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: grabCard.Guid.Data4
+      value: 1080510888
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: pushCard.Guid.Data1
+      value: -338343400
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: pushCard.Guid.Data2
+      value: 1088481090
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: pushCard.Guid.Data3
+      value: -1012333404
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: pushCard.Guid.Data4
+      value: 893270211
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: radioActiveHit.Path
+      value: event:/SFX/Combat/Player Radioattivo
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: bellStart.Guid.Data1
+      value: -1416389749
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: bellStart.Guid.Data2
+      value: 1239815998
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: bellStart.Guid.Data3
+      value: -469250422
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: bellStart.Guid.Data4
+      value: -2094229389
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: blockCard.Guid.Data1
+      value: 1879880289
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: blockCard.Guid.Data2
+      value: 1095933983
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: blockCard.Guid.Data3
+      value: -1878825081
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: blockCard.Guid.Data4
+      value: 53097209
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: defaultMELNomix.Path
+      value: event:/Music/Combat MX
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: HPRecovery.Guid.Data1
+      value: -1396916629
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: HPRecovery.Guid.Data2
+      value: 1280118296
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: HPRecovery.Guid.Data3
+      value: 1295222683
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: HPRecovery.Guid.Data4
+      value: 1701514255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIClickSelection.Path
+      value: event:/SFX/UI/Click di Selezione
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: attackCard.Guid.Data1
+      value: -2138046908
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: attackCard.Guid.Data2
+      value: 1276934741
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: attackCard.Guid.Data3
+      value: 1144792723
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: attackCard.Guid.Data4
+      value: -547827505
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: cancelCard.Guid.Data1
+      value: -211611286
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: cancelCard.Guid.Data2
+      value: 1178560988
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: cancelCard.Guid.Data3
+      value: 1505424256
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: cancelCard.Guid.Data4
+      value: 1183590158
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdCheersForP1.Path
+      value: event:/SFX/Combat/Crowd Cheers for P1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdCheersForP2.Path
+      value: event:/SFX/Combat/Crowd Cheers for P2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdPanic.Guid.Data1
+      value: -782708327
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdPanic.Guid.Data2
+      value: 1163068800
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdPanic.Guid.Data3
+      value: -1959478867
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdPanic.Guid.Data4
+      value: -373621122
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: helicopter.Guid.Data1
+      value: -186976230
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: helicopter.Guid.Data2
+      value: 1305162527
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: helicopter.Guid.Data3
+      value: -212287556
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: helicopter.Guid.Data4
+      value: -821078715
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIPauseMenu.Guid.Data1
+      value: -2116570798
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIPauseMenu.Guid.Data2
+      value: 1206868857
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIPauseMenu.Guid.Data3
+      value: 746630821
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIPauseMenu.Guid.Data4
+      value: -939747565
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdsNomix.Guid.Data1
+      value: 1285029006
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdsNomix.Guid.Data2
+      value: 1177946478
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdsNomix.Guid.Data3
+      value: -1621159012
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdsNomix.Guid.Data4
+      value: -1649466615
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer1.Path
+      value: event:/SFX/Minigame/SpamButtonPlayer1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer2.Path
+      value: event:/SFX/Minigame/SpamButtonPlayer2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIErrorClick.Guid.Data1
+      value: -142645768
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIErrorClick.Guid.Data2
+      value: 1252713949
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIErrorClick.Guid.Data3
+      value: 1088591006
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIErrorClick.Guid.Data4
+      value: -1042841362
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crackKenVerse.Guid.Data1
+      value: 27505179
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crackKenVerse.Guid.Data2
+      value: 1083571127
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crackKenVerse.Guid.Data3
+      value: -1523739205
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crackKenVerse.Guid.Data4
+      value: 910510505
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: mainTitleLoop.Guid.Data1
+      value: 1377552256
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: mainTitleLoop.Guid.Data2
+      value: 1157476989
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: mainTitleLoop.Guid.Data3
+      value: 1310868627
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: mainTitleLoop.Guid.Data4
+      value: -789463623
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: notZillaVerse.Guid.Data1
+      value: 1999927587
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: notZillaVerse.Guid.Data2
+      value: 1249277840
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: notZillaVerse.Guid.Data3
+      value: 83648128
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: notZillaVerse.Guid.Data4
+      value: 1545699981
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: radioActiveHit.Guid.Data1
+      value: -1748128867
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: radioActiveHit.Guid.Data2
+      value: 1086734826
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: radioActiveHit.Guid.Data3
+      value: -1109366142
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: radioActiveHit.Guid.Data4
+      value: -1159469641
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: defaultMELNomix.Guid.Data1
+      value: 1649969322
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: defaultMELNomix.Guid.Data2
+      value: 1154144450
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: defaultMELNomix.Guid.Data3
+      value: -1731331705
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: defaultMELNomix.Guid.Data4
+      value: -1104354291
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIClickSelection.Guid.Data1
+      value: 1315276150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIClickSelection.Guid.Data2
+      value: 1202681163
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIClickSelection.Guid.Data3
+      value: 756380326
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: UIClickSelection.Guid.Data4
+      value: 174128712
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdCheersForP1.Guid.Data1
+      value: 1266897421
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdCheersForP1.Guid.Data2
+      value: 1079961657
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdCheersForP1.Guid.Data3
+      value: 894899849
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdCheersForP1.Guid.Data4
+      value: -13837157
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdCheersForP2.Guid.Data1
+      value: 1179635703
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdCheersForP2.Guid.Data2
+      value: 1128375045
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdCheersForP2.Guid.Data3
+      value: 271191993
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: crowdCheersForP2.Guid.Data4
+      value: -1223164603
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer1.Guid.Data1
+      value: -307970751
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer1.Guid.Data2
+      value: 1142112498
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer1.Guid.Data3
+      value: -387337324
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer1.Guid.Data4
+      value: -531807908
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer2.Guid.Data1
+      value: 430772408
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer2.Guid.Data2
+      value: 1192367772
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer2.Guid.Data3
+      value: 1355801255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer2.Guid.Data4
+      value: -1456570747
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
 --- !u!1 &703856003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,7 +1595,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1741019460}
+      - m_Target: {fileID: 1371437601}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayUIClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1465264743}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -1056,7 +1617,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1465264743}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -1674,6 +2235,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1371437601 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+  m_PrefabInstance: {fileID: 676361728}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b613b805ed0f74ea488332a8552743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1388742011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,6 +2533,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1371437601}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayUIClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1741019464}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: OnPlayButtonPressed
@@ -2334,6 +2918,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1371437601}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayUIClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1741019464}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: OnQuitButtonPressed
@@ -3055,6 +3651,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1371437601}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayUIClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1884726913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3350,7 +3958,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2106585330}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1371437601}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayUIClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2106585330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3544,3 +4164,4 @@ SceneRoots:
   - {fileID: 766149801}
   - {fileID: 1294432946}
   - {fileID: 1462440643}
+  - {fileID: 676361728}

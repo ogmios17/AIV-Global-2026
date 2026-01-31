@@ -32,13 +32,30 @@ public class SceneLoader : MonoBehaviour
 
         // Transition: FADE-IN
         transitionLayer.Show(0.5f, 0.0f);
+        AudioManager.Instance.StopMainTitle();
 
         while (asyncLoad.progress < 0.9f || !transitionLayer.isDone)
             yield return null;
 
         asyncLoad.allowSceneActivation = true;
+        if (IsCombatScene(sceneName))
+        {
+            AudioManager.Instance.PlayCombatMusic();
+        }
 
         // Transition: FADE-OUT
         transitionLayer.Hide(0.5f, 1f);
+
+
+        yield return new WaitUntil(() => transitionLayer.isDone);
+
+        if (IsCombatScene(sceneName))
+        {
+            AudioManager.Instance.OnCombatSceneReady();
+        }
+    }
+    private bool IsCombatScene(string sceneName)
+    {
+        return sceneName == "SampleScene";
     }
 }

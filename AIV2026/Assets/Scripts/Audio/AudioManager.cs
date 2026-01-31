@@ -1,5 +1,6 @@
 using FMOD.Studio;
 using FMODUnity;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,12 +23,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private EventReference crowdCheersForP1;
     [SerializeField] private EventReference crowdCheersForP2;
     [SerializeField] private EventReference crowdPanic;
-    [SerializeField] private EventReference defaultMELNomix;
-    [SerializeField] private EventReference defaultMXNomix;
+    [SerializeField] private EventReference CombatMelody;
     [SerializeField] private EventReference helicopter;
     [SerializeField] private EventReference HPRecovery;
+    [SerializeField] private EventReference lastHP;
     [SerializeField] private EventReference notZillaVerse;
-    [SerializeField] private EventReference radioactivePLayer;
     [SerializeField] private EventReference spamButtonPlayer1;
     [SerializeField] private EventReference spamButtonPlayer2;
     [SerializeField] private EventReference UIClickSelection;
@@ -35,15 +35,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private EventReference UIHover;
     [SerializeField] private EventReference UIPauseMenu;
 
-    private EventInstance musicInstance;
-
-    [Header("Audio Sources")]
-    [SerializeField] private AudioSource masterSource;
-
-    private float masterVolume = 1f;
-    private bool isMuted = false;
-    private const string PREF_MASTER = "MasterVolume";
-
+    private EventInstance mainTitleInstance;
+    private EventInstance crowdInstance;
+    private EventInstance CombatMusicInstance;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -54,78 +48,183 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    #region MUSIC
 
-    }
-    public void StopActionMusic()
+    public void PlayMainTitle()
     {
-        
-    }
-    public void TestButton()
-    {
-        RuntimeManager.PlayOneShot(crackKenVerse);
-    }
-    public void PlayCrackKenVerse(int variant)
-    {
-        var e = RuntimeManager.CreateInstance(crackKenVerse);
-        e.setParameterByName("Variant", variant);
-        e.start();
-        e.release();
+        StopMainTitle();
+        mainTitleInstance = RuntimeManager.CreateInstance(mainTitleLoop);
+        mainTitleInstance.start();
     }
 
-    private void ApplyAudioSettings()
+    public void StopMainTitle()
     {
-        float muteFactor = isMuted ? 0f : 1f;
-
-        if (masterSource) masterSource.volume = masterVolume * muteFactor;    
-    }
-    public void SetMasterVolume(float value)
-    {
-        masterVolume = value;
-        PlayerPrefs.SetFloat(PREF_MASTER, value);
-        ApplyAudioSettings();
-    }
-    public void InitializeUI(Slider master)
-    {
-        if (master != null)
+        if (mainTitleInstance.isValid())
         {
-            master.value = masterVolume;
-            master.onValueChanged.RemoveAllListeners();
-            master.onValueChanged.AddListener(SetMasterVolume);
-            SetMasterVolume(master.value);
+            mainTitleInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            mainTitleInstance.release();
         }
     }
-    public void Clicksound()
+
+    public void PlayCombatMusic()
+    {
+        StopCombatMusic();
+        CombatMusicInstance = RuntimeManager.CreateInstance(CombatMelody);
+        CombatMusicInstance.start();
+    }
+
+    public void StopCombatMusic()
+    {
+        if (CombatMusicInstance.isValid())
+        {
+            CombatMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            CombatMusicInstance.release();
+        }
+    }
+    #endregion
+    public void PlayBellStart()
+    {
+        RuntimeManager.PlayOneShot(bellStart);
+    }
+
+    #region CARDS
+
+    public void PlayAttackCard()
+    {
+        RuntimeManager.PlayOneShot(attackCard);
+    }
+
+    public void PlayBlockCard()
+    {
+        RuntimeManager.PlayOneShot(blockCard);
+    }
+
+    public void PlayGrabCard()
+    {
+        RuntimeManager.PlayOneShot(grabCard);
+    }
+
+    public void PlayPushCard()
+    {
+        RuntimeManager.PlayOneShot(pushCard);
+    }
+
+    public void PlayCancelCard()
+    {
+        RuntimeManager.PlayOneShot(cancelCard);
+    }
+
+    #endregion
+
+    public void PlayRadioactiveHit()
+    {
+        RuntimeManager.PlayOneShot(radioActiveHit);
+    }
+
+    #region CROWD
+
+    public void StartCrowd()
+    {
+        StopCrowd();
+        crowdInstance = RuntimeManager.CreateInstance(crowds);
+        crowdInstance.start();
+    }
+
+    public void StopCrowd()
+    {
+        if (crowdInstance.isValid())
+        {
+            crowdInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            crowdInstance.release();
+        }
+    }
+
+    public void SetCrowdPanic(bool panic)
+    {
+        if (crowdInstance.isValid())
+            crowdInstance.setParameterByName("Panic", panic ? 1 : 0);
+    }
+
+    public void CrowdCheerP1()
+    {
+        RuntimeManager.PlayOneShot(crowdCheersForP1);
+    }
+
+    public void CrowdCheerP2()
+    {
+        RuntimeManager.PlayOneShot(crowdCheersForP2);
+    }
+
+    #endregion
+
+    #region UI
+
+    public void PlayUIClick()
     {
         RuntimeManager.PlayOneShot(UIClickSelection);
     }
-    public void CrowdSound()
-    {
 
-    }
-    public void NotZillaSound()
+    public void PlayUIHover()
     {
-
+        RuntimeManager.PlayOneShot(UIHover);
     }
-    public void CrackKenSound()
+
+    public void PlayUIError()
     {
-
+        RuntimeManager.PlayOneShot(UIErrorClick);
     }
-    public void DefaultMx()
+
+    public void PlayPauseMenu()
     {
-
+        RuntimeManager.PlayOneShot(UIPauseMenu);
     }
-    public void DefaultMelody()
+
+    #endregion
+
+    public void PlaySpamButtonP1()
     {
-
+        RuntimeManager.PlayOneShot(spamButtonPlayer1);
     }
-    public void NotZillaLifeUp()
+
+    public void PlaySpamButtonP2()
     {
-
+        RuntimeManager.PlayOneShot(spamButtonPlayer2);
     }
-    public void CrackKenLifeUp()
+
+    public void OnCombatSceneReady()
+    {
+        StartCoroutine(CombatIntroSequence());
+    }
+    private IEnumerator CombatIntroSequence()
+    {
+        // Player 1 intro
+        PlayPlayerIntro(GlobalData.Instance.Player1);
+        yield return new WaitForSeconds(2.0f);
+
+        // Player 2 intro
+        PlayPlayerIntro(GlobalData.Instance.Player2);
+        yield return new WaitForSeconds(2.0f);
+
+        // Crowd loop
+        StartCrowd();
+
+        // Bell start
+        PlayBellStart();
+    }
+    private void PlayPlayerIntro(Jammer player)
+    {
+        if (player.CharacterType == CharacterType.CrackKen)
+            RuntimeManager.PlayOneShot(crackKenVerse);
+        else
+            RuntimeManager.PlayOneShot(notZillaVerse);
+
+        if (player.PlayerType == PlayerType.Player1)
+            RuntimeManager.PlayOneShot(crowdCheersForP1);
+        else
+            RuntimeManager.PlayOneShot(crowdCheersForP2);
+    }
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
 
     }

@@ -56,19 +56,23 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         if (c1 == c2 || c1.draws.Contains(c2))
         {
             Debug.Log("DRAW");
+            AudioManager.Instance.PlayCancelCard();
         }
         else if (c1.clashes.Contains(c2))
         {
             Debug.Log("Clash");
+            AudioManager.Instance.PlayCancelCard();
         }
         else if (c1.wins == c2)
         {
             player2.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player2);
+            PlayerCardSound(p1);
             Debug.Log("PLAYER 1 WINS");
         }
         else if (c1.loses == c2)
         {
             player1.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player1);
+            PlayerCardSound(p2);
             Debug.Log("PLAYER 1 LOSE");
         }
 
@@ -80,6 +84,29 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
     }
 
+    private void PlayerCardSound(Jammer player)
+    {
+        var input = player.Input.GetComponent<PlayerMoveInput>();
+        MoveCard chosen = player.ChosenMove;
+
+        if (chosen == input.AttackCard)
+        {
+            AudioManager.Instance.PlayAttackCard();
+        }
+        else if (chosen == input.BlockCard)
+        {
+            AudioManager.Instance.PlayBlockCard();
+
+        }
+        else if (chosen == input.GrappleCard)
+        {
+            AudioManager.Instance.PlayGrabCard();
+        }
+        else if (chosen == input.ShoveCard)
+        {
+            AudioManager.Instance.PlayPushCard();
+        }
+    }
     public void OnFixedStateStay()
     {
 

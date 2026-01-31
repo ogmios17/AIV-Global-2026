@@ -10,6 +10,11 @@ public class PlayerMoveInput : MonoBehaviour
     [SerializeField] private MoveCard grapple;
     [SerializeField] private MoveCard shove;
 
+    public MoveCard AttackCard => attack;
+    public MoveCard BlockCard => block;
+    public MoveCard GrappleCard => grapple;
+    public MoveCard ShoveCard => shove;
+
     private void Awake()
     {
         binder = GetComponent<PlayerBinder>();
