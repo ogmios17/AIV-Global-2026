@@ -72,10 +72,14 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         MoveCard c1 = p1.ChosenMove;
         MoveCard c2 = p2.ChosenMove;
 
+        player1.CardsAnim.SetTrigger("Reveal");
+        player2.CardsAnim.SetTrigger("Reveal");
+
         if (c1.draws.Contains(c2))
         {
             player2.FighterAnim.SetTrigger("Next");
             player1.FighterAnim.SetTrigger("Next");
+            
             Debug.Log("DRAW");
             AudioManager.Instance.PlayCancelCard();
         }
