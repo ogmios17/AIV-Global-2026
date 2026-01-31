@@ -18,6 +18,7 @@ public class Jammer
     private int health = 9;
     private bool isCPUMode = false;
     private Animator fighterAnim;
+    private Animator cardsAnim;
 
     public PlayerType PlayerType { get => playerType; set => playerType = value; }
     public CharacterType CharacterType { get => character; set => character = value; }
@@ -26,8 +27,9 @@ public class Jammer
     public MoveCard ChosenMove { get => chosenMove; set => chosenMove = value; }
     public GameObject CharacterPrefab { get => characterPrefab; set => characterPrefab = value; }
     public Animator FighterAnim { get => fighterAnim; set => fighterAnim = value; }
+    public Animator CardsAnim { get => cardsAnim; set => cardsAnim = value; }
 
-   
+
     public int Health { get => health;}
     public bool IsCPUMode { get => isCPUMode; set => isCPUMode = value; }
 

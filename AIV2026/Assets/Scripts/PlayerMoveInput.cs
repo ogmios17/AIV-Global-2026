@@ -21,6 +21,7 @@ public class PlayerMoveInput : MonoBehaviour
         if (!ctx.performed) return;
         binder.Jammer.ChosenMove = attack;
         binder.Jammer.FighterAnim.SetTrigger("Attack");
+        binder.Jammer.CardsAnim.SetTrigger("Attack");
         Debug.Log("Attack");
     }
 
@@ -29,6 +30,7 @@ public class PlayerMoveInput : MonoBehaviour
         if (!ctx.performed) return;
         binder.Jammer.ChosenMove = block;
         binder.Jammer.FighterAnim.SetTrigger("Block");
+        binder.Jammer.CardsAnim.SetTrigger("Block");
         Debug.Log("Block");
     }
 
@@ -37,6 +39,7 @@ public class PlayerMoveInput : MonoBehaviour
         if (!ctx.performed) return;
         binder.Jammer.ChosenMove = grapple;
         binder.Jammer.FighterAnim.SetTrigger("Grapple");
+        binder.Jammer.CardsAnim.SetTrigger("Grapple");
         Debug.Log("Grapple");
     }
 
@@ -45,6 +48,7 @@ public class PlayerMoveInput : MonoBehaviour
         if (!ctx.performed) return;
         binder.Jammer.ChosenMove = shove;
         binder.Jammer.FighterAnim.SetTrigger("Shove");
+        binder.Jammer.CardsAnim.SetTrigger("Shove");
         Debug.Log("Shove");
     }
 

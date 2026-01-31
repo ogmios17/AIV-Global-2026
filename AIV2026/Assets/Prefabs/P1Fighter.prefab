@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4585962043178480300}
+  - component: {fileID: 3112648847881738001}
   m_Layer: 0
   m_Name: Cards
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1739172074532689}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28, y: -11, z: 18.61309}
+  m_LocalPosition: {x: -28, y: -11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -35,6 +36,28 @@ Transform:
   - {fileID: 5987846498248072883}
   m_Father: {fileID: 8521625199449786305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &3112648847881738001
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739172074532689}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 01728bdf1cbc73f4c8aabe74ff5dd089, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1245999901155588832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,7 +1540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 573143541812366036, guid: 9d744b731bd09fa46bf24a2241af49cd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 849086082276725784, guid: 9d744b731bd09fa46bf24a2241af49cd, type: 3}
       propertyPath: m_LocalScale.x
@@ -1596,7 +1619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 573143541812366036, guid: fe2acd214dc2d634bb252a45b05cac16, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 849086082276725784, guid: fe2acd214dc2d634bb252a45b05cac16, type: 3}
       propertyPath: m_LocalScale.x
@@ -1675,7 +1698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 573143541812366036, guid: 46ec3500d5bf6094aa26f07b3728a9d2, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 849086082276725784, guid: 46ec3500d5bf6094aa26f07b3728a9d2, type: 3}
       propertyPath: m_LocalScale.x
@@ -1754,7 +1777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 573143541812366036, guid: 0b7ebf4119619564491e6201d23cf7b6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 849086082276725784, guid: 0b7ebf4119619564491e6201d23cf7b6, type: 3}
       propertyPath: m_LocalScale.x
