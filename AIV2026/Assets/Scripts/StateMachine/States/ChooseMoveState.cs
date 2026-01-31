@@ -20,6 +20,8 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     public GameObject prefab;
     private GameObject prefabClone;
 
+    [Header("Available Move Cards")]
+    public MoveCard[] availableMoves;
 
     public void OnStateEnter()
     {
@@ -31,16 +33,29 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         goToMinigame = false;
 
         prefabClone = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
+
+        // Human P1
         player1.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = true;
-        player2.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = true;
-
         player1.Input.SwitchCurrentActionMap("CardSelection");
-        player2.Input.SwitchCurrentActionMap("CardSelection");
 
+        // Human P2
+        if (!player2.IsCPUMode)
+        {
+            player2.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = true;
+            player2.Input.SwitchCurrentActionMap("CardSelection");
+        }
     }
 
     public void OnStateStay()
-    {
+    {   
+        // CPU sceglie mossa random se non l'ha già fatto
+        if (player2.IsCPUMode && player2.ChosenMove == null)
+        {
+            // int randomIndex = Random.Range(0, 4);
+            // player2.ChosenMove = availableMoves[randomIndex];
+            player2.ChosenMove = availableMoves[0]; // Attack
+            Debug.Log($"CPU sceglie: {player2.ChosenMove.cardName}");
+        }
 
         if (player1.ChosenMove != null && player2.ChosenMove != null)
         {
@@ -88,7 +103,8 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     public void OnStateExit()
     {
         player1.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = false;
-        player2.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = false;
+        if (!player2.IsCPUMode)
+            player2.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = false;
     }
     
 }
