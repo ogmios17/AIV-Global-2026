@@ -40,7 +40,9 @@ public class StateManager : MonoBehaviour
         gameStateMachine.AddTransition(startGameState, idleState,
         new FuncPredicate(() => next));
         gameStateMachine.AddTransition( chooseMoveState, miniMashState,
-            new FuncPredicate(() => chooseMoveState.goToMinigame));
+            new FuncPredicate(() => chooseMoveState.NextMinigame==0));
+        gameStateMachine.AddTransition(chooseMoveState, miniSequenceState,
+            new FuncPredicate(() => chooseMoveState.NextMinigame == 1));
 
         gameStateMachine.SetState(startGameState);
     }

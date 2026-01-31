@@ -16,21 +16,24 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 {
     public Jammer player1;
     public Jammer player2;
-    public bool goToMinigame = false;
     public GameObject prefab;
     private GameObject prefabClone;
+    private int nextMinigame;
 
     [Header("Available Move Cards")]
     public MoveCard[] availableMoves;
 
+    public int NextMinigame { get => nextMinigame; }
+
     public void OnStateEnter()
     {
+        nextMinigame = -1;
+
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
 
         Debug.Log(GlobalData.Instance.Player1);
         Debug.Log(GlobalData.Instance.Player2);
-        goToMinigame = false;
 
         prefabClone = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
 
@@ -69,12 +72,13 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         MoveCard c1 = p1.ChosenMove;
         MoveCard c2 = p2.ChosenMove;
 
-        if (c1 == c2 || c1.draws.Contains(c2))
+        if (c1.draws.Contains(c2))
         {
             Debug.Log("DRAW");
         }
         else if (c1.clashes.Contains(c2))
         {
+            ChooseMinigame();
             Debug.Log("Clash");
         }
         else if (c1.wins == c2)
@@ -108,4 +112,9 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             player2.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = false;
     }
     
+    public void ChooseMinigame()
+    {
+        int index = Random.Range(0, 1);
+        nextMinigame = index;
+    }
 }

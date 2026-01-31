@@ -946,6 +946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateManager: {fileID: 1462440642}
+  miniGameTransform: {fileID: 0}
 --- !u!4 &766149801
 Transform:
   m_ObjectHideFlags: 0
