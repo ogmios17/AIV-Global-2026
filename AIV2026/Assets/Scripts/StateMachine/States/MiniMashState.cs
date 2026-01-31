@@ -16,7 +16,13 @@ public class MiniMashState : ScriptableObject, StateInterface
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
 
-        prefabClone = Instantiate(prefab, new Vector3(0,0,0),Quaternion.identity);
+        // Prendo il transform del GameObject "Fight" e ci aggiungo il prefab del minigioco
+        Vector3 position = Vector3.zero;
+        GameObject fight = GameObject.Find("Fight");
+        if(fight != null)
+            position = fight.transform.position + new Vector3(0, -12, -1);
+
+        prefabClone = Instantiate(prefab, position, Quaternion.identity);
         handler = prefabClone.GetComponent<MashHandler>();
 
         player1.Input.gameObject.GetComponent<PlayerMashScript>().enabled = true;
