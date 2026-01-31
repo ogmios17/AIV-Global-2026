@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eee836bf0fe6dd4db537f9ecb72f104, type: 3}
   m_Name: IdelState
   m_EditorClassIdentifier: 
+  prefab: {fileID: 1986872451435454756, guid: c258aa51defff0941874bf3c1101cc42, type: 3}

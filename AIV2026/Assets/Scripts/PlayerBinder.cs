@@ -13,7 +13,7 @@ public class PlayerBinder : MonoBehaviour
         Jammer = new Jammer();
         Jammer.Input = input;
 
-        if (playerIndex == 1)
+        if (input.playerIndex == 0)
         {
             Jammer.PlayerType = PlayerType.Player1;
             Jammer.Controller = input.currentControlScheme;
@@ -21,7 +21,7 @@ public class PlayerBinder : MonoBehaviour
             Debug.Log("controller: " + Jammer.Controller);
             GlobalData.Instance.Player1 = Jammer;
         }
-        else if (playerIndex == 2)
+        else if (input.playerIndex == 1)
         {
             Jammer.PlayerType = PlayerType.Player2;
             Jammer.Controller = input.currentControlScheme;

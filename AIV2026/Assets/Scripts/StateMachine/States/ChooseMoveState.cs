@@ -34,6 +34,9 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         player1.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = true;
         player2.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = true;
 
+        player1.Input.SwitchCurrentActionMap("CardSelection");
+        player2.Input.SwitchCurrentActionMap("CardSelection");
+
     }
 
     public void OnStateStay()
@@ -53,6 +56,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         if (c1 == c2 || c1.draws.Contains(c2))
         {
             Debug.Log("DRAW");
+            //&inserire clash in card
         }
         else if (c1.wins == c2)
         {

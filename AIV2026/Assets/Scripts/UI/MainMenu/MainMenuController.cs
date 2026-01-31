@@ -7,6 +7,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OnPlayButtonPressed(string sceneToLoad)
     {
+        GlobalData.Instance.stateManager.GoNext();
         sceneLoader.Load(sceneToLoad);
     }
 

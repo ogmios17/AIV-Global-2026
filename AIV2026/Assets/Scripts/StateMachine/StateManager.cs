@@ -21,12 +21,14 @@ public class StateManager : MonoBehaviour
     private MiniSequenceState miniSequenceState;
     private Jammer player1;
     private Jammer player2;
+    private bool next = false;
 
     //public Jammer Player1 { get => player1; set => player1 = value; }
     //public Jammer Player2 { get => player2; set => player2 = value; }
 
     public MiniMashState MiniMashState {  get { return miniMashState; } }
     public MiniSequenceState MiniSequenceState { get { return miniSequenceState; } }
+    public IdleState IdleState { get { return idleState; } }
 
     private void Start()
     {
@@ -34,11 +36,13 @@ public class StateManager : MonoBehaviour
         DontDestroyOnLoad(this);
         //chooseMoveState = new ChooseMoveState();
         gameStateMachine.AddTransition( idleState, chooseMoveState,
-        new FuncPredicate(() => false));
+        new FuncPredicate(() => idleState.Handler._choicesDone));
+        gameStateMachine.AddTransition(startGameState, idleState,
+        new FuncPredicate(() => next));
         gameStateMachine.AddTransition( chooseMoveState, miniSequenceState,
             new FuncPredicate(() => chooseMoveState.goToMinigame));
 
-        gameStateMachine.SetState(idleState);
+        gameStateMachine.SetState(startGameState);
     }
 
     public void Update()
@@ -67,6 +71,11 @@ public class StateManager : MonoBehaviour
     public void SetNextNode(StateNode node)
     {
         gameStateMachine.NextNode = node;
+    }
+
+    public void GoNext()
+    {
+        next = true;
     }
 
 }

@@ -9,7 +9,7 @@ public class PlayerMashScript : MonoBehaviour
     private MiniMashState miniMashState;
     private PlayerBinder binder;
     private PlayerType playerType;
-    private void Awake()
+    private void onEnable()
     {
         stateManager = GlobalData.Instance.stateManager;
         Debug.Log(" state manager: ", stateManager);

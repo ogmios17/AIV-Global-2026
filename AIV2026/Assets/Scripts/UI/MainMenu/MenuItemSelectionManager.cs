@@ -33,16 +33,16 @@ public class MenuItemSelectionManager : MonoBehaviour
     private void Update()
     {
         // If we move right
-        if (InputManager.Instance.NavigationInput.x > 0)
-        {
-            // Select the next menu item
-            HandleNextMenuItemSelection(1);
-        }
-        else if (InputManager.Instance.NavigationInput.x < 0)
-        {
-            // Select the previous menu item
-            HandleNextMenuItemSelection(-1);
-        }
+        //if (InputManager.Instance.NavigationInput.x > 0)
+        //{
+        //    // Select the next menu item
+        //    HandleNextMenuItemSelection(1);
+        //}
+        //else if (InputManager.Instance.NavigationInput.x < 0)
+        //{
+        //    // Select the previous menu item
+        //    HandleNextMenuItemSelection(-1);
+        //}
 
         // If we move left
     }
