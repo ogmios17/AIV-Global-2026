@@ -305,10 +305,10 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   switchSettingsMigration: 1
-  HasSourceProject: 0
-  HasPlatforms: 0
-  sourceProjectPath: ../../FMOD/GGJ26/GGJ26.fspro
-  sourceBankPath: Assets/AudioSystem/FMOD/GGJ26/Build/Desktop
+  HasSourceProject: 1
+  HasPlatforms: 1
+  sourceProjectPath: 
+  sourceBankPath: 
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -330,11 +330,8 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks:
-  - Master
-  Banks:
-  - Music
-  - SFX
+  MasterBanks: []
+  Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
@@ -362,7 +359,7 @@ MonoBehaviour:
   - {fileID: 8102024825009627376}
   - {fileID: 8338941184006527015}
   - {fileID: 8957221880916862209}
-  MigratedPlatforms: 0a00000000000000150000000b00000009000000050000001200000008000000060000000c0000000200000001000000
+  MigratedPlatforms: 0900000008000000120000001500000006000000050000000c000000000000000b0000000a0000000200000001000000
 --- !u!114 &8008110980937992
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{995b0567-75ea-4baf-b36f-a9351d738fb5}">
 		<property name="assetPath">
-			<value>Crowd no mix v1.mp3</value>
+			<value>mp3/Crowd no mix v1.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

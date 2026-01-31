@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{32ffd077-4e29-48e6-bb26-397ab3b05703}">
 		<property name="assetPath">
-			<value>NotZilla nomix v1.mp3</value>
+			<value>mp3/NotZilla nomix v1.mp3</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
