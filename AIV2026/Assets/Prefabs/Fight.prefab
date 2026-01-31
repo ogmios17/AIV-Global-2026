@@ -946,6 +946,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mash
       objectReference: {fileID: 0}
+    - target: {fileID: 4535086659372761082, guid: 5e76ecf0df04bd04d8252fc7768a00cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6766989882039252247, guid: 5e76ecf0df04bd04d8252fc7768a00cb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.01578188

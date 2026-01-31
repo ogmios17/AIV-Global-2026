@@ -74,20 +74,26 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
         if (c1.draws.Contains(c2))
         {
+            player2.FighterAnim.SetTrigger("Next");
+            player1.FighterAnim.SetTrigger("Next");
             Debug.Log("DRAW");
         }
         else if (c1.clashes.Contains(c2))
         {
+            player2.FighterAnim.SetTrigger("Next");
+            player1.FighterAnim.SetTrigger("Next");
             ChooseMinigame();
             Debug.Log("Clash");
         }
         else if (c1.wins == c2)
         {
+            player2.FighterAnim.SetTrigger("Damage");
             player2.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player2);
             Debug.Log("PLAYER 1 WINS");
         }
         else if (c1.loses == c2)
         {
+            player1.FighterAnim.SetTrigger("Damage");
             player1.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player1);
             Debug.Log("PLAYER 1 LOSE");
         }

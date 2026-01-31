@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerMoveInput : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class PlayerMoveInput : MonoBehaviour
     {
         if (!ctx.performed) return;
         binder.Jammer.ChosenMove = attack;
+        binder.Jammer.FighterAnim.SetTrigger("Attack");
         Debug.Log("Attack");
     }
 
@@ -26,6 +28,7 @@ public class PlayerMoveInput : MonoBehaviour
     {
         if (!ctx.performed) return;
         binder.Jammer.ChosenMove = block;
+        binder.Jammer.FighterAnim.SetTrigger("Block");
         Debug.Log("Block");
     }
 
@@ -33,6 +36,7 @@ public class PlayerMoveInput : MonoBehaviour
     {
         if (!ctx.performed) return;
         binder.Jammer.ChosenMove = grapple;
+        binder.Jammer.FighterAnim.SetTrigger("Grapple");
         Debug.Log("Grapple");
     }
 
@@ -40,6 +44,7 @@ public class PlayerMoveInput : MonoBehaviour
     {
         if (!ctx.performed) return;
         binder.Jammer.ChosenMove = shove;
+        binder.Jammer.FighterAnim.SetTrigger("Shove");
         Debug.Log("Shove");
     }
 

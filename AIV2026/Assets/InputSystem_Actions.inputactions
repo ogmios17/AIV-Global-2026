@@ -808,6 +808,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Defeat",
+            "id": "f5ad2724-a580-4719-a0f7-07771554bcdb",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "400d55af-832a-4d38-bfcf-194d6dd51fd6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b957d40f-2039-4607-a87a-c454a5e386e4",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
