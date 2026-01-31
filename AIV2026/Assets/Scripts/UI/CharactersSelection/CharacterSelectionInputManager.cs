@@ -192,10 +192,10 @@ public class CharacterSelectionInputManager : MonoBehaviour
 
     public void OnSubmitPressed(PlayerType player)
     {
-        Debug.Log("submit pressed");
         if(player == PlayerType.Player1 && _player1CharacterChoice != null) return;
         if(player == PlayerType.Player2 && _player2CharacterChoice != null) return;
-        Debug.Log("Got here");
+        
+        Debug.Log("submit pressed");
         int selectedIndex = player == PlayerType.Player1 ? _player1Index : _player2Index;
         
         CharacterType choice = GetCharacterByIndex(selectedIndex);
@@ -248,6 +248,8 @@ public class CharacterSelectionInputManager : MonoBehaviour
 
     public void HandleNavigationP1(Vector2 nav1)
     {
+        if (_player1CharacterChoice != null) return;
+
         Debug.Log("Handle navigation p1");
         // Only process new navigation input when cooldown has expired
         if (_player1CooldownTimer > 0) 
@@ -308,6 +310,8 @@ public class CharacterSelectionInputManager : MonoBehaviour
 
     public void HandleNavigationP2(Vector2 nav2)
     {
+        if (_player2CharacterChoice != null) return;
+
         Debug.Log("Handle navigation p2");
         // Only process new navigation input when cooldown has expired
         if (_player2CooldownTimer > 0)
