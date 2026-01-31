@@ -51,9 +51,10 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         // CPU sceglie mossa random se non l'ha già fatto
         if (player2.IsCPUMode && player2.ChosenMove == null)
         {
-            // int randomIndex = Random.Range(0, 4);
-            // player2.ChosenMove = availableMoves[randomIndex];
-            player2.ChosenMove = availableMoves[0]; // Attack
+            int randomIndex = Random.Range(0, 4);
+            player2.ChosenMove = availableMoves[randomIndex];
+            
+            // player2.ChosenMove = availableMoves[0]; // DEBUG: Attack
             Debug.Log($"CPU sceglie: {player2.ChosenMove.cardName}");
         }
 
