@@ -34,7 +34,7 @@ public class LoadFight : MonoBehaviour
 
         animators = player2.CharacterPrefab.GetComponentsInChildren<Animator>();
         GlobalData.Instance.Player2.FighterAnim = animators[0];
-        //GlobalData.Instance.Player2.CardsAnim = animators[1];
+        GlobalData.Instance.Player2.CardsAnim = animators[1];
     }
 
     // Update is called once per frame

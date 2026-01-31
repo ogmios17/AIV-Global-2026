@@ -1509,6 +1509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3605469903071642054}
+  - component: {fileID: 8132520305513153410}
   m_Layer: 0
   m_Name: Cards
   m_TagString: Untagged
@@ -1535,6 +1536,28 @@ Transform:
   - {fileID: 6007358395129692381}
   m_Father: {fileID: 4363370980055623304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &8132520305513153410
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7844470783008181940}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0fd4f29f98265b842946e7580989a585, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &3129565082733843489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1545,7 +1568,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 573143541812366036, guid: 10dac40f9806e4645aca158c4e630fde, type: 3}
       propertyPath: m_Name
-      value: Card_CrackKenBlock
+      value: Card_NotZillaBlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 573143541812366036, guid: 10dac40f9806e4645aca158c4e630fde, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 849086082276725784, guid: 10dac40f9806e4645aca158c4e630fde, type: 3}
       propertyPath: m_LocalScale.x
@@ -1620,7 +1647,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 573143541812366036, guid: 73f3479dcbecc214f8dcac5d78c8856a, type: 3}
       propertyPath: m_Name
-      value: Card_CrackKenGrab
+      value: Card_NotZillaGrab
+      objectReference: {fileID: 0}
+    - target: {fileID: 573143541812366036, guid: 73f3479dcbecc214f8dcac5d78c8856a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 849086082276725784, guid: 73f3479dcbecc214f8dcac5d78c8856a, type: 3}
       propertyPath: m_LocalScale.x
@@ -1695,7 +1726,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 573143541812366036, guid: 9a6b686db16ab494487ad450accfd875, type: 3}
       propertyPath: m_Name
-      value: Card_CrackKenPush
+      value: Card_NotZillaPush
+      objectReference: {fileID: 0}
+    - target: {fileID: 573143541812366036, guid: 9a6b686db16ab494487ad450accfd875, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 849086082276725784, guid: 9a6b686db16ab494487ad450accfd875, type: 3}
       propertyPath: m_LocalScale.x
@@ -1770,7 +1805,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 573143541812366036, guid: 72d469932734bb64b8cfde0c3d830ca4, type: 3}
       propertyPath: m_Name
-      value: Card_CrackKenAttack
+      value: Card_NotZillaAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 573143541812366036, guid: 72d469932734bb64b8cfde0c3d830ca4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 849086082276725784, guid: 72d469932734bb64b8cfde0c3d830ca4, type: 3}
       propertyPath: m_LocalScale.x
