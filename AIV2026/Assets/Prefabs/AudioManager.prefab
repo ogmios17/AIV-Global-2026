@@ -44,10 +44,185 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b613b805ed0f74ea488332a8552743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainMenu:
+  mainTitleLoop:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1377552256
+      Data2: 1157476989
+      Data3: 1310868627
+      Data4: -789463623
+    Path: event:/Music/Main Title MX
+  bellStart:
+    Guid:
+      Data1: -1416389749
+      Data2: 1239815998
+      Data3: -469250422
+      Data4: -2094229389
+    Path: event:/SFX/Combat/Bell Start Match
+  grabCard:
+    Guid:
+      Data1: -503634418
+      Data2: 1208127372
+      Data3: -1451277696
+      Data4: 1080510888
+    Path: event:/SFX/Cards/Card Afferra
+  cancelCard:
+    Guid:
+      Data1: -211611286
+      Data2: 1178560988
+      Data3: 1505424256
+      Data4: 1183590158
+    Path: event:/SFX/Cards/Card Annulla
+  attackCard:
+    Guid:
+      Data1: -2138046908
+      Data2: 1276934741
+      Data3: 1144792723
+      Data4: -547827505
+    Path: event:/SFX/Cards/Card Attacca
+  blockCard:
+    Guid:
+      Data1: 1879880289
+      Data2: 1095933983
+      Data3: -1878825081
+      Data4: 53097209
+    Path: event:/SFX/Cards/Card Blocca
+  pushCard:
+    Guid:
+      Data1: -338343400
+      Data2: 1088481090
+      Data3: -1012333404
+      Data4: 893270211
+    Path: event:/SFX/Cards/Card Spingi
+  radioActiveHit:
+    Guid:
+      Data1: -1748128867
+      Data2: 1086734826
+      Data3: -1109366142
+      Data4: -1159469641
+    Path: event:/SFX/Combat/Player Radioattivo
+  crackKenVerse:
+    Guid:
+      Data1: 27505179
+      Data2: 1083571127
+      Data3: -1523739205
+      Data4: 910510505
+    Path: event:/SFX/Combat/Crack-Ken Verses
+  crowds:
+    Guid:
+      Data1: -512699001
+      Data2: 1117377399
+      Data3: -478680442
+      Data4: -1577607745
+    Path: event:/Music/Crowd
+  crowdsNomix:
+    Guid:
+      Data1: 1285029006
+      Data2: 1177946478
+      Data3: -1621159012
+      Data4: -1649466615
+    Path: event:/SFX/Combat/Crowd Claps Hey Boo
+  crowdCheersForP1:
+    Guid:
+      Data1: 1266897421
+      Data2: 1079961657
+      Data3: 894899849
+      Data4: -13837157
+    Path: event:/SFX/Combat/Crowd Cheers for P1
+  crowdCheersForP2:
+    Guid:
+      Data1: 1179635703
+      Data2: 1128375045
+      Data3: 271191993
+      Data4: -1223164603
+    Path: event:/SFX/Combat/Crowd Cheers for P2
+  crowdPanic:
+    Guid:
+      Data1: -782708327
+      Data2: 1163068800
+      Data3: -1959478867
+      Data4: -373621122
+    Path: event:/SFX/Minigame/Crowd Panic
+  CombatMelody:
+    Guid:
+      Data1: 1649969322
+      Data2: 1154144450
+      Data3: -1731331705
+      Data4: -1104354291
+    Path: event:/Music/Combat MX
+  helicopter:
+    Guid:
+      Data1: -186976230
+      Data2: 1305162527
+      Data3: -212287556
+      Data4: -821078715
+    Path: event:/SFX/Minigame/Elicottero
+  HPRecovery:
+    Guid:
+      Data1: -1396916629
+      Data2: 1280118296
+      Data3: 1295222683
+      Data4: 1701514255
+    Path: event:/SFX/Minigame/HP Recovery
+  lastHP:
+    Guid:
+      Data1: -545435678
+      Data2: 1101206684
+      Data3: 273176236
+      Data4: 1813892757
+    Path: event:/SFX/Combat/Last HP
+  notZillaVerse:
+    Guid:
+      Data1: 1999927587
+      Data2: 1249277840
+      Data3: 83648128
+      Data4: 1545699981
+    Path: event:/SFX/Combat/NotZilla Verses
+  spamButtonPlayer1:
+    Guid:
+      Data1: 1266897421
+      Data2: 1079961657
+      Data3: 894899849
+      Data4: -13837157
+    Path: event:/SFX/Combat/Crowd Cheers for P1
+  spamButtonPlayer2:
+    Guid:
+      Data1: 1179635703
+      Data2: 1128375045
+      Data3: 271191993
+      Data4: -1223164603
+    Path: event:/SFX/Combat/Crowd Cheers for P2
+  UIClickSelection:
+    Guid:
+      Data1: 1315276150
+      Data2: 1202681163
+      Data3: 756380326
+      Data4: 174128712
+    Path: event:/SFX/UI/Click di Selezione
+  UIErrorClick:
+    Guid:
+      Data1: -142645768
+      Data2: 1252713949
+      Data3: 1088591006
+      Data4: -1042841362
+    Path: event:/SFX/UI/ErrorClick
+  UIHover:
+    Guid:
+      Data1: 681161272
+      Data2: 1223929829
+      Data3: 1649491348
+      Data4: 829687342
+    Path: event:/SFX/UI/Hover
+  UIPauseMenu:
+    Guid:
+      Data1: -2116570798
+      Data2: 1206868857
+      Data3: 746630821
+      Data4: -939747565
+    Path: event:/SFX/UI/PauseMenu
+  PauseSong:
+    Guid:
+      Data1: -807915312
+      Data2: 1245691766
+      Data3: -1000787811
+      Data4: -1202262910
+    Path: event:/Music/Pause MX

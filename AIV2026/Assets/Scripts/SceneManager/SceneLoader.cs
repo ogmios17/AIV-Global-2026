@@ -37,8 +37,27 @@ public class SceneLoader : MonoBehaviour
             yield return null;
 
         asyncLoad.allowSceneActivation = true;
+        if (IsCombatScene(sceneName))
+        {
+            AudioManager.Instance.PlayCombatMusic();
+        }
+
+        asyncLoad.allowSceneActivation = true;
 
         // Transition: FADE-OUT
         transitionLayer.Hide(0.5f, 1f);
+
+
+        yield return new WaitUntil(() => transitionLayer.isDone);
+
+        if (IsCombatScene(sceneName))
+        {
+            AudioManager.Instance.OnCombatSceneReady();
+        }
     }
+    private bool IsCombatScene(string sceneName)
+    {
+        return sceneName == "SampleScene";
+    }
+
 }
