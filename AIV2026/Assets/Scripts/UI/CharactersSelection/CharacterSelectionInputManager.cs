@@ -30,6 +30,15 @@ public class CharacterSelectionInputManager : MonoBehaviour
     [Header("Navigation Settings")]
     [SerializeField] private float _navigationCooldown = 0.2f;
 
+    [Header("Player Prefabs")]
+    [SerializeField] private GameObject Player1Prefab;
+    [SerializeField] private GameObject Player2Prefab;
+
+    [Header("Player Input Managers")]
+    [SerializeField] private GameObject OldPlayerInputManager;
+    [SerializeField] private GameObject NewPlayerInputManager;
+
+
     // References to all character selection items
     private List<CharacterSelectionItem> _characterItems = new List<CharacterSelectionItem>();
     
@@ -53,14 +62,16 @@ public class CharacterSelectionInputManager : MonoBehaviour
     private Vector2 _player1PrevNav = Vector2.zero;
     private Vector2 _player2PrevNav = Vector2.zero;
 
-    // Events for when a player confirms their selection
-    public event Action<PlayerType, int> OnPlayerConfirmSelection;
-
     public Color Player1Color => _player1Color;
     public Color Player2Color => _player2Color;
 
     public Sprite Player1Image => _player1Image;
     public Sprite Player2Image => _player2Image;
+
+    private CharacterType? _player1CharacterChoice = null;
+    private CharacterType? _player2CharacterChoice = null;
+
+    private bool _choicesDone = false;
 
     void Start()
     {
@@ -87,89 +98,98 @@ public class CharacterSelectionInputManager : MonoBehaviour
         // Get all connected gamepads
         var gamepads = Gamepad.all;
         
-        Debug.Log($"[CharacterSelectionInputManager] Found {gamepads.Count} gamepads");
+        // Debug.Log($"[CharacterSelectionInputManager] Found {gamepads.Count} gamepads");
         
+        Debug.Log("asdasdadssadasd: " + NewPlayerInputManager.GetComponent<PlayerInputManager>());
+
+        // New Player 1
+        PlayerInput Player1 = NewPlayerInputManager.GetComponent<PlayerInputManager>().JoinPlayer(
+            0,
+            -1,
+            null,
+            gamepads[0]
+        );
+        var _player1NavigateAction = Player1.actions["Navigate"];  // Nome dall'InputActionAsset
+
         // === PLAYER 1 SETUP ===
-        _player1NavigateAction = new InputAction("P1_Navigate", InputActionType.Value);
-        _player1SubmitAction = new InputAction("P1_Submit", InputActionType.Button);
+        // _player1NavigateAction = new InputAction("P1_Navigate", InputActionType.Value);
+        // _player1SubmitAction = new InputAction("P1_Submit", InputActionType.Button);
         
         if (gamepads.Count >= 1)
         {
             // Player 1 uses FIRST gamepad specifically
             string pad1Path = gamepads[0].path;
-            Debug.Log($"[CharacterSelectionInputManager] P1 using gamepad: {pad1Path}");
             
             _player1NavigateAction.AddBinding($"{pad1Path}/leftStick");
             _player1NavigateAction.AddBinding($"{pad1Path}/dpad");
             
             // Submit button (X on PlayStation / A on Xbox - buttonSouth)
-            _player1SubmitAction.AddBinding($"{pad1Path}/buttonSouth");
+            // _player1SubmitAction.AddBinding($"{pad1Path}/buttonSouth");
         }
         
-        // Also allow keyboard for P1 (WASD + Space)
-        _player1NavigateAction.AddCompositeBinding("2DVector")
-            .With("Up", "<Keyboard>/w")
-            .With("Down", "<Keyboard>/s")
-            .With("Left", "<Keyboard>/a")
-            .With("Right", "<Keyboard>/d");
-        _player1SubmitAction.AddBinding("<Keyboard>/space");
-        
         _player1NavigateAction.Enable();
-        _player1SubmitAction.Enable();
-        _player1SubmitAction.performed += ctx => OnSubmitPressed(PlayerType.Player1);
+        // _player1SubmitAction.Enable();
+        // _player1SubmitAction.performed += ctx => OnSubmitPressed(PlayerType.Player1);
 
         // === PLAYER 2 SETUP ===
-        _player2NavigateAction = new InputAction("P2_Navigate", InputActionType.Value);
-        _player2SubmitAction = new InputAction("P2_Submit", InputActionType.Button);
+        PlayerInput Player2 = NewPlayerInputManager.GetComponent<PlayerInputManager>().JoinPlayer(
+            1,
+            -1,
+            null,
+            gamepads.Count >= 2 ? gamepads[1] : Keyboard.current
+        );
+        var _player2NavigateAction = Player1.actions["Navigate"];
+        // _player2NavigateAction = new InputAction("P2_Navigate", InputActionType.Value);
+        // _player2SubmitAction = new InputAction("P2_Submit", InputActionType.Button);
         
         if (gamepads.Count >= 2)
         {
             // Player 2 uses SECOND gamepad specifically
             string pad2Path = gamepads[1].path;
-            Debug.Log($"[CharacterSelectionInputManager] P2 using gamepad: {pad2Path}");
             
-            _player2NavigateAction.AddBinding($"{pad2Path}/leftStick");
-            _player2NavigateAction.AddBinding($"{pad2Path}/dpad");
+            // _player2NavigateAction.AddBinding($"{pad2Path}/leftStick");
+            // _player2NavigateAction.AddBinding($"{pad2Path}/dpad");
             
             // Submit button
-            _player2SubmitAction.AddBinding($"{pad2Path}/buttonSouth");
+            // _player2SubmitAction.AddBinding($"{pad2Path}/buttonSouth");
         }
         else
         {
-            Debug.Log("[CharacterSelectionInputManager] P2 fallback to arrow keys");
+            // Also allow keyboard for P2 (Arrows + Enter)
+            // _player2NavigateAction.AddCompositeBinding("2DVector")
+            //     .With("Up", "<Keyboard>/upArrow")
+            //     .With("Down", "<Keyboard>/downArrow")
+            //     .With("Left", "<Keyboard>/leftArrow")
+            //     .With("Right", "<Keyboard>/rightArrow");
+            // _player2SubmitAction.AddBinding("<Keyboard>/enter");
         }
         
-        // Also allow keyboard for P2 (Arrows + Enter)
-        _player2NavigateAction.AddCompositeBinding("2DVector")
-            .With("Up", "<Keyboard>/upArrow")
-            .With("Down", "<Keyboard>/downArrow")
-            .With("Left", "<Keyboard>/leftArrow")
-            .With("Right", "<Keyboard>/rightArrow");
-        _player2SubmitAction.AddBinding("<Keyboard>/enter");
-        
         _player2NavigateAction.Enable();
-        _player2SubmitAction.Enable();
-        _player2SubmitAction.performed += ctx => OnSubmitPressed(PlayerType.Player2);
+        // _player2SubmitAction.Enable();
+        // _player2SubmitAction.performed += ctx => OnSubmitPressed(PlayerType.Player2);
     }
 
     private void OnSubmitPressed(PlayerType player)
     {
+        if(player == PlayerType.Player1 && _player1CharacterChoice != null) return;
+        if(player == PlayerType.Player2 && _player2CharacterChoice != null) return;
+
         int selectedIndex = player == PlayerType.Player1 ? _player1Index : _player2Index;
         
-        Debug.Log($"[CharacterSelectionInputManager] {player} confirmed selection at index {selectedIndex}");
-        
-        // Invoke event for external listeners
-        OnPlayerConfirmSelection?.Invoke(player, selectedIndex);
-        
-        // Also click the button on the card if it exists
-        if (selectedIndex >= 0 && selectedIndex < _characterItems.Count)
+        CharacterType choice = GetCharacterByIndex(selectedIndex);
+
+        if(player == PlayerType.Player1)
         {
-            Button button = _characterItems[selectedIndex].GetComponent<Button>();
-            if (button != null)
-            {
-                button.onClick.Invoke();
-            }
+            _player1CharacterChoice = choice;
         }
+        else
+        {
+            _player2CharacterChoice = choice;
+        }
+
+        // Aggiorno _choicesDone
+        if(_player1CharacterChoice != null && _player2CharacterChoice != null)
+            _choicesDone = true;
     }
 
     void Update()
@@ -193,10 +213,50 @@ public class CharacterSelectionInputManager : MonoBehaviour
             Vector2 nav2 = _player2NavigateAction.ReadValue<Vector2>();
             HandleNavigation(PlayerType.Player2, nav2, ref _player2PrevNav, ref _player2Index, ref _player2CooldownTimer);
         }
+
+        if (_choicesDone)
+        {
+            _choicesDone = false;
+
+            Destroy(OldPlayerInputManager);
+            DisablePlayer1Input();
+            DisablePlayer2Input();
+
+            // Se entrambi hanno scelto: istanzia prefab e fai cose
+            var gamepads = Gamepad.all;
+            
+            GameObject player1PrefabInstance = Instantiate(Player1Prefab);
+            player1PrefabInstance.GetComponent<PlayerBinder>().Character = _player1CharacterChoice.Value;
+
+            GameObject player2PrefabInstance = Instantiate(Player2Prefab);
+            player1PrefabInstance.GetComponent<PlayerBinder>().Character = _player2CharacterChoice.Value;
+
+            // Player 1
+            NewPlayerInputManager.GetComponent<PlayerInputManager>().JoinPlayer(
+                0,
+                -1,
+                null,
+                gamepads[0]
+            );
+            
+            NewPlayerInputManager.GetComponent<PlayerInputManager>().JoinPlayer(
+                1,
+                -1,
+                null,
+                gamepads.Count >= 2 ? gamepads[1] : Keyboard.current
+            );
+
+            DontDestroyOnLoad(NewPlayerInputManager);
+            // Cambio scena
+            SceneLoader.Instance.Load("SampleScene");
+        }
     }
 
     private void HandleNavigation(PlayerType player, Vector2 currentNav, ref Vector2 prevNav, ref int currentIndex, ref float cooldownTimer)
     {
+        if(player == PlayerType.Player1 && _player1CharacterChoice != null) return;
+        if(player == PlayerType.Player2 && _player2CharacterChoice != null) return;
+
         // Only process new navigation input when cooldown has expired
         if (cooldownTimer > 0) 
         {
@@ -246,31 +306,15 @@ public class CharacterSelectionInputManager : MonoBehaviour
         }
     }
 
-    void OnDestroy()
-    {
-        if (_player1SubmitAction != null)
-        {
-            _player1SubmitAction.performed -= ctx => OnSubmitPressed(PlayerType.Player1);
-        }
-        if (_player2SubmitAction != null)
-        {
-            _player2SubmitAction.performed -= ctx => OnSubmitPressed(PlayerType.Player2);
-        }
-        
-        _player1NavigateAction?.Disable();
-        _player1NavigateAction?.Dispose();
-        _player2NavigateAction?.Disable();
-        _player2NavigateAction?.Dispose();
-        _player1SubmitAction?.Disable();
-        _player1SubmitAction?.Dispose();
-        _player2SubmitAction?.Disable();
-        _player2SubmitAction?.Dispose();
-    }
+    // void OnDestroy()
+    // {
+    //     DisablePlayer1Input();
+    //     DisablePlayer2Input();
+    // }
 
     private void UpdateCharacterImage(PlayerType player, CharacterSelectionItem characterItem)
     {
         Sprite sprite = GetCharacterByCharacterItem(characterItem);
-        Debug.Log(sprite.name);
 
         switch (player)
         {
@@ -310,5 +354,45 @@ public class CharacterSelectionInputManager : MonoBehaviour
             default:
                 return _notzillaCharacterImage;
         }
+    }
+
+    private CharacterType GetCharacterByIndex(int index)
+    {
+        switch(index)
+        {
+            case 0:
+                return CharacterType.NotZilla;
+            case 1:
+                return CharacterType.CrackKen;
+            case 2:
+                int randomInt = UnityEngine.Random.Range(0, 2);
+                return randomInt == 0 ? CharacterType.NotZilla : CharacterType.CrackKen;
+            default:
+                return CharacterType.NotZilla;
+        }
+    }
+
+    private void DisablePlayer1Input()
+    {
+        if (_player1SubmitAction != null)
+        {
+            _player1SubmitAction.performed -= ctx => OnSubmitPressed(PlayerType.Player1);
+        }
+        _player1NavigateAction?.Disable();
+        _player1SubmitAction?.Disable();
+        _player1NavigateAction?.Dispose();
+        _player1SubmitAction?.Dispose();
+    }
+
+    private void DisablePlayer2Input()
+    {
+        if (_player2SubmitAction != null)
+        {
+            _player2SubmitAction.performed -= ctx => OnSubmitPressed(PlayerType.Player2);
+        }
+        _player2NavigateAction?.Disable();
+        _player2NavigateAction?.Dispose();
+        _player2SubmitAction?.Disable();
+        _player2SubmitAction?.Dispose();
     }
 }

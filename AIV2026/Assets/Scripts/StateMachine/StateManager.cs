@@ -6,8 +6,6 @@ public class StateManager : MonoBehaviour
     private StateMachine gameStateMachine;
 
     [SerializeField]
-    private ControllerHandler controllerHandler;
-    [SerializeField]
     private ConnectState connectState;
     [SerializeField]
     private ChooseMoveState chooseMoveState;
@@ -34,12 +32,13 @@ public class StateManager : MonoBehaviour
     {
         gameStateMachine = new StateMachine();
         DontDestroyOnLoad(this);
-        //connectState = new ConnectState(controllerHandler);
         //chooseMoveState = new ChooseMoveState();
+        gameStateMachine.AddTransition( idleState, chooseMoveState,
+        new FuncPredicate(() => false));
         gameStateMachine.AddTransition( chooseMoveState, miniSequenceState,
             new FuncPredicate(() => chooseMoveState.goToMinigame));
 
-        gameStateMachine.SetState(chooseMoveState);
+        gameStateMachine.SetState(idleState);
     }
 
     public void Update()
