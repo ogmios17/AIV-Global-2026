@@ -9,7 +9,8 @@ public class PlayerMashScript : MonoBehaviour
     private MiniMashState miniMashState;
     private PlayerBinder binder;
     private PlayerType playerType;
-    private void onEnable()
+
+    private void OnEnable()
     {
         stateManager = GlobalData.Instance.stateManager;
         Debug.Log(" state manager: ", stateManager);
@@ -17,6 +18,7 @@ public class PlayerMashScript : MonoBehaviour
         playerType = binder.Jammer.PlayerType;
         miniMashState = stateManager.MiniMashState;
     }
+    
     void Start()
     {
         

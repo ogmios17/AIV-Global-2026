@@ -10,6 +10,10 @@ using System.Collections.Generic;
 /// </summary>
 public class CharacterSelectionInputManager : MonoBehaviour
 {
+    [Header("Game Mode")]
+    [SerializeField] private bool _isCPUMode;
+    public bool IsCPUMode { get => _isCPUMode; set => _isCPUMode = value; }
+
     [Header("Player Colors")]
     [SerializeField] private Color _player1Color = new Color(0.267f, 0.847f, 0.004f); // Green
     [SerializeField] private Color _player2Color = new Color(1f, 0.118f, 0.709f); // Pink
@@ -17,6 +21,7 @@ public class CharacterSelectionInputManager : MonoBehaviour
     [Header("Player Sprites")]
     [SerializeField] private Sprite _player1Image;
     [SerializeField] private Sprite _player2Image;
+    [SerializeField] private Sprite _cpuImage;
 
     [Header("Player Characters GameObjects")]
     [SerializeField] private GameObject _player1CharacterGameObject;
@@ -30,7 +35,7 @@ public class CharacterSelectionInputManager : MonoBehaviour
     [Header("Navigation Settings")]
     [SerializeField] private float _navigationCooldown = 0.2f;
 
-    [Header("Player Prefabs")]
+    [Header("Player Prefab")]
     [SerializeField] private GameObject Player1Prefab;
     [SerializeField] private GameObject Player2Prefab;
     [SerializeField] private GameObject notZilla;
@@ -68,6 +73,7 @@ public class CharacterSelectionInputManager : MonoBehaviour
 
     public Sprite Player1Image => _player1Image;
     public Sprite Player2Image => _player2Image;
+    public Sprite CPUImage => _cpuImage;
 
     private CharacterType? _player1CharacterChoice ;
     private CharacterType? _player2CharacterChoice ;
@@ -79,19 +85,10 @@ public class CharacterSelectionInputManager : MonoBehaviour
 
     void Start()
     {
-        player1PrefabInstance = Instantiate(Player1Prefab);
-        
-
-        player2PrefabInstance = Instantiate(Player1Prefab);
+        Debug.Log("Is CPU mode: " + _isCPUMode);
 
         var gamepads = Gamepad.all;
-        // New Player 1
-        //PlayerInput Player1 = NewPlayerInputManager.GetComponent<PlayerInputManager>().JoinPlayer(
-        //    0,
-        //    -1,
-        //    null,
-        //    gamepads[0]
-        //);
+
         // Get all character items from the selection manager
         CharacterSelectionManager selectionManager = GetComponent<CharacterSelectionManager>();
         if (selectionManager != null)
@@ -100,8 +97,21 @@ public class CharacterSelectionInputManager : MonoBehaviour
             _characterItems = new List<CharacterSelectionItem>(GetComponentsInChildren<CharacterSelectionItem>());
         }
 
-        //SetupInputActions();
+        // Human P1
+        player1PrefabInstance = Instantiate(Player1Prefab);
         
+        // CPU P2
+        if(_isCPUMode)
+        {
+            // Auto-seleziona un personaggio random per la CPU
+            AutoSelectCPUCharacter();
+        }
+        // Human P2
+        else
+        {
+            player2PrefabInstance = Instantiate(Player1Prefab); // Human P2
+        }
+
         // Initialize - set P1 and P2 to first items
         if (_characterItems.Count > 0)
         {
@@ -110,103 +120,25 @@ public class CharacterSelectionInputManager : MonoBehaviour
         }
     }
 
-    //private void SetupInputActions()
-    //{
-    //    // Get all connected gamepads
-    //    var gamepads = Gamepad.all;
-        
-    //    // Debug.Log($"[CharacterSelectionInputManager] Found {gamepads.Count} gamepads");
-        
-    //    Debug.Log("asdasdadssadasd: " + NewPlayerInputManager.GetComponent<PlayerInputManager>());
-
-    //    // New Player 1
-    //    PlayerInput Player1 = NewPlayerInputManager.GetComponent<PlayerInputManager>().JoinPlayer(
-    //        0,
-    //        -1,
-    //        null,
-    //        gamepads[0]
-    //    );
-    //    PlayerInput Player2 = NewPlayerInputManager.GetComponent<PlayerInputManager>().JoinPlayer(
-    //        1,
-    //        -1,
-    //        null,
-    //        gamepads.Count >= 2 ? gamepads[1] : Keyboard.current
-    //    );
-    //    var _player1NavigateAction = Player1.actions["Navigate"];  // Nome dall'InputActionAsset
-
-    //    // === PLAYER 1 SETUP ===
-    //    // _player1NavigateAction = new InputAction("P1_Navigate", InputActionType.Value);
-    //    // _player1SubmitAction = new InputAction("P1_Submit", InputActionType.Button);
-        
-    //    if (gamepads.Count >= 1)
-    //    {
-    //        // Player 1 uses FIRST gamepad specifically
-    //        string pad1Path = gamepads[0].path;
-            
-    //        _player1NavigateAction.AddBinding($"{pad1Path}/leftStick");
-    //        _player1NavigateAction.AddBinding($"{pad1Path}/dpad");
-            
-    //        // Submit button (X on PlayStation / A on Xbox - buttonSouth)
-    //        // _player1SubmitAction.AddBinding($"{pad1Path}/buttonSouth");
-    //    }
-        
-    //    _player1NavigateAction.Enable();
-    //    // _player1SubmitAction.Enable();
-    //    // _player1SubmitAction.performed += ctx => OnSubmitPressed(PlayerType.Player1);
-
-    //    // === PLAYER 2 SETUP ===
-    //    PlayerInput Player2 = NewPlayerInputManager.GetComponent<PlayerInputManager>().JoinPlayer(
-    //        1,
-    //        -1,
-    //        null,
-    //        gamepads.Count >= 2 ? gamepads[1] : Keyboard.current
-    //    );
-    //    var _player2NavigateAction = Player1.actions["Navigate"];
-    //    // _player2NavigateAction = new InputAction("P2_Navigate", InputActionType.Value);
-    //    // _player2SubmitAction = new InputAction("P2_Submit", InputActionType.Button);
-        
-    //    if (gamepads.Count >= 2)
-    //    {
-    //        // Player 2 uses SECOND gamepad specifically
-    //        string pad2Path = gamepads[1].path;
-            
-    //        // _player2NavigateAction.AddBinding($"{pad2Path}/leftStick");
-    //        // _player2NavigateAction.AddBinding($"{pad2Path}/dpad");
-            
-    //        // Submit button
-    //        // _player2SubmitAction.AddBinding($"{pad2Path}/buttonSouth");
-    //    }
-    //    else
-    //    {
-    //        // Also allow keyboard for P2 (Arrows + Enter)
-    //        // _player2NavigateAction.AddCompositeBinding("2DVector")
-    //        //     .With("Up", "<Keyboard>/upArrow")
-    //        //     .With("Down", "<Keyboard>/downArrow")
-    //        //     .With("Left", "<Keyboard>/leftArrow")
-    //        //     .With("Right", "<Keyboard>/rightArrow");
-    //        // _player2SubmitAction.AddBinding("<Keyboard>/enter");
-    //    }
-        
-    //    _player2NavigateAction.Enable();
-    //    // _player2SubmitAction.Enable();
-    //    // _player2SubmitAction.performed += ctx => OnSubmitPressed(PlayerType.Player2);
-    //}
-
     public void OnSubmitPressed(PlayerType player)
     {
         if(player == PlayerType.Player1 && _player1CharacterChoice != null) return;
         if(player == PlayerType.Player2 && _player2CharacterChoice != null) return;
         
-        Debug.Log("submit pressed");
         int selectedIndex = player == PlayerType.Player1 ? _player1Index : _player2Index;
-        
         CharacterType choice = GetCharacterByIndex(selectedIndex);
 
         if(player == PlayerType.Player1)
         {
             _player1CharacterChoice = choice;
+
+            // In modalità CPU, la scelta del P2 è già fatta
+            if (_isCPUMode && _player2CharacterChoice != null)
+            {
+                FinalizeSelection();
+            }
         }
-        else
+        else if(!_isCPUMode) // P2 può scegliere solo se NON è CPU mode
         {
             _player2CharacterChoice = choice;
         }
@@ -214,13 +146,7 @@ public class CharacterSelectionInputManager : MonoBehaviour
         // Aggiorno _choicesDone
         if (_player1CharacterChoice != null && _player2CharacterChoice != null)
         {
-            _choicesDone = true;
-            player1PrefabInstance.GetComponent<PlayerBinder>().Jammer.CharacterType = _player1CharacterChoice.Value;
-            
-            player2PrefabInstance.GetComponent<PlayerBinder>().Jammer.CharacterType = _player2CharacterChoice.Value;
-
-            SceneLoader.Instance.Load("SampleScene");
-
+            FinalizeSelection();
         }
 
     }
@@ -232,24 +158,11 @@ public class CharacterSelectionInputManager : MonoBehaviour
         // Update cooldown timers
         _player1CooldownTimer -= Time.deltaTime;
         _player2CooldownTimer -= Time.deltaTime;
-
-        //// Handle Player 1 navigation
-        //if (_player1NavigateAction != null)
-        //{
-        //    Vector2 nav1 = _player1NavigateAction.ReadValue<Vector2>();
-        //    HandleNavigation(PlayerType.Player1, nav1, ref _player1PrevNav, ref _player1Index, ref _player1CooldownTimer);
-        //}
-
-        //// Handle Player 2 navigation
-        //if (_player2NavigateAction != null)
-        //{
-        //    Vector2 nav2 = _player2NavigateAction.ReadValue<Vector2>();
-        //    HandleNavigation(PlayerType.Player2, nav2, ref _player2PrevNav, ref _player2Index, ref _player2CooldownTimer);
-        //}
     }
 
     public void HandleNavigationP1(Vector2 nav1)
     {
+        // Se è stato già scelto un personaggio per il P1, ignora l'input
         if (_player1CharacterChoice != null) return;
 
         Debug.Log("Handle navigation p1");
@@ -283,35 +196,15 @@ public class CharacterSelectionInputManager : MonoBehaviour
             UpdatePlayerSelection(PlayerType.Player1, newIndex, oldIndex);
         }
 
-        //if (_choicesDone)
-        //{
-        //    _choicesDone = false;
-
-        //    //Destroy(OldPlayerInputManager);
-        //    //DisablePlayer1Input();
-        //    //DisablePlayer2Input();
-
-        //    // Se entrambi hanno scelto: istanzia prefab e fai cose
-        //    var gamepads = Gamepad.all;
-            
-        //    GameObject player1PrefabInstance = Instantiate(Player1Prefab);
-        //    player1PrefabInstance.GetComponent<PlayerBinder>().Character = _player1CharacterChoice.Value;
-
-        //    GameObject player2PrefabInstance = Instantiate(Player2Prefab);
-        //    player1PrefabInstance.GetComponent<PlayerBinder>().Character = _player2CharacterChoice.Value;
-
-            
-
-        //    DontDestroyOnLoad(NewPlayerInputManager);
-        //    // Cambio scena
-        //    SceneLoader.Instance.Load("SampleScene");
-        //}
-
         _player1PrevNav = nav1;
     }
 
     public void HandleNavigationP2(Vector2 nav2)
     {
+        // Se è CPU mode, ignora l'input del P2
+        if (_isCPUMode) return;
+
+        // Se è stato già scelto un personaggio per il P2, ignora l'input
         if (_player2CharacterChoice != null) return;
 
         Debug.Log("Handle navigation p2");
@@ -364,12 +257,6 @@ public class CharacterSelectionInputManager : MonoBehaviour
             UpdateCharacterImage(player, _characterItems[newIndex]);
         }
     }
-
-    // void OnDestroy()
-    // {
-    //     DisablePlayer1Input();
-    //     DisablePlayer2Input();
-    // }
 
     private void UpdateCharacterImage(PlayerType player, CharacterSelectionItem characterItem)
     {
@@ -453,5 +340,45 @@ public class CharacterSelectionInputManager : MonoBehaviour
         _player2NavigateAction?.Dispose();
         _player2SubmitAction?.Disable();
         _player2SubmitAction?.Dispose();
+    }
+
+    private void AutoSelectCPUCharacter()
+    {
+        // Seleziona random tra i personaggi disponibili
+        int randomIndex = UnityEngine.Random.Range(0, _characterItems.Count);
+        _player2Index = randomIndex;
+        _player2CharacterChoice = GetCharacterByIndex(randomIndex);
+
+        // Aggiorna la UI
+        UpdatePlayerSelection(PlayerType.CPU, randomIndex, -1);
+    }
+
+    private void FinalizeSelection()
+    {
+        _choicesDone = true;
+
+        Debug.Log("Player 1 choice: " + _player1CharacterChoice.Value);
+        Debug.Log("Player 2 choice: " + _player2CharacterChoice.Value);
+
+        // Player 1 - sempre umano
+        player1PrefabInstance.GetComponent<PlayerBinder>().Jammer.CharacterType = _player1CharacterChoice.Value;
+
+        if(_isCPUMode)
+        {
+            // Crea Jammer CPU manualmente (senza PlayerInput)
+            Jammer cpuJammer = new Jammer();
+            cpuJammer.PlayerType = PlayerType.CPU;
+            cpuJammer.CharacterType = _player2CharacterChoice.Value;
+            cpuJammer.IsCPUMode = true;
+            cpuJammer.Input = null; // CPU non ha input
+        
+            GlobalData.Instance.Player2 = cpuJammer;
+        }
+        else
+        {
+            player2PrefabInstance.GetComponent<PlayerBinder>().Jammer.CharacterType = _player2CharacterChoice.Value;
+        }
+
+        SceneLoader.Instance.Load("SampleScene");
     }
 }

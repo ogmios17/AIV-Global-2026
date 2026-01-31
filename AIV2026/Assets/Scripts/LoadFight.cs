@@ -24,6 +24,8 @@ public class LoadFight : MonoBehaviour
         player1.CharacterPrefab = Instantiate(GetPrefab(player1.CharacterType), p1Position);
         player2.CharacterPrefab = Instantiate(GetPrefab(player2.CharacterType), p2Position);
         player2.CharacterPrefab.transform.rotation = new Quaternion(0, 180, 0, 1);
+        GlobalData.Instance.Player1.FighterAnim = player1.CharacterPrefab.GetComponentInChildren<Animator>();
+        GlobalData.Instance.Player2.FighterAnim = player2.CharacterPrefab.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame

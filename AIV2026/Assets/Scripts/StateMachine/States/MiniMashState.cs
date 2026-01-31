@@ -20,13 +20,17 @@ public class MiniMashState : ScriptableObject, StateInterface
         handler = prefabClone.GetComponent<MashHandler>();
 
         player1.Input.gameObject.GetComponent<PlayerMashScript>().enabled = true;
-        player2.Input.gameObject.GetComponent<PlayerMashScript>().enabled = true;
+
+        if (!player2.IsCPUMode)
+            player2.Input.gameObject.GetComponent<PlayerMashScript>().enabled = true;
     }
 
     public void OnStateExit()
     {
         player1.Input.gameObject.GetComponent<PlayerMashScript>().enabled = false;
-        player2.Input.gameObject.GetComponent<PlayerMashScript>().enabled = false;
+
+        if (!player2.IsCPUMode)
+            player2.Input.gameObject.GetComponent<PlayerMashScript>().enabled = false;
     }
 
     public void OnStateStay()

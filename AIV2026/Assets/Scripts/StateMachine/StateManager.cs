@@ -28,7 +28,7 @@ public class StateManager : MonoBehaviour
 
     public MiniMashState MiniMashState {  get { return miniMashState; } }
     public MiniSequenceState MiniSequenceState { get { return miniSequenceState; } }
-    public IdleState IdleState { get { return idleState; } }
+    public IdleState IdleState { get { return idleState; } set { idleState = value; } }
 
     private void Start()
     {
@@ -40,7 +40,9 @@ public class StateManager : MonoBehaviour
         gameStateMachine.AddTransition(startGameState, idleState,
         new FuncPredicate(() => next));
         gameStateMachine.AddTransition( chooseMoveState, miniMashState,
-            new FuncPredicate(() => chooseMoveState.goToMinigame));
+            new FuncPredicate(() => chooseMoveState.NextMinigame==0));
+        gameStateMachine.AddTransition(chooseMoveState, miniSequenceState,
+            new FuncPredicate(() => chooseMoveState.NextMinigame == 1));
 
         gameStateMachine.SetState(startGameState);
     }

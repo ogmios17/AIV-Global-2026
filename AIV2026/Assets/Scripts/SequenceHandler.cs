@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class SequenceHandler : MonoBehaviour
 {
@@ -61,7 +60,7 @@ public class SequenceHandler : MonoBehaviour
 
     public void Onp1Press(string pressed)
     {
-        // se pressed = dequeue allora tutto apposto senò muori
+        // se pressed = dequeue allora tutto apposto senï¿½ muori
         if (pressed.ToLower().Contains(sequence1.Dequeue().ToLower()))
         {
             if (sequence1.Count <= 0)

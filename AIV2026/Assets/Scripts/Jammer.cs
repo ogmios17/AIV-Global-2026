@@ -16,6 +16,8 @@ public class Jammer
     private PlayerInput input;
     private GameObject characterPrefab;
     private int health = 9;
+    private bool isCPUMode = false;
+    private Animator fighterAnim;
 
     public PlayerType PlayerType { get => playerType; set => playerType = value; }
     public CharacterType CharacterType { get => character; set => character = value; }
@@ -23,8 +25,11 @@ public class Jammer
     public PlayerInput Input { get => input; set => input = value; }
     public MoveCard ChosenMove { get => chosenMove; set => chosenMove = value; }
     public GameObject CharacterPrefab { get => characterPrefab; set => characterPrefab = value; }
+    public Animator FighterAnim { get => fighterAnim; set => fighterAnim = value; }
+
    
     public int Health { get => health;}
+    public bool IsCPUMode { get => isCPUMode; set => isCPUMode = value; }
 
     public void TakeAHit(int value = 1)
     {
@@ -37,6 +42,8 @@ public class Jammer
 
     public void Die()
     {
+        FighterAnim.SetTrigger("Defeat");
+        Input.SwitchCurrentActionMap("Defeat");
         Debug.Log("dead");
         //logica
     }
