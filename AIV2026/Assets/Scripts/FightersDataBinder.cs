@@ -4,10 +4,10 @@ using UnityEngine;
 public class FightersDataBinder : MonoBehaviour
 {
     public List<GameObject> healthBars;
+    public List<GameObject> cards;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame

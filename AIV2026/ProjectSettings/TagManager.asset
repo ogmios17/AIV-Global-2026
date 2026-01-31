@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - PlayerInput
+  - CardPosition
   layers:
   - Default
   - TransparentFX

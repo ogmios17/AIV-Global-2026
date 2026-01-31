@@ -8,6 +8,10 @@ public class LoadFight : MonoBehaviour
     [SerializeField]
     private Transform p2Position;
     [SerializeField]
+    private Transform p1CardPosition;
+    [SerializeField]
+    private Transform p2CardPosition;
+    [SerializeField]
     private GameObject notZilla;
     [SerializeField]
     private GameObject crackKen;
