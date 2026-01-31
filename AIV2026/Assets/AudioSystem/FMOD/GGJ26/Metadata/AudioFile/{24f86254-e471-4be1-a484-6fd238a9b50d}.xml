@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{24f86254-e471-4be1-a484-6fd238a9b50d}">
+		<property name="assetPath">
+			<value>wave/MX/Start Game Loading Screen.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>51.428571428571431</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{edc35293-a4a0-4d3c-b2f7-7990a28a7e99}</destination>
+		</relationship>
+	</object>
+</objects>

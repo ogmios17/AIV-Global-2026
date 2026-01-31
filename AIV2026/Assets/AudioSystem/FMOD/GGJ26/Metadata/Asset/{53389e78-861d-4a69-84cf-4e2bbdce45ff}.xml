@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EncodableAsset" id="{53389e78-861d-4a69-84cf-4e2bbdce45ff}">
+		<property name="assetPath">
+			<value>wave/MX/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{edc35293-a4a0-4d3c-b2f7-7990a28a7e99}</destination>
+		</relationship>
+	</object>
+</objects>
