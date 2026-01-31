@@ -1181,7 +1181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daff2e9de4c329d40b9b6bf01febe91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateManager: {fileID: 0}
+  stateManager: {fileID: 2094322415}
 --- !u!4 &2014126419
 Transform:
   m_ObjectHideFlags: 0
@@ -1340,7 +1340,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba42838a1ad17a74d9d4afd628f05a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controllerHandler: {fileID: 0}
   connectState: {fileID: 11400000, guid: 4fc97234f9f972a4a935daa85a7fc668, type: 2}
   chooseMoveState: {fileID: 11400000, guid: abb7e5e48226ec14b939521bcb6c2461, type: 2}
   characterSelectionState: {fileID: 11400000, guid: 687972300838cd543a05a9659c125a57, type: 2}
