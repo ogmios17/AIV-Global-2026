@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 [CreateAssetMenu(fileName = "IdelState", menuName = "Scriptable Objects/IdleState")]
 public class IdleState : ScriptableObject, StateInterface
