@@ -745,8 +745,8 @@ MonoBehaviour:
   _navigationCooldown: 0
   Player1Prefab: {fileID: 5860056793942186639, guid: a0075e1e75d215748be03215645f440a, type: 3}
   Player2Prefab: {fileID: 0}
-  notZilla: {fileID: 840053607162735338, guid: 4ebe36684a3dae84b92c8626adcd1118, type: 3}
-  crackKen: {fileID: 2510642798427485519, guid: 6b749f1c34801734a8458de142aaba6c, type: 3}
+  notZilla: {fileID: 8364574429403050944, guid: 4ebe36684a3dae84b92c8626adcd1118, type: 3}
+  crackKen: {fileID: 3627437899303586132, guid: 6b749f1c34801734a8458de142aaba6c, type: 3}
   OldPlayerInputManager: {fileID: 0}
   _choicesDone: 0
 --- !u!1 &3498509976049947704

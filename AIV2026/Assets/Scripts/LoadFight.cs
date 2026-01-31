@@ -17,7 +17,7 @@ public class LoadFight : MonoBehaviour
         player2 = GlobalData.Instance.Player2;
 
         Instantiate(player1.CharacterPrefab, p1Position);
-        Instantiate(player2.CharacterPrefab, p2Position).transform.rotation = new Quaternion(0,180,0,1); 
+        Instantiate(player2.CharacterPrefab, p2Position).transform.rotation = new Quaternion(0,0,0,1); 
     }
 
     // Update is called once per frame

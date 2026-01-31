@@ -10,4 +10,5 @@ public class MoveCard : ScriptableObject
     public MoveCard wins;
     public MoveCard loses;
     public List<MoveCard> draws;
+    public List<MoveCard> clashes;
 }

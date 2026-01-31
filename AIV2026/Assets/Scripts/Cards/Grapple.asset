@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Grapple
   wins: {fileID: 11400000, guid: deedce562fbabdc4393926caf3958233, type: 2}
   loses: {fileID: 11400000, guid: 5a9c8d9bd837f714d81c4c0ab6d0cedf, type: 2}
-  draws:
+  draws: []
+  clashes:
   - {fileID: 11400000}
   - {fileID: 11400000, guid: 96c812eeab7b7bd4a912e045313c3420, type: 2}

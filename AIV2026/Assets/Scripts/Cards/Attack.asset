@@ -16,5 +16,8 @@ MonoBehaviour:
   wins: {fileID: 11400000, guid: 5a9c8d9bd837f714d81c4c0ab6d0cedf, type: 2}
   loses: {fileID: 11400000, guid: deedce562fbabdc4393926caf3958233, type: 2}
   draws:
+  - {fileID: 0}
+  - {fileID: 0}
+  clashes:
   - {fileID: 11400000}
   - {fileID: 11400000, guid: afae40f2ee318994080bf3c7d883d965, type: 2}
