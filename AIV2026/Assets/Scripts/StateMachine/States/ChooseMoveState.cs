@@ -24,38 +24,27 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     public Jammer player1;
     public Jammer player2;
     public GameObject prefab;
-    private GameObject prefabClone;
     private int nextMinigame;
-    private bool chooseMinigame;
     private bool clashSentencePerformed;
 
     [Header("Available Move Cards")]
     public MoveCard[] availableMoves;
-    private MoveCard p1Card;
-    private MoveCard p2Card;
-    public MoveCard P1Card { get { return p1Card; } }
-    public MoveCard P2Card { get { return p2Card; } }
-
 
     public int NextMinigame { get => nextMinigame; }
 
     public void OnStateEnter()
     {
-        p1Card = null;
-        p2Card = null;
-        timer = 8f;
+        // Setto la scelta delle carte dei giocatori a null (quando entrano in choosemove ancora non hanno scelto nulla)
+        GlobalData.Instance.Player1.ChosenMove = null;
+        GlobalData.Instance.Player2.ChosenMove = null;
+
+        timer = 10f;
         timerActive = true;
         nextMinigame = -1;
-        chooseMinigame = false;
         clashSentencePerformed = false;
 
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
-
-        Debug.Log(GlobalData.Instance.Player1);
-        Debug.Log(GlobalData.Instance.Player2);
-
-        // prefabClone = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
 
         // Human P1
         player1.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = true;
@@ -74,12 +63,20 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         // CPU sceglie mossa random se non l'ha già fatto
         if (player2.IsCPUMode && player2.ChosenMove == null)
         {
-            int randomIndex = Random.Range(0, 4);
-            player2.ChosenMove = availableMoves[randomIndex];
+            // int randomIndex = Random.Range(0, 4);
+            // player2.ChosenMove = availableMoves[randomIndex];
+
+            GlobalData.Instance.Player2.ChosenMove = SelectRandomMoveCard();
             
             // player2.ChosenMove = availableMoves[0]; // DEBUG: Attack
             Debug.Log($"CPU sceglie: {player2.ChosenMove.cardName}");
         }
+    
+        // Controllo se entrambi i giocatori hanno risposto
+        MoveCard P1Move = GlobalData.Instance.Player1.ChosenMove;
+        MoveCard P2Move = GlobalData.Instance.Player2.ChosenMove;
+        if(P1Move != null && P2Move != null)
+            Resolve(P1Move, P2Move);
 
         if (timerActive)
         {
@@ -88,53 +85,38 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             {
                 case <= 0:
                     GlobalData.Instance.text.SetTextMessage("Time's up!");
-                    break;
-                case <= 1:
-                    GlobalData.Instance.text.SetTextMessage("1...");
-                    break;
-                case <= 2:
-                    GlobalData.Instance.text.SetTextMessage("2...");
-                    break;
-                case <= 3:
-                    if (chooseMinigame)
-                    {
-                        ChooseMinigame();
-                    }
-                    else
-                        GlobalData.Instance.text.SetTextMessage("3...");
-                    break;
-                case <= 4:
-                    if (chooseMinigame && clashSentences.Count > 0 && !clashSentencePerformed)
-                    {
-                        GlobalData.Instance.text.SetTextMessage(clashSentences[Random.Range(0, clashSentences.Count)]);
-                        clashSentencePerformed = true;
-                    }
-                    else
-                    {
-                        GlobalData.Instance.Player1.ChosenMove = null;
-                        GlobalData.Instance.Player2.ChosenMove = null;
-                        GlobalData.Instance.text.SetTextMessage("Ready...");
-                    }
+
+                    // Scegli una carta casuale per chi non ha ancora giocato
+                    if (GlobalData.Instance.Player1.ChosenMove == null)
+                        GlobalData.Instance.Player1.ChosenMove = SelectRandomMoveCard();
+
+                    if (GlobalData.Instance.Player2.ChosenMove == null)
+                        GlobalData.Instance.Player2.ChosenMove = SelectRandomMoveCard();
                     break;
 
+                default:
+                    if(GlobalData.Instance.text)
+                        GlobalData.Instance.text.SetTextMessage(Mathf.CeilToInt(timer) + " seconds left");
+                    break;
             }
         }
     }
 
-    private void Resolve()
+    private void Resolve(MoveCard P1Move, MoveCard P2Move)
     {
-        Debug.Log("Resolved");
-        clashSentencePerformed = false;
+        Debug.Log(P1Move.cardName);
+        Debug.Log(P2Move.cardName);
+        timer = 10f;
         timerActive = false;
-        if(timer>=0 && encouragementSentences.Count>0)
-            GlobalData.Instance.text.SetTextMessage(encouragementSentences[Random.Range(0, encouragementSentences.Count)]);
-        timer = 6f;
 
+        // clashSentencePerformed = false;
+        // if(timer>=0 && encouragementSentences.Count>0)
+        //     GlobalData.Instance.text.SetTextMessage(encouragementSentences[Random.Range(0, encouragementSentences.Count)]);
 
         player1.CardsAnim.SetTrigger("Reveal");
         player2.CardsAnim.SetTrigger("Reveal");
 
-        if (p1Card.draws.Contains(p2Card))
+        if (P1Move.draws.Contains(P2Move))
         {
             timerActive = true;
             player2.FighterAnim.SetTrigger("Next");
@@ -143,45 +125,48 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             Debug.Log("DRAW");
             AudioManager.Instance.PlayCancelCard();
             AudioManager.Instance.PlayCrowdPanic(1f);
+            GlobalData.Instance.Player1.ChosenMove = null;
+            GlobalData.Instance.Player2.ChosenMove = null;
         }
-        else if (p1Card.clashes.Contains(p2Card))
+        else if (P1Move.clashes.Contains(P2Move))
         {
             player2.FighterAnim.SetTrigger("Next");
             player1.FighterAnim.SetTrigger("Next");
-            chooseMinigame = true;
-            ChooseMinigame();
-            Debug.Log("Clash");
             AudioManager.Instance.PlayCancelCard();
             AudioManager.Instance.PlayCrowdPanic(1f);
+            ChooseMinigame();
+            Debug.Log("Clash");
         }
-        else if (p1Card.wins == p2Card)
+        else if (P1Move.wins == P2Move)
         {
             timerActive = true;
             player2.FighterAnim.SetTrigger("Damage");
             player2.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player2);
             AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
             AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
-            AudioManager.Instance.PlayCardSound(p1Card);
-            AudioManager.Instance.PlayCardSound(p1Card);
+            AudioManager.Instance.PlayCardSound(P1Move);
+            AudioManager.Instance.PlayCardSound(P1Move);
             Debug.Log("PLAYER 1 WINS");
             AudioManager.Instance.PlayCrowdPanic(1f);
+            GlobalData.Instance.Player1.ChosenMove = null;
+            GlobalData.Instance.Player2.ChosenMove = null;
         }
-        else if (p1Card.loses == p2Card)
+        else if (P1Move.loses == P2Move)
         {
             timerActive = true;
             player1.FighterAnim.SetTrigger("Damage");
             player1.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player1);
             AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
             AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
-            AudioManager.Instance.PlayCardSound(p2Card);
+            AudioManager.Instance.PlayCardSound(P2Move);
             AudioManager.Instance.PlayCrowdPanic(1f);
-            AudioManager.Instance.PlayCardSound(p2Card);
+            AudioManager.Instance.PlayCardSound(P2Move);
             Debug.Log("PLAYER 1 LOSE");
+            GlobalData.Instance.Player1.ChosenMove = null;
+            GlobalData.Instance.Player2.ChosenMove = null;
         }
         //goToMinigame = true; //ELIMINA DOPO IL DEBUG 
 
-        p1Card = null;
-        p2Card = null;
         GlobalData.Instance.Player1.CardsAnim.SetTrigger("Out");
         GlobalData.Instance.Player2.CardsAnim.SetTrigger("Out");
     }
@@ -209,21 +194,17 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
     public void OnP1Received(MoveCard move)
     {
-        if (p1Card != null) return;
-        p1Card = move;
-        if(p2Card != null)
-        {
-            Resolve();
-        }
+        GlobalData.Instance.Player1.ChosenMove = move;
     }
 
     public void OnP2Received(MoveCard move)
     {
-        if (p2Card != null) return;
-        p2Card = move;
-        if (p1Card != null)
-        {
-            Resolve();
-        }
+        GlobalData.Instance.Player2.ChosenMove = move;
+    }
+
+    private MoveCard SelectRandomMoveCard()
+    {
+        int randomIndex = Random.Range(0, 4);
+        return availableMoves[randomIndex];
     }
 }

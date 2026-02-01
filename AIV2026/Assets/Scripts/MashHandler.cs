@@ -116,7 +116,7 @@ public class MashHandler : MonoBehaviour
         GlobalData.Instance.text.SetTextMessage($"{winnerName} Wins!");
 
         // Il perdente viene colpito (usa GlobalData per assicurarsi che la vita venga aggiornata)
-        globalLoser.TakeAHit();
+        globalLoser.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(globalLoser);
         if (globalLoser.FighterAnim != null)
             globalLoser.FighterAnim.SetTrigger("Damage");
 
