@@ -28,16 +28,21 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     private int nextMinigame;
     private bool chooseMinigame;
     private bool clashSentencePerformed;
-    private bool canChoose;
 
     [Header("Available Move Cards")]
     public MoveCard[] availableMoves;
+    private MoveCard p1Card;
+    private MoveCard p2Card;
+    public MoveCard P1Card { get { return p1Card; } }
+    public MoveCard P2Card { get { return p2Card; } }
+
 
     public int NextMinigame { get => nextMinigame; }
 
     public void OnStateEnter()
     {
-        canChoose = false;
+        p1Card = null;
+        p2Card = null;
         timer = 8f;
         timerActive = true;
         nextMinigame = -1;
@@ -76,12 +81,6 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             Debug.Log($"CPU sceglie: {player2.ChosenMove.cardName}");
         }
 
-        if (player1.ChosenMove != null && player2.ChosenMove != null)
-        {
-            if(canChoose)
-                Resolve(player1, player2);
-        }
-
         if (timerActive)
         {
             timer -= Time.deltaTime;
@@ -114,33 +113,28 @@ public class ChooseMoveState : ScriptableObject, StateInterface
                     {
                         GlobalData.Instance.Player1.ChosenMove = null;
                         GlobalData.Instance.Player2.ChosenMove = null;
-                        canChoose = true;
                         GlobalData.Instance.text.SetTextMessage("Ready...");
                     }
-                    GlobalData.Instance.Player1.CardsAnim.SetTrigger("Out");
-                    GlobalData.Instance.Player2.CardsAnim.SetTrigger("Out");
                     break;
 
             }
         }
     }
 
-    private void Resolve(Jammer p1, Jammer p2)
+    private void Resolve()
     {
-        canChoose = false;
+        Debug.Log("Resolved");
         clashSentencePerformed = false;
         timerActive = false;
         if(timer>=0 && encouragementSentences.Count>0)
             GlobalData.Instance.text.SetTextMessage(encouragementSentences[Random.Range(0, encouragementSentences.Count)]);
-        timer = 5f;
+        timer = 6f;
 
-        MoveCard c1 = p1.ChosenMove;
-        MoveCard c2 = p2.ChosenMove;
 
         player1.CardsAnim.SetTrigger("Reveal");
         player2.CardsAnim.SetTrigger("Reveal");
 
-        if (c1.draws.Contains(c2))
+        if (p1Card.draws.Contains(p2Card))
         {
             timerActive = true;
             player2.FighterAnim.SetTrigger("Next");
@@ -148,8 +142,9 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             
             Debug.Log("DRAW");
             AudioManager.Instance.PlayCancelCard();
+            AudioManager.Instance.PlayCrowdPanic(1f);
         }
-        else if (c1.clashes.Contains(c2))
+        else if (p1Card.clashes.Contains(p2Card))
         {
             player2.FighterAnim.SetTrigger("Next");
             player1.FighterAnim.SetTrigger("Next");
@@ -157,27 +152,38 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             ChooseMinigame();
             Debug.Log("Clash");
             AudioManager.Instance.PlayCancelCard();
+            AudioManager.Instance.PlayCrowdPanic(1f);
         }
-        else if (c1.wins == c2)
+        else if (p1Card.wins == p2Card)
         {
             timerActive = true;
             player2.FighterAnim.SetTrigger("Damage");
             player2.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player2);
-            AudioManager.Instance.PlayCardSound(c1);
+            AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
+            AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
+            AudioManager.Instance.PlayCardSound(p1Card);
+            AudioManager.Instance.PlayCardSound(p1Card);
             Debug.Log("PLAYER 1 WINS");
+            AudioManager.Instance.PlayCrowdPanic(1f);
         }
-        else if (c1.loses == c2)
+        else if (p1Card.loses == p2Card)
         {
             timerActive = true;
             player1.FighterAnim.SetTrigger("Damage");
             player1.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player1);
-            AudioManager.Instance.PlayCardSound(c2);
+            AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
+            AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
+            AudioManager.Instance.PlayCardSound(p2Card);
+            AudioManager.Instance.PlayCrowdPanic(1f);
+            AudioManager.Instance.PlayCardSound(p2Card);
             Debug.Log("PLAYER 1 LOSE");
         }
-
         //goToMinigame = true; //ELIMINA DOPO IL DEBUG 
 
-
+        p1Card = null;
+        p2Card = null;
+        GlobalData.Instance.Player1.CardsAnim.SetTrigger("Out");
+        GlobalData.Instance.Player2.CardsAnim.SetTrigger("Out");
     }
     public void OnFixedStateStay()
     {
@@ -199,5 +205,25 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         // int index = Random.Range(0, 1);
         int index = 0; // DEBUG: Mash
         nextMinigame = index;
+    }
+
+    public void OnP1Received(MoveCard move)
+    {
+        if (p1Card != null) return;
+        p1Card = move;
+        if(p2Card != null)
+        {
+            Resolve();
+        }
+    }
+
+    public void OnP2Received(MoveCard move)
+    {
+        if (p2Card != null) return;
+        p2Card = move;
+        if (p1Card != null)
+        {
+            Resolve();
+        }
     }
 }

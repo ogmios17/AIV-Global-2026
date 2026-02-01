@@ -29,6 +29,7 @@ public class StateManager : MonoBehaviour
     public MiniMashState MiniMashState {  get { return miniMashState; } }
     public MiniSequenceState MiniSequenceState { get { return miniSequenceState; } }
     public IdleState IdleState { get { return idleState; } set { idleState = value; } }
+    public ChooseMoveState ChooseMoveState { get { return chooseMoveState; } }
 
     private void Start()
     {

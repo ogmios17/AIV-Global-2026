@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b613b805ed0f74ea488332a8552743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attack: {fileID: 11400000, guid: 96c812eeab7b7bd4a912e045313c3420, type: 2}
+  block: {fileID: 11400000, guid: deedce562fbabdc4393926caf3958233, type: 2}
+  grapple: {fileID: 11400000, guid: afae40f2ee318994080bf3c7d883d965, type: 2}
+  shove: {fileID: 11400000, guid: 5a9c8d9bd837f714d81c4c0ab6d0cedf, type: 2}
   mainTitleLoop:
     Guid:
       Data1: 1377552256
@@ -179,18 +183,18 @@ MonoBehaviour:
     Path: event:/SFX/Combat/NotZilla Verses
   spamButtonPlayer1:
     Guid:
-      Data1: 1266897421
-      Data2: 1079961657
-      Data3: 894899849
-      Data4: -13837157
-    Path: event:/SFX/Combat/Crowd Cheers for P1
+      Data1: -307970751
+      Data2: 1142112498
+      Data3: -387337324
+      Data4: -531807908
+    Path: event:/SFX/Minigame/SpamButtonPlayer1
   spamButtonPlayer2:
     Guid:
-      Data1: 1179635703
-      Data2: 1128375045
-      Data3: 271191993
-      Data4: -1223164603
-    Path: event:/SFX/Combat/Crowd Cheers for P2
+      Data1: 430772408
+      Data2: 1192367772
+      Data3: 1355801255
+      Data4: -1456570747
+    Path: event:/SFX/Minigame/SpamButtonPlayer2
   UIClickSelection:
     Guid:
       Data1: 1315276150

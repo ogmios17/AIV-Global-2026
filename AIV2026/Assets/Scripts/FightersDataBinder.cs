@@ -8,7 +8,8 @@ public class FightersDataBinder : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   
-        cards[0].transform.parent.transform.rotation = new Quaternion(0, 0, 0, 1);      
+        cards[0].transform.parent.transform.rotation = new Quaternion(0, 0, 0, 1);
+
     }
 
     // Update is called once per frame
