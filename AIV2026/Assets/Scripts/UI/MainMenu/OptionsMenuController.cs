@@ -3,10 +3,21 @@ using UnityEngine.UI;
 
 public class OptionsMenuController : MonoBehaviour
 {
-    [SerializeField] private Slider volumeSlider;
-
-    public void OnVolumeSliderChanged(float value)
+    [SerializeField] private Slider slider;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        // Handle volume change logic here
+        slider.value = AudioManager.Instance.GetMasterVolume();
+        slider.onValueChanged.AddListener(OnVolumeChanged);
+    }
+    private void OnVolumeChanged(float value)
+    {
+        AudioManager.Instance.SetMasterVolume(value);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 }

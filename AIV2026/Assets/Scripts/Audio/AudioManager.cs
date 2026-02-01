@@ -2,11 +2,16 @@ using FMOD.Studio;
 using FMODUnity;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.TextCore.LowLevel;
 using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
+
+    private Bus masterBus;
+
+    private const string VolumeKey = "MasterVolume";
 
     [Header("Move Cards")]
     [SerializeField] private MoveCard attack;
@@ -41,9 +46,17 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private EventReference UIPauseMenu;
     [SerializeField] private EventReference PauseSong;
 
+    private EventInstance lastHPInstance;
+    private EventInstance crowdLoop;
     private EventInstance mainTitleInstance;
     private EventInstance crowdInstance;
-    private EventInstance CombatMusicInstance;
+    //private EventInstance CombatMusicInstance;
+
+    private bool hasStartedMainTitle = false;
+
+    private Coroutine crowdNomixRoutine;
+
+    public EventInstance CombatMusicInstance { get; private set; }
 
     void Awake()
     {
@@ -54,9 +67,39 @@ public class AudioManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        masterBus = RuntimeManager.GetBus("bus:/");
+    }
+
+    void Start()
+    {
+        float savedVolume = PlayerPrefs.GetFloat(VolumeKey, 1f);
+
+        if (!hasStartedMainTitle)
+        {
+            PlayMainTitle();
+            hasStartedMainTitle = true;
+        }
     }
     #region MUSIC
-
+    public void SetMasterVolume(float volume)
+    {
+        masterBus.setVolume(volume);
+        PlayerPrefs.SetFloat(VolumeKey, volume);
+    }
+    public float GetMasterVolume()
+    {
+        masterBus.getVolume(out float volume);
+            return volume; 
+    }
+    public void PlayLastHP()
+    {
+        RuntimeManager.PlayOneShot(lastHP);
+    }
+    public void PlayRecoverHP()
+    {
+        RuntimeManager.PlayOneShot(HPRecovery);
+    }
     public void PlayMainTitle()
     {
         StopMainTitle();
@@ -76,10 +119,86 @@ public class AudioManager : MonoBehaviour
     public void PlayCombatMusic()
     {
         StopCombatMusic();
-        CombatMusicInstance = RuntimeManager.CreateInstance(CombatMelody);
+        CombatMusicInstance = RuntimeManager.CreateInstance("event:/Music/Combat MX");
         CombatMusicInstance.start();
     }
 
+    private void StartRandomCrowdNomix()
+    {
+        if (crowdNomixRoutine != null) return;
+        crowdNomixRoutine = StartCoroutine(RandomCrowdNoMixCoroutine());
+
+
+    }
+
+    private void StopRandomCrowdNoMix()
+    {
+        if (crowdNomixRoutine != null)
+        {
+            StopCoroutine(crowdNomixRoutine);
+            crowdNomixRoutine = null;
+        }
+    }
+    private IEnumerator RandomCrowdNoMixCoroutine()
+    {
+        while (true)
+        {
+            RuntimeManager.PlayOneShot(crowdsNomix);
+
+            float waitTime = Random.Range(13f, 17f);
+            yield return new WaitForSeconds(waitTime);
+        }
+    }
+
+    public void StartCrowdNomixDelayed(float delay = 20f)
+    {
+        StartCoroutine(CrowdNomixAfterDelay(delay));
+    }
+
+    private IEnumerator CrowdNomixAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        StartRandomCrowdNomix(); // Usa la Coroutine già presente
+    }
+
+    public void UpdateCombatMusicByHealth(float crackenHP, float notZillaHP)
+    {
+        float total = crackenHP + notZillaHP;
+
+        if (total <= 0) return;
+
+        float crackRatio = Mathf.Pow(crackenHP / total, 0.5f); // sqrt
+        float notZillaRatio = Mathf.Pow(notZillaHP / total, 0.5f);
+
+
+        CombatMusicInstance.setParameterByName("Crack-Ken Volume", crackRatio);
+            CombatMusicInstance.setParameterByName("NotZilla Volume", notZillaRatio);
+
+    }
+    public void PlayCrowdPanic(float volume = 1f)
+    {
+        EventInstance panicInstance = RuntimeManager.CreateInstance(crowdPanic);
+        panicInstance.setVolume(volume);
+        panicInstance.start();
+
+        StartCoroutine(FadeOutAndStop(panicInstance, 4f));
+    }
+    public void CheckLastHP(float p1HP, float p2HP)
+    {
+
+        bool isLastHP = p1HP <= 1f || p2HP <= 1f;
+
+        if (isLastHP && !lastHPInstance.isValid())
+        {
+            lastHPInstance = RuntimeManager.CreateInstance(lastHP);
+            lastHPInstance.start();
+        }
+        else if (!isLastHP && lastHPInstance.isValid())
+        {
+            lastHPInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            lastHPInstance.release();
+        }
+    }
     public void StopCombatMusic()
     {
         if (CombatMusicInstance.isValid())
@@ -130,20 +249,22 @@ public class AudioManager : MonoBehaviour
 
     #region CROWD
 
-    public void StartCrowd()
+    public void StartCrowdLoop(float fadeIn = 1f)
     {
-        StopCrowd();
-        crowdInstance = RuntimeManager.CreateInstance(crowds);
-        crowdInstance.start();
+        if (crowdLoop.isValid()) return;
+
+        crowdLoop = RuntimeManager.CreateInstance(crowds);
+        crowdLoop.setVolume(0f);
+        crowdLoop.start();
+
+        StartCoroutine(FadeVolume(crowdLoop, 0f, 1f, fadeIn));
     }
 
-    public void StopCrowd()
+    public void StopCrowdLoop(float fadeOut = 1f)
     {
-        if (crowdInstance.isValid())
-        {
-            crowdInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            crowdInstance.release();
-        }
+        if (!crowdLoop.isValid()) return;
+
+        StartCoroutine(FadeOutAndStop(crowdLoop, fadeOut));
     }
 
     public void SetCrowdPanic(bool panic)
@@ -212,11 +333,12 @@ public class AudioManager : MonoBehaviour
         PlayPlayerIntro(GlobalData.Instance.Player2);
         yield return new WaitForSeconds(2.0f);
 
+        PlayBellStart();
+        yield return new WaitForSeconds(0.5f);
         // Crowd loop
-        StartCrowd();
+        StartCrowdLoop();
 
         // Bell start
-        PlayBellStart();
     }
     private void PlayPlayerIntro(Jammer player)
     {
@@ -226,11 +348,20 @@ public class AudioManager : MonoBehaviour
             RuntimeManager.PlayOneShot(notZillaVerse);
 
         if (player.PlayerType == PlayerType.Player1)
-            RuntimeManager.PlayOneShot(crowdCheersForP1);
+            PlayCrowdCheer(crowdCheersForP1);
         else
-            RuntimeManager.PlayOneShot(crowdCheersForP2);
+            PlayCrowdCheer(crowdCheersForP2);
     }
 
+    public void PlayCrowdCheer(EventReference cheerEvent, float fadeInTime = 0.5f)
+    {
+        crowdInstance = RuntimeManager.CreateInstance(cheerEvent);
+        crowdInstance.setVolume(0f);
+        crowdInstance.start();
+
+        StartCoroutine(FadeVolume(crowdInstance, 0f, 1f, fadeInTime));
+    }
+   
     public void PlayCardSound(MoveCard card)
     {
         if (card == null) return;
@@ -244,17 +375,40 @@ public class AudioManager : MonoBehaviour
         else if (card == shove)
             Play(pushCard);
     }
+    private IEnumerator FadeVolume(EventInstance instance, float from, float to, float time)
+    {
+        float t = 0f;
+        while (t < time)
+        {
+            t += Time.deltaTime;
+            float v = Mathf.Lerp(from, to, t / time);
+            instance.setVolume(v);
+            yield return null;
+        }
+        instance.setVolume(to);
+    }
 
+    private IEnumerator FadeOutAndStop(EventInstance instance, float time)
+    {
+        float volume;
+        instance.getVolume(out volume);
+
+        float t = 0f;
+        while (t < time)
+        {
+            t += Time.deltaTime;
+            instance.setVolume(Mathf.Lerp(volume, 0f, t / time));
+            yield return null;
+        }
+
+        instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        instance.release();
+    }
     private void Play(EventReference evt)
     {
         FMODUnity.RuntimeManager.PlayOneShot(evt);
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
 
     // Update is called once per frame
     void Update()

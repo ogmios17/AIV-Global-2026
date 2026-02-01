@@ -94,11 +94,13 @@ public class SequenceHandler : MonoBehaviour
         {
             if (sequence1.Count <= 0)
             {
+                AudioManager.Instance.PlaySpamButtonP1();
                 Debug.Log("p1 wins!");
             }
         }
         else
         {
+            AudioManager.Instance.PlayUIError();
             Debug.Log("p1 loses...");
         }
     }
@@ -109,11 +111,13 @@ public class SequenceHandler : MonoBehaviour
         {
             if (sequence2.Count <= 0)
             {
+                AudioManager.Instance.PlaySpamButtonP2();
                 Debug.Log("p2 wins!");
             }
         }
         else
         {
+            AudioManager.Instance.PlayUIError();
             Debug.Log("p2 loses...");
         }
     }

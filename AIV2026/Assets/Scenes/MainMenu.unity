@@ -698,6 +698,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1150736676}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayUIClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1465264743}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -1044,6 +1056,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer1.Path
+      value: event:/SFX/Minigame/SpamButtonPlayer1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer2.Path
+      value: event:/SFX/Minigame/SpamButtonPlayer2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer1.Guid.Data1
+      value: -307970751
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer1.Guid.Data2
+      value: 1142112498
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer1.Guid.Data3
+      value: -387337324
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer1.Guid.Data4
+      value: -531807908
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer2.Guid.Data1
+      value: 430772408
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer2.Guid.Data2
+      value: 1192367772
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer2.Guid.Data3
+      value: 1355801255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+      propertyPath: spamButtonPlayer2.Guid.Data4
+      value: -1456570747
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1191,6 +1243,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1150736676}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayUIClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1465264743}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
@@ -1551,6 +1615,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 985005379}
   m_CullTransparentMesh: 1
+--- !u!114 &1150736676 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7432179776439771663, guid: edff6c1ea194e1348bc59d5138b91732, type: 3}
+  m_PrefabInstance: {fileID: 706550760}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b613b805ed0f74ea488332a8552743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1189864216
 GameObject:
   m_ObjectHideFlags: 0
@@ -2108,6 +2183,18 @@ MonoBehaviour:
           m_StringArgument: CharacterSelection
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1150736676}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayUIClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1529196368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2472,6 +2559,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1741019464}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: OnQuitButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1150736676}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayUIClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3157,6 +3256,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875796020}
   m_CullTransparentMesh: 1
+--- !u!1 &1879892328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1879892330}
+  - component: {fileID: 1879892329}
+  m_Layer: 0
+  m_Name: VolumeSlider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1879892329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879892328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65434ae0f5720654e9be707aabd9f993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+--- !u!4 &1879892330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879892328}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1051.8047, y: 458.81406, z: 4.32654}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1884726910
 GameObject:
   m_ObjectHideFlags: 0
@@ -3649,6 +3793,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1150736676}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: PlayUIClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2106585330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3844,3 +4000,4 @@ SceneRoots:
   - {fileID: 1294432946}
   - {fileID: 1462440643}
   - {fileID: 706550760}
+  - {fileID: 1879892330}

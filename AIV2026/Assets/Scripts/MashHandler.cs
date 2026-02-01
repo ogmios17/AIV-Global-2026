@@ -81,6 +81,7 @@ public class MashHandler : MonoBehaviour
     public void Onp1Mash()
     {
         points -= mashStrength + Random.Range(0, modifierRange);
+
     }
 
     public void Onp2Mash()

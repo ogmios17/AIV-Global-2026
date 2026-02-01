@@ -44,6 +44,8 @@ public class SceneLoader : MonoBehaviour
 
         asyncLoad.allowSceneActivation = true;
 
+        HandleSceneMusic(sceneName);
+
         // Transition: FADE-OUT
         transitionLayer.Hide(0.5f, 1f);
 
@@ -53,11 +55,25 @@ public class SceneLoader : MonoBehaviour
         if (IsCombatScene(sceneName))
         {
             AudioManager.Instance.OnCombatSceneReady();
+
+            AudioManager.Instance.StartCrowdNomixDelayed(20f);
         }
     }
     private bool IsCombatScene(string sceneName)
     {
         return sceneName == "SampleScene";
     }
-
+    private void HandleSceneMusic(string sceneName)
+    {
+        if (IsCombatScene(sceneName))
+        {
+            AudioManager.Instance.StopMainTitle();
+            AudioManager.Instance.PlayCombatMusic();
+        }
+        else
+        {
+            AudioManager.Instance.StopCombatMusic();
+            AudioManager.Instance.PlayMainTitle();
+        }
+    }
 }

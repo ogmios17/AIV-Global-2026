@@ -90,18 +90,24 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             ChooseMinigame();
             Debug.Log("Clash");
             AudioManager.Instance.PlayCancelCard();
+            AudioManager.Instance.PlayCrowdPanic(1f);
         }
         else if (c1.wins == c2)
         {
             player2.FighterAnim.SetTrigger("Damage");
             player2.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player2);
+            AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
+            AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
             AudioManager.Instance.PlayCardSound(c1);
             Debug.Log("PLAYER 1 WINS");
+            AudioManager.Instance.PlayCrowdPanic(1f);
         }
         else if (c1.loses == c2)
         {
             player1.FighterAnim.SetTrigger("Damage");
             player1.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player1);
+            AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
+            AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
             AudioManager.Instance.PlayCardSound(c2);
             Debug.Log("PLAYER 1 LOSE");
         }

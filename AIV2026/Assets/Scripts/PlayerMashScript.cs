@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -35,10 +36,12 @@ public class PlayerMashScript : MonoBehaviour
         if(playerType == PlayerType.Player1)
         {
             miniMashState.Handler.Onp1Mash();
+            AudioManager.Instance.PlaySpamButtonP1();
         }
         if (playerType == PlayerType.Player2)
         {
             miniMashState.Handler.Onp2Mash();
+            AudioManager.Instance.PlaySpamButtonP2();
         }
 
     }
