@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -14,11 +15,20 @@ public enum CardTypes
 [CreateAssetMenu(fileName = "ChooseMoveState", menuName = "Scriptable Objects/ChooseMoveState")]
 public class ChooseMoveState : ScriptableObject, StateInterface
 {
+    [Header("Timer")]
+    private bool timerActive;
+    private float timer;
+    public List<string> encouragementSentences;
+    public List<string> clashSentences;
+
     public Jammer player1;
     public Jammer player2;
     public GameObject prefab;
     private GameObject prefabClone;
     private int nextMinigame;
+    private bool chooseMinigame;
+    private bool clashSentencePerformed;
+    private bool canChoose;
 
     [Header("Available Move Cards")]
     public MoveCard[] availableMoves;
@@ -27,7 +37,12 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
     public void OnStateEnter()
     {
+        canChoose = false;
+        timer = 8f;
+        timerActive = true;
         nextMinigame = -1;
+        chooseMinigame = false;
+        clashSentencePerformed = false;
 
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
@@ -50,7 +65,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     }
 
     public void OnStateStay()
-    {   
+    {
         // CPU sceglie mossa random se non l'ha già fatto
         if (player2.IsCPUMode && player2.ChosenMove == null)
         {
@@ -63,12 +78,62 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
         if (player1.ChosenMove != null && player2.ChosenMove != null)
         {
-            Resolve(player1, player2);
+            if(canChoose)
+                Resolve(player1, player2);
+        }
+
+        if (timerActive)
+        {
+            timer -= Time.deltaTime;
+            switch (timer)
+            {
+                case <= 0:
+                    GlobalData.Instance.text.SetTextMessage("Time's up!");
+                    break;
+                case <= 1:
+                    GlobalData.Instance.text.SetTextMessage("1...");
+                    break;
+                case <= 2:
+                    GlobalData.Instance.text.SetTextMessage("2...");
+                    break;
+                case <= 3:
+                    if (chooseMinigame)
+                    {
+                        ChooseMinigame();
+                    }
+                    else
+                        GlobalData.Instance.text.SetTextMessage("3...");
+                    break;
+                case <= 4:
+                    if (chooseMinigame && clashSentences.Count > 0 && !clashSentencePerformed)
+                    {
+                        GlobalData.Instance.text.SetTextMessage(clashSentences[Random.Range(0, clashSentences.Count)]);
+                        clashSentencePerformed = true;
+                    }
+                    else
+                    {
+                        GlobalData.Instance.Player1.ChosenMove = null;
+                        GlobalData.Instance.Player2.ChosenMove = null;
+                        canChoose = true;
+                        GlobalData.Instance.text.SetTextMessage("Ready...");
+                    }
+                    GlobalData.Instance.Player1.CardsAnim.SetTrigger("Out");
+                    GlobalData.Instance.Player2.CardsAnim.SetTrigger("Out");
+                    break;
+
+            }
         }
     }
 
     private void Resolve(Jammer p1, Jammer p2)
     {
+        canChoose = false;
+        clashSentencePerformed = false;
+        timerActive = false;
+        if(timer>=0 && encouragementSentences.Count>0)
+            GlobalData.Instance.text.SetTextMessage(encouragementSentences[Random.Range(0, encouragementSentences.Count)]);
+        timer = 5f;
+
         MoveCard c1 = p1.ChosenMove;
         MoveCard c2 = p2.ChosenMove;
 
@@ -77,6 +142,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
         if (c1.draws.Contains(c2))
         {
+            timerActive = true;
             player2.FighterAnim.SetTrigger("Next");
             player1.FighterAnim.SetTrigger("Next");
             
@@ -87,6 +153,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         {
             player2.FighterAnim.SetTrigger("Next");
             player1.FighterAnim.SetTrigger("Next");
+            chooseMinigame = true;
             ChooseMinigame();
             Debug.Log("Clash");
             AudioManager.Instance.PlayCancelCard();
@@ -94,6 +161,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         }
         else if (c1.wins == c2)
         {
+            timerActive = true;
             player2.FighterAnim.SetTrigger("Damage");
             player2.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player2);
             AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
@@ -104,6 +172,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         }
         else if (c1.loses == c2)
         {
+            timerActive = true;
             player1.FighterAnim.SetTrigger("Damage");
             player1.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player1);
             AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
@@ -111,9 +180,6 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             AudioManager.Instance.PlayCardSound(c2);
             Debug.Log("PLAYER 1 LOSE");
         }
-
-        p2.ChosenMove = null;
-        p1.ChosenMove = null;
 
         //goToMinigame = true; //ELIMINA DOPO IL DEBUG 
 
@@ -129,6 +195,9 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         player1.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = false;
         if (!player2.IsCPUMode)
             player2.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = false;
+
+        GlobalData.Instance.text.SetTextMessage(" ");
+
     }
     
     public void ChooseMinigame()
