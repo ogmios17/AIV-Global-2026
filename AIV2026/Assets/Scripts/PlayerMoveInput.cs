@@ -31,6 +31,11 @@ public class PlayerMoveInput : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext ctx)
     {
+        if (moveState.P1Card == null)
+        {
+            binder.Jammer.FighterAnim.SetTrigger("Attack");
+            binder.Jammer.CardsAnim.SetTrigger("Attack");
+        }
         if (!ctx.performed) return;
         if (binder.Jammer.ChosenMove != null) return;
         if (binder.Jammer.PlayerType == PlayerType.Player1)
@@ -56,6 +61,11 @@ public class PlayerMoveInput : MonoBehaviour
 
     public void Block(InputAction.CallbackContext ctx)
     {
+        if (moveState.P1Card == null)
+        {
+            binder.Jammer.FighterAnim.SetTrigger("Block");
+            binder.Jammer.CardsAnim.SetTrigger("Block");
+        }
         if (!ctx.performed) return;
         if (binder.Jammer.ChosenMove != null) return;
         if (binder.Jammer.PlayerType == PlayerType.Player1)
@@ -81,6 +91,11 @@ public class PlayerMoveInput : MonoBehaviour
 
     public void Grapple(InputAction.CallbackContext ctx)
     {
+        if (moveState.P1Card == null)
+        {
+            binder.Jammer.FighterAnim.SetTrigger("Grapple");
+            binder.Jammer.CardsAnim.SetTrigger("Grapple");
+        }
         if (!ctx.performed) return;
         if (binder.Jammer.ChosenMove != null) return;
         if (binder.Jammer.PlayerType == PlayerType.Player1)
@@ -105,6 +120,11 @@ public class PlayerMoveInput : MonoBehaviour
 
     public void Shove(InputAction.CallbackContext ctx)
     {
+        if (moveState.P1Card == null)
+        {
+            binder.Jammer.FighterAnim.SetTrigger("Shove");
+            binder.Jammer.CardsAnim.SetTrigger("Shove");
+        }
         if (!ctx.performed) return;
         if (binder.Jammer.ChosenMove != null) return;
         if (binder.Jammer.PlayerType == PlayerType.Player1)
