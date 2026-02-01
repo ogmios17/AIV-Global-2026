@@ -48,7 +48,15 @@ public class Jammer
     {
         FighterAnim.SetTrigger("Defeat");
         Input.SwitchCurrentActionMap("Defeat");
-        Debug.Log("dead");
+        if(character == CharacterType.NotZilla)
+        {
+            GlobalData.Instance.text.SetTextMessage("Not Zilla was Godzilla all along!");
+        }else if(character == CharacterType.CrackKen)
+        {
+            GlobalData.Instance.text.SetTextMessage("Krack Ken was a squid all along!");
+        }
+        Debug.Log("abcde " + character);
+            Debug.Log("dead");
         //logica
     }
 

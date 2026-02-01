@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MiniMashState", menuName = "Scriptable Objects/MiniMashState")]
@@ -9,10 +10,12 @@ public class MiniMashState : ScriptableObject, StateInterface
     public GameObject prefab;
     private MashHandler handler;
     private GameObject prefabClone;
-
+    public List<string> loveSentences;
     public MashHandler Handler { get { return handler; } }
     public void OnStateEnter()
     {
+        GlobalData.Instance.text.SetTextMessage("The kaijus ERUPT in a passionate manifestation of love!");
+
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
 
@@ -49,8 +52,7 @@ public class MiniMashState : ScriptableObject, StateInterface
     }
 
     public void OnStateStay()
-    {
-
+    {        
     }
 
     public void OnFixedStateStay()

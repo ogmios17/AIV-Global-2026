@@ -20,6 +20,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     private float timer;
     public List<string> encouragementSentences;
     public List<string> clashSentences;
+    public List<string> tooSlowSentences;
 
     public Jammer player1;
     public Jammer player2;
@@ -61,13 +62,16 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     public void OnStateStay()
     {
         // CPU sceglie mossa random se non l'ha già fatto
-        if (player2.IsCPUMode && player2.ChosenMove == null)
+        if (player2.IsCPUMode && player2.ChosenMove == null && timer<=7)
         {
             // int randomIndex = Random.Range(0, 4);
             // player2.ChosenMove = availableMoves[randomIndex];
 
             GlobalData.Instance.Player2.ChosenMove = SelectRandomMoveCard();
-            
+
+            //handle animation
+            HandleAnimationsP2();
+
             // player2.ChosenMove = availableMoves[0]; // DEBUG: Attack
             Debug.Log($"CPU sceglie: {player2.ChosenMove.cardName}");
         }
@@ -88,10 +92,24 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
                     // Scegli una carta casuale per chi non ha ancora giocato
                     if (GlobalData.Instance.Player1.ChosenMove == null)
+                    {
                         GlobalData.Instance.Player1.ChosenMove = SelectRandomMoveCard();
+                        HandleAnimationsP1();
+                        if (tooSlowSentences.Count > 0)
+                        {
+                            GlobalData.Instance.text.SetTextMessage(tooSlowSentences[Random.Range(0, tooSlowSentences.Count)]);
+                        }
+                    }
 
                     if (GlobalData.Instance.Player2.ChosenMove == null)
+                    {
                         GlobalData.Instance.Player2.ChosenMove = SelectRandomMoveCard();
+                        HandleAnimationsP2();
+                        if (tooSlowSentences.Count > 0)
+                        {
+                            GlobalData.Instance.text.SetTextMessage(tooSlowSentences[Random.Range(0, tooSlowSentences.Count)]);
+                        }
+                    }
                     break;
 
                 default:
@@ -99,6 +117,44 @@ public class ChooseMoveState : ScriptableObject, StateInterface
                         GlobalData.Instance.text.SetTextMessage(Mathf.CeilToInt(timer) + " seconds left");
                     break;
             }
+        }
+    }
+
+    private void HandleAnimationsP2()
+    {
+        switch (GlobalData.Instance.Player2.ChosenMove.cardName)
+        {
+            case ("Attack"):
+                player2.CardsAnim.SetTrigger("Attack");
+                break;
+            case ("Block"):
+                player2.CardsAnim.SetTrigger("Block");
+                break;
+            case ("Grapple"):
+                player2.CardsAnim.SetTrigger("Grapple");
+                break;
+            case ("Shove"):
+                player2.CardsAnim.SetTrigger("Shove");
+                break;
+        }
+    }
+
+    private void HandleAnimationsP1()
+    {
+        switch (GlobalData.Instance.Player1.ChosenMove.cardName)
+        {
+            case ("Attack"):
+                player1.CardsAnim.SetTrigger("Attack");
+                break;
+            case ("Block"):
+                player1.CardsAnim.SetTrigger("Block");
+                break;
+            case ("Grapple"):
+                player1.CardsAnim.SetTrigger("Grapple");
+                break;
+            case ("Shove"):
+                player1.CardsAnim.SetTrigger("Shove");
+                break;
         }
     }
 
@@ -110,8 +166,8 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         timerActive = false;
 
         // clashSentencePerformed = false;
-        // if(timer>=0 && encouragementSentences.Count>0)
-        //     GlobalData.Instance.text.SetTextMessage(encouragementSentences[Random.Range(0, encouragementSentences.Count)]);
+         if(timer>=0 && encouragementSentences.Count>0)
+             GlobalData.Instance.text.SetTextMessage(encouragementSentences[Random.Range(0, encouragementSentences.Count)]);
 
         player1.CardsAnim.SetTrigger("Reveal");
         player2.CardsAnim.SetTrigger("Reveal");
@@ -194,12 +250,16 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
     public void OnP1Received(MoveCard move)
     {
+        if (timer > 7) return;
         GlobalData.Instance.Player1.ChosenMove = move;
+        HandleAnimationsP1();
     }
 
     public void OnP2Received(MoveCard move)
     {
+        if (timer > 7) return;
         GlobalData.Instance.Player2.ChosenMove = move;
+        HandleAnimationsP2();
     }
 
     private MoveCard SelectRandomMoveCard()

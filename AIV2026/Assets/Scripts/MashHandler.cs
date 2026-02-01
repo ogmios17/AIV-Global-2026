@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -28,10 +29,14 @@ public class MashHandler : MonoBehaviour
     private bool isFinished = false;
     private bool isEnding = false; // Per evitare chiamate multiple a EndMinigame
     public bool IsFinished { get => isFinished; }
+    private float timer =0;
+    private List<string> loveSentences;
+    private bool timerActive = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        loveSentences = GlobalData.Instance.stateManager.MiniMashState.loveSentences;
         points = 0;
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
@@ -68,6 +73,13 @@ public class MashHandler : MonoBehaviour
         {
             EndMinigame(player1, player2);
         }
+
+        timer += Time.deltaTime;
+        if (timer >= 2 && timerActive)
+        {
+            GlobalData.Instance.text.SetTextMessage(loveSentences[Random.Range(0, loveSentences.Count)]);
+            timer = 0;
+        }
     }
 
     private void FixedUpdate()
@@ -99,6 +111,7 @@ public class MashHandler : MonoBehaviour
 
     private void EndMinigame(Jammer winner, Jammer loser)
     {
+        timerActive = false;
         if (isEnding) return; // Evita chiamate multiple
         isEnding = true;
 

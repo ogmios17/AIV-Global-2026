@@ -44,7 +44,8 @@ public class StateManager : MonoBehaviour
             new FuncPredicate(() => chooseMoveState.NextMinigame==0));
         gameStateMachine.AddTransition(chooseMoveState, miniSequenceState,
             new FuncPredicate(() => chooseMoveState.NextMinigame == 1));
-
+        gameStateMachine.AddTransition(chooseMoveState, startGameState,
+           new FuncPredicate(() => (GlobalData.Instance.Player1.Health<=0 || GlobalData.Instance.Player2.Health<=0)));
         // Transizioni per uscire dai minigiochi quando finiscono
         gameStateMachine.AddTransition(miniMashState, chooseMoveState,
             new FuncPredicate(() => miniMashState.Handler != null && miniMashState.Handler.IsFinished));
@@ -84,7 +85,7 @@ public class StateManager : MonoBehaviour
 
     public void GoNext()
     {
-        next = true;
+        next = !next;
     }
 
 }

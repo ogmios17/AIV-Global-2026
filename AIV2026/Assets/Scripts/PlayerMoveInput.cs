@@ -33,19 +33,19 @@ public class PlayerMoveInput : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        // Se sei il Player 1 e non hai ancora scelto una carta triggera l'animazione
-        if (binder.Jammer.PlayerType == PlayerType.Player1 && GlobalData.Instance.Player1.ChosenMove == null)
-        {
-            binder.Jammer.FighterAnim.SetTrigger("Attack");
-            binder.Jammer.CardsAnim.SetTrigger("Attack");
-        }
+        //// Se sei il Player 1 e non hai ancora scelto una carta triggera l'animazione
+        //if (binder.Jammer.PlayerType == PlayerType.Player1 && GlobalData.Instance.Player1.ChosenMove == null)
+        //{
+        //    binder.Jammer.FighterAnim.SetTrigger("Attack");
+        //    binder.Jammer.CardsAnim.SetTrigger("Attack");
+        //}
 
-        // Se sei il Player 2 e non hai ancora scelto una carta triggera l'animazione
-        if (binder.Jammer.PlayerType == PlayerType.Player2 && GlobalData.Instance.Player2.ChosenMove == null)
-        {
-            binder.Jammer.FighterAnim.SetTrigger("Attack");
-            binder.Jammer.CardsAnim.SetTrigger("Attack");
-        }
+        //// Se sei il Player 2 e non hai ancora scelto una carta triggera l'animazione
+        //if (binder.Jammer.PlayerType == PlayerType.Player2 && GlobalData.Instance.Player2.ChosenMove == null)
+        //{
+        //    binder.Jammer.FighterAnim.SetTrigger("Attack");
+        //    binder.Jammer.CardsAnim.SetTrigger("Attack");
+        //}
 
         // Se il giocatore ha già scelto una carta esco (non devo giocare ancora)
         if (binder.Jammer.ChosenMove != null) return;
@@ -63,19 +63,19 @@ public class PlayerMoveInput : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        // Se sei il Player 1 e non hai ancora scelto una carta triggera l'animazione
-        if (binder.Jammer.PlayerType == PlayerType.Player1 && GlobalData.Instance.Player1.ChosenMove == null)
-        {
-            binder.Jammer.FighterAnim.SetTrigger("Block");
-            binder.Jammer.CardsAnim.SetTrigger("Block");
-        }
+        //// Se sei il Player 1 e non hai ancora scelto una carta triggera l'animazione
+        //if (binder.Jammer.PlayerType == PlayerType.Player1 && GlobalData.Instance.Player1.ChosenMove == null)
+        //{
+        //    binder.Jammer.FighterAnim.SetTrigger("Block");
+        //    binder.Jammer.CardsAnim.SetTrigger("Block");
+        //}
 
-        // Se sei il Player 2 e non hai ancora scelto una carta triggera l'animazione
-        if (binder.Jammer.PlayerType == PlayerType.Player2 && GlobalData.Instance.Player2.ChosenMove == null)
-        {
-            binder.Jammer.FighterAnim.SetTrigger("Block");
-            binder.Jammer.CardsAnim.SetTrigger("Block");
-        }
+        //// Se sei il Player 2 e non hai ancora scelto una carta triggera l'animazione
+        //if (binder.Jammer.PlayerType == PlayerType.Player2 && GlobalData.Instance.Player2.ChosenMove == null)
+        //{
+        //    binder.Jammer.FighterAnim.SetTrigger("Block");
+        //    binder.Jammer.CardsAnim.SetTrigger("Block");
+        //}
 
         // Se il giocatore ha già scelto una carta esco (non devo giocare ancora)
         if (binder.Jammer.ChosenMove != null) return;
@@ -92,19 +92,19 @@ public class PlayerMoveInput : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        // Se sei il Player 1 e non hai ancora scelto una carta triggera l'animazione
-        if (binder.Jammer.PlayerType == PlayerType.Player1 && GlobalData.Instance.Player1.ChosenMove == null)
-        {
-            binder.Jammer.FighterAnim.SetTrigger("Grapple");
-            binder.Jammer.CardsAnim.SetTrigger("Grapple");
-        }
+        //// Se sei il Player 1 e non hai ancora scelto una carta triggera l'animazione
+        //if (binder.Jammer.PlayerType == PlayerType.Player1 && GlobalData.Instance.Player1.ChosenMove == null)
+        //{
+        //    binder.Jammer.FighterAnim.SetTrigger("Grapple");
+        //    binder.Jammer.CardsAnim.SetTrigger("Grapple");
+        //}
 
-        // Se sei il Player 2 e non hai ancora scelto una carta triggera l'animazione
-        if (binder.Jammer.PlayerType == PlayerType.Player2 && GlobalData.Instance.Player2.ChosenMove == null)
-        {
-            binder.Jammer.FighterAnim.SetTrigger("Grapple");
-            binder.Jammer.CardsAnim.SetTrigger("Grapple");
-        }
+        //// Se sei il Player 2 e non hai ancora scelto una carta triggera l'animazione
+        //if (binder.Jammer.PlayerType == PlayerType.Player2 && GlobalData.Instance.Player2.ChosenMove == null)
+        //{
+        //    binder.Jammer.FighterAnim.SetTrigger("Grapple");
+        //    binder.Jammer.CardsAnim.SetTrigger("Grapple");
+        //}
 
         // Se il giocatore ha già scelto una carta esco (non devo giocare ancora)
         if (binder.Jammer.ChosenMove != null) return;
@@ -121,19 +121,19 @@ public class PlayerMoveInput : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        // Se sei il Player 1 e non hai ancora scelto una carta triggera l'animazione
-        if (binder.Jammer.PlayerType == PlayerType.Player1 && GlobalData.Instance.Player1.ChosenMove == null)
-        {
-            binder.Jammer.FighterAnim.SetTrigger("Shove");
-            binder.Jammer.CardsAnim.SetTrigger("Shove");
-        }
+        //// Se sei il Player 1 e non hai ancora scelto una carta triggera l'animazione
+        //if (binder.Jammer.PlayerType == PlayerType.Player1 && GlobalData.Instance.Player1.ChosenMove == null)
+        //{
+        //    binder.Jammer.FighterAnim.SetTrigger("Shove");
+        //    binder.Jammer.CardsAnim.SetTrigger("Shove");
+        //}
 
-        // Se sei il Player 2 e non hai ancora scelto una carta triggera l'animazione
-        if (binder.Jammer.PlayerType == PlayerType.Player2 && GlobalData.Instance.Player2.ChosenMove == null)
-        {
-            binder.Jammer.FighterAnim.SetTrigger("Shove");
-            binder.Jammer.CardsAnim.SetTrigger("Shove");
-        }
+        //// Se sei il Player 2 e non hai ancora scelto una carta triggera l'animazione
+        //if (binder.Jammer.PlayerType == PlayerType.Player2 && GlobalData.Instance.Player2.ChosenMove == null)
+        //{
+        //    binder.Jammer.FighterAnim.SetTrigger("Shove");
+        //    binder.Jammer.CardsAnim.SetTrigger("Shove");
+        //}
 
         // Se il giocatore ha già scelto una carta esco (non devo giocare ancora)
         if (binder.Jammer.ChosenMove != null) return;
