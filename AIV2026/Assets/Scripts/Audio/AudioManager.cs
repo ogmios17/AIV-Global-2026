@@ -122,27 +122,56 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayMainTitle()
     {
-        StopMainTitle();
+        if (mainTitleInstance.isValid())
+        {
+            FMOD.Studio.PLAYBACK_STATE state;
+            mainTitleInstance.getPlaybackState(out state);
+            if (state != FMOD.Studio.PLAYBACK_STATE.STOPPED) return;
+            mainTitleInstance.release();
+        }
+
         mainTitleInstance = RuntimeManager.CreateInstance(mainTitleLoop);
         mainTitleInstance.start();
     }
 
     public void StopMainTitle()
     {
-        if (mainTitleInstance.isValid())
-        {
-            mainTitleInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            mainTitleInstance.release();
-        }
+        if (!mainTitleInstance.isValid()) return;
+
+        mainTitleInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        mainTitleInstance.release();
     }
 
     public void PlayCombatMusic()
     {
-        StopCombatMusic();
-        CombatMusicInstance = RuntimeManager.CreateInstance("event:/Music/Combat MX");
-        CombatMusicInstance.start();
+        if (!CombatMusicInstance.isValid())
+        {
+            CombatMusicInstance = RuntimeManager.CreateInstance("event:/Music/Combat MX");
+            CombatMusicInstance.start();
+            StartCoroutine(CombatMusicLoop());
+        }
+    }
+    public void StopCombatMusic()
+    {
+        if (!CombatMusicInstance.isValid()) return;
+        CombatMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
+    private IEnumerator CombatMusicLoop()
+    {
+        while (CombatMusicInstance.isValid())
+        {
+            FMOD.Studio.PLAYBACK_STATE state;
+            CombatMusicInstance.getPlaybackState(out state);
+
+            if (state == FMOD.Studio.PLAYBACK_STATE.STOPPED)
+            {
+                CombatMusicInstance.start(); // Riavvia se fermo
+            }
+
+            yield return new WaitForSeconds(0.5f); // Controlla due volte al secondo
+        }
+    }
     private void StartRandomCrowdNomix()
     {
         if (crowdNomixRoutine != null) return;
@@ -223,14 +252,7 @@ public class AudioManager : MonoBehaviour
             lastHPInstance.release();
         }
     }
-    public void StopCombatMusic()
-    {
-        if (CombatMusicInstance.isValid())
-        {
-            CombatMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            CombatMusicInstance.release();
-        }
-    }
+
     #endregion
     public void PlayBellStart()
     {
