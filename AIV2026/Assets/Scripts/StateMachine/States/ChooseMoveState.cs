@@ -148,6 +148,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             
             Debug.Log("DRAW");
             AudioManager.Instance.PlayCancelCard();
+            AudioManager.Instance.PlayCrowdPanic(1f);
         }
         else if (c1.clashes.Contains(c2))
         {
@@ -178,6 +179,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
             AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
             AudioManager.Instance.PlayCardSound(c2);
+            AudioManager.Instance.PlayCrowdPanic(1f);
             Debug.Log("PLAYER 1 LOSE");
         }
 

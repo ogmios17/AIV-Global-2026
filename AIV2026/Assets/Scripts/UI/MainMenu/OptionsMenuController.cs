@@ -4,7 +4,16 @@ using UnityEngine.UI;
 public class OptionsMenuController : MonoBehaviour
 {
     [SerializeField] private Slider slider;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+
+    void Awake()
+    {
+        if (AudioManager.Instance != null)
+        {
+            slider.value = AudioManager.Instance.GetMasterVolume();
+            slider.onValueChanged.AddListener(OnVolumeChanged);
+        }
+    }
     void Start()
     {
         slider.value = AudioManager.Instance.GetMasterVolume();

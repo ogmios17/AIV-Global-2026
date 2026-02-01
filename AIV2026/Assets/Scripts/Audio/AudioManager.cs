@@ -73,7 +73,19 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        float savedVolume = PlayerPrefs.GetFloat(VolumeKey, 1f);
+        if (!PlayerPrefs.HasKey("HasSetInitialVolume"))
+        {
+            
+            SetMasterVolume(0.5f);
+
+            PlayerPrefs.SetInt("HasSetInitialVolume", 1);
+            PlayerPrefs.Save();
+        }
+        else
+        {
+            float savedVolume = PlayerPrefs.GetFloat(VolumeKey, 1f);
+            SetMasterVolume(savedVolume);
+        }
 
         if (!hasStartedMainTitle)
         {
@@ -84,13 +96,21 @@ public class AudioManager : MonoBehaviour
     #region MUSIC
     public void SetMasterVolume(float volume)
     {
-        masterBus.setVolume(volume);
-        PlayerPrefs.SetFloat(VolumeKey, volume);
+        if (masterBus.isValid())
+        {
+            masterBus.setVolume(volume);
+            PlayerPrefs.SetFloat(VolumeKey, volume);
+            PlayerPrefs.Save();
+        }
     }
     public float GetMasterVolume()
     {
-        masterBus.getVolume(out float volume);
-            return volume; 
+        if (masterBus.isValid())
+        {
+            masterBus.getVolume(out float volume);
+            return volume;
+        }
+        return 1f;
     }
     public void PlayLastHP()
     {
@@ -143,8 +163,12 @@ public class AudioManager : MonoBehaviour
     {
         while (true)
         {
-            RuntimeManager.PlayOneShot(crowdsNomix);
+            EventInstance crowdInstance = RuntimeManager.CreateInstance(crowdsNomix);
 
+            crowdInstance.setVolume(1f);
+            crowdInstance.start();
+
+            StartCoroutine(FadeOutAndStop(crowdInstance, 7f));
             float waitTime = Random.Range(13f, 17f);
             yield return new WaitForSeconds(waitTime);
         }
