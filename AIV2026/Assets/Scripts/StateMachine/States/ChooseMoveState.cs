@@ -161,7 +161,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             player2.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player2);
             AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
             AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
-            AudioManager.Instance.PlayCardSound(c1);
+            AudioManager.Instance.PlayCardSound(p1Card);
             AudioManager.Instance.PlayCardSound(p1Card);
             Debug.Log("PLAYER 1 WINS");
             AudioManager.Instance.PlayCrowdPanic(1f);
@@ -173,7 +173,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             player1.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player1);
             AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
             AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
-            AudioManager.Instance.PlayCardSound(c2);
+            AudioManager.Instance.PlayCardSound(p2Card);
             AudioManager.Instance.PlayCrowdPanic(1f);
             AudioManager.Instance.PlayCardSound(p2Card);
             Debug.Log("PLAYER 1 LOSE");
