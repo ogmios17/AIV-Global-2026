@@ -543,15 +543,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6b031d9dbfd584192166e74ca094b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mashStrength: 0.1
+  mashStrength: 0.2
   targetLeft: {fileID: 5655489678376434263}
   targetRight: {fileID: 8687441494994215709}
   divider: {fileID: 7673418094666019625}
-  modifierRange: 0.03
+  modifierRange: 0.1
   randomAdvantage_chance: 3
   randomizeAdvantage: 1
   advantageStrength: 0.01
-  cpuMashInterval: 0.15
+  cpuMashInterval: 0.25
 --- !u!1 &5655489678376434263
 GameObject:
   m_ObjectHideFlags: 0

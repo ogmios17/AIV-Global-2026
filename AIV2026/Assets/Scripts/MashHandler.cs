@@ -88,13 +88,13 @@ public class MashHandler : MonoBehaviour
 
     public void Onp1Mash()
     {
-        points -= mashStrength + Random.Range(0, modifierRange);
+        points += mashStrength + Random.Range(0, modifierRange);
 
     }
 
     public void Onp2Mash()
     {
-        points += mashStrength + Random.Range(0, modifierRange);
+        points -= mashStrength + Random.Range(0, modifierRange);
     }
 
     private void EndMinigame(Jammer winner, Jammer loser)
