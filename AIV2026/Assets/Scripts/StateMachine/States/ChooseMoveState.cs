@@ -71,6 +71,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
             //handle animation
             HandleAnimationsP2();
+            HandleFighterAnimationsP2();
 
             // player2.ChosenMove = availableMoves[0]; // DEBUG: Attack
             Debug.Log($"CPU sceglie: {player2.ChosenMove.cardName}");
@@ -95,6 +96,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
                     {
                         GlobalData.Instance.Player1.ChosenMove = SelectRandomMoveCard();
                         HandleAnimationsP1();
+                        HandleFighterAnimationsP1();
                         if (tooSlowSentences.Count > 0)
                         {
                             GlobalData.Instance.text.SetTextMessage(tooSlowSentences[Random.Range(0, tooSlowSentences.Count)]);
@@ -105,6 +107,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
                     {
                         GlobalData.Instance.Player2.ChosenMove = SelectRandomMoveCard();
                         HandleAnimationsP2();
+                        HandleFighterAnimationsP2();
                         if (tooSlowSentences.Count > 0)
                         {
                             GlobalData.Instance.text.SetTextMessage(tooSlowSentences[Random.Range(0, tooSlowSentences.Count)]);
@@ -157,6 +160,44 @@ public class ChooseMoveState : ScriptableObject, StateInterface
                 break;
         }
     }
+    private void HandleFighterAnimationsP2()
+    {
+        switch (GlobalData.Instance.Player2.ChosenMove.cardName)
+        {
+            case ("Attack"):
+                player2.FighterAnim.SetTrigger("Attack");
+                break;
+            case ("Block"):
+                player2.FighterAnim.SetTrigger("Block");
+                break;
+            case ("Grapple"):
+                player2.FighterAnim.SetTrigger("Grapple");
+                break;
+            case ("Shove"):
+                player2.FighterAnim.SetTrigger("Shove");
+                break;
+        }
+    }
+
+    private void HandleFighterAnimationsP1()
+    {
+        switch (GlobalData.Instance.Player1.ChosenMove.cardName)
+        {
+            case ("Attack"):
+                player1.FighterAnim.SetTrigger("Attack");
+                break;
+            case ("Block"):
+                player1.FighterAnim.SetTrigger("Block");
+                break;
+            case ("Grapple"):
+                player1.FighterAnim.SetTrigger("Grapple");
+                break;
+            case ("Shove"):
+                player1.FighterAnim.SetTrigger("Shove");
+                break;
+        }
+    }
+
 
     private void Resolve(MoveCard P1Move, MoveCard P2Move)
     {
@@ -195,6 +236,8 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         }
         else if (P1Move.wins == P2Move)
         {
+            player2.FighterAnim.SetTrigger("Next");
+            player1.FighterAnim.SetTrigger("Next");
             timerActive = true;
             player2.FighterAnim.SetTrigger("Damage");
             player2.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player2);
@@ -253,6 +296,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         if (timer > 7) return;
         GlobalData.Instance.Player1.ChosenMove = move;
         HandleAnimationsP1();
+        HandleFighterAnimationsP1();
     }
 
     public void OnP2Received(MoveCard move)
@@ -260,6 +304,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         if (timer > 7) return;
         GlobalData.Instance.Player2.ChosenMove = move;
         HandleAnimationsP2();
+        HandleFighterAnimationsP2();
     }
 
     private MoveCard SelectRandomMoveCard()
