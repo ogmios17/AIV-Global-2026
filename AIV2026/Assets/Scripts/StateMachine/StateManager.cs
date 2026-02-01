@@ -45,6 +45,12 @@ public class StateManager : MonoBehaviour
         gameStateMachine.AddTransition(chooseMoveState, miniSequenceState,
             new FuncPredicate(() => chooseMoveState.NextMinigame == 1));
 
+        // Transizioni per uscire dai minigiochi quando finiscono
+        gameStateMachine.AddTransition(miniMashState, chooseMoveState,
+            new FuncPredicate(() => miniMashState.Handler != null && miniMashState.Handler.IsFinished));
+        // gameStateMachine.AddTransition(miniSequenceState, chooseMoveState,
+        //     new FuncPredicate(() => miniSequenceState.Handler != null && miniSequenceState.Handler.IsFinished));
+
         gameStateMachine.SetState(startGameState);
     }
 
