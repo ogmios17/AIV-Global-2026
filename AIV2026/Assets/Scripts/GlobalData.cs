@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 public class GlobalData : MonoBehaviour
 {
@@ -5,6 +6,7 @@ public class GlobalData : MonoBehaviour
     public static GlobalData Instance { get; private set; }
     public StateManager stateManager;
     public Transform miniGameTransform;
+    public TextSetter text;
 
     public Jammer Player1;
     public Jammer Player2;

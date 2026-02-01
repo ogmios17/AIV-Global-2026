@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95ed7c0d3cb46a341aae25371a0c46be, type: 3}
   m_Name: ChooseMoveState
   m_EditorClassIdentifier: 
-  goToMinigame: 1
+  encouragementSentences:
+  - Keep it up!
+  - KILL EACH OTHER.
+  - Faster, faster, faster!
+  - Think fast!
+  - Don't mind the innocent lives!
+  clashSentences:
+  - Too greedy!
+  - 'Time for a mini game! '
+  - Wait, what are they doing?
   prefab: {fileID: 328180346319633011, guid: 02d341d4b8512ba41b577bd16e30c339, type: 3}
   availableMoves:
   - {fileID: 11400000, guid: 96c812eeab7b7bd4a912e045313c3420, type: 2}
