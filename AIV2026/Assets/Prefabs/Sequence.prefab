@@ -138,8 +138,18 @@ MonoBehaviour:
   downSprite: {fileID: -1350828672, guid: 0ff28c23eba699f49b7a0cc24816e83e, type: 3}
   leftSprite: {fileID: -347068938, guid: 0ff28c23eba699f49b7a0cc24816e83e, type: 3}
   rightSprite: {fileID: -1886261859, guid: 0ff28c23eba699f49b7a0cc24816e83e, type: 3}
-  numberOfButtons: 5
-  modifier: 0
+  Player1Slots:
+  - {fileID: 5902607727850428144}
+  - {fileID: 5736885390342000550}
+  - {fileID: 7220464607410003576}
+  - {fileID: 1418092086543689497}
+  - {fileID: 747602939077525470}
+  Player2Slots:
+  - {fileID: 330263161561883221}
+  - {fileID: 807033817285830118}
+  - {fileID: 2156185713092956376}
+  - {fileID: 6523208963684847440}
+  - {fileID: 7971892245107116344}
   cpuMashInterval: 0.5
 --- !u!1 &747602939077525470
 GameObject:

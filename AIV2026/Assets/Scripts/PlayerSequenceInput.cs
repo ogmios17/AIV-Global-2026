@@ -29,7 +29,7 @@ public class PlayerSequenceInput : MonoBehaviour
     {
         if (!ctx.performed) return;
         string pressed = ctx.control.path;
-        Debug.Log("pressed " + pressed);
+        // Debug.Log("pressed " + pressed);
         if (playerType == PlayerType.Player1)
         {
             miniSequenceState.Handler.Onp1Press(pressed);
