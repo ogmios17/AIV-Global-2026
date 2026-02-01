@@ -19,6 +19,7 @@ public class Jammer
     private bool isCPUMode = false;
     private Animator fighterAnim;
     private Animator cardsAnim;
+    private List<CardTypes> cards;
 
     public PlayerType PlayerType { get => playerType; set => playerType = value; }
     public CharacterType CharacterType { get => character; set => character = value; }
@@ -28,6 +29,7 @@ public class Jammer
     public GameObject CharacterPrefab { get => characterPrefab; set => characterPrefab = value; }
     public Animator FighterAnim { get => fighterAnim; set => fighterAnim = value; }
     public Animator CardsAnim { get => cardsAnim; set => cardsAnim = value; }
+    public List<CardTypes> Cards  { get => cards; set => cards = value; }
 
 
     public int Health { get => health;}
