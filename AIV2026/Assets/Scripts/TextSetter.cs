@@ -13,6 +13,7 @@ public class TextSetter : MonoBehaviour
 
     public void SetTextMessage(string message)
     {
+        Debug.Log("Setting text to " + message);
         text.text = message;
     }
 }

@@ -12,6 +12,7 @@ public class IdleState : ScriptableObject, StateInterface
     public CharacterSelectionInputManager Handler {  get { return handler; } }
 
     public void OnStateEnter() {
+        GlobalData.Instance.stateManager.GoNext();
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
 

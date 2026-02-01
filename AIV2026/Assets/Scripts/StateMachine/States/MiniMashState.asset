@@ -13,3 +13,9 @@ MonoBehaviour:
   m_Name: MiniMashState
   m_EditorClassIdentifier: 
   prefab: {fileID: 4535086659372761082, guid: 5e76ecf0df04bd04d8252fc7768a00cb, type: 3}
+  loveSentences:
+  - Love him harder!
+  - Push! Push!
+  - Don't hold ANYTHING back!
+  - '"Now make them kiss"'
+  - They are so cute!

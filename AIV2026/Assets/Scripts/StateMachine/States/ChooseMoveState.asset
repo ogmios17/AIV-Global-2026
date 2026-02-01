@@ -18,10 +18,18 @@ MonoBehaviour:
   - Faster, faster, faster!
   - Think fast!
   - Don't mind the innocent lives!
+  - You are dong great!
   clashSentences:
   - Too greedy!
   - 'Time for a mini game! '
   - Wait, what are they doing?
+  tooSlowSentences:
+  - Too slow!
+  - Don't sweat it...
+  - Follow your guts!
+  - Are you still there?
+  - No pressure, bud.
+  - Take your time.
   prefab: {fileID: 328180346319633011, guid: 02d341d4b8512ba41b577bd16e30c339, type: 3}
   availableMoves:
   - {fileID: 11400000, guid: 96c812eeab7b7bd4a912e045313c3420, type: 2}
