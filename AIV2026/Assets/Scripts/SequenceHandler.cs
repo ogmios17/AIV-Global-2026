@@ -4,6 +4,15 @@ using UnityEngine.InputSystem;
 
 public class SequenceHandler : MonoBehaviour
 {
+
+    [Header("UI")]
+    [SerializeField] private Sprite upSprite;
+    [SerializeField] private Sprite downSprite;
+    [SerializeField] private Sprite leftSprite;
+    [SerializeField] private Sprite rightSprite;
+
+    private Dictionary<string, Sprite> inputToSprite;
+
     private Jammer player1;
     private Jammer player2;
     [SerializeField]
@@ -30,6 +39,22 @@ public class SequenceHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        inputToSprite = new Dictionary<string, Sprite>()
+        {
+            { "/dpad/up", upSprite },
+            { "/up", upSprite },
+        
+            { "/dpad/down", downSprite },
+            { "/down", downSprite },
+        
+            { "/dpad/left", leftSprite },
+            { "/left", leftSprite },
+        
+            { "/dpad/right", rightSprite },
+            { "/right", rightSprite },
+        };
+
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
 
@@ -53,7 +78,7 @@ public class SequenceHandler : MonoBehaviour
                 InitSetup(keyboardInputs, sequence2);
             else InitSetup(controllerInputs, sequence2);
         }
-        
+
         //player2.Input.actions.FindActionMap("Sequence").FindAction("Press").ApplyBindingOverride(sequence1.Dequeue());
 
     }
@@ -89,9 +114,18 @@ public class SequenceHandler : MonoBehaviour
 
     public void Onp1Press(string pressed)
     {
-        // se pressed = dequeue allora tutto apposto sen� muori
-        if (pressed.ToLower().Contains(sequence1.Dequeue().ToLower()))
+        if (sequence1.Count == 0)
         {
+            return;
+        }
+
+        string expected = sequence1.Peek();
+
+        // se pressed = dequeue allora tutto apposto sen� muori
+        if (pressed.ToLower().Contains(expected.ToLower()))
+        {
+            sequence1.Dequeue();
+
             if (sequence1.Count <= 0)
             {
                 AudioManager.Instance.PlaySpamButtonP1();
@@ -107,8 +141,15 @@ public class SequenceHandler : MonoBehaviour
 
     public void Onp2Press(string pressed)
     {
-        if (pressed.Contains(sequence2.Dequeue().ToLower()))
+        if (sequence2.Count == 0)
+            return;
+
+        string expected = sequence2.Peek();
+
+        if (pressed.ToLower().Contains(expected.ToLower()))
         {
+
+            sequence2.Dequeue();
             if (sequence2.Count <= 0)
             {
                 AudioManager.Instance.PlaySpamButtonP2();

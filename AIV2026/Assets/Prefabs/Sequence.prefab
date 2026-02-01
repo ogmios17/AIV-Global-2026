@@ -134,8 +134,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c85d1267cdf6748b2788be6bb0dcd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upSprite: {fileID: -1611223626, guid: 0ff28c23eba699f49b7a0cc24816e83e, type: 3}
+  downSprite: {fileID: -1350828672, guid: 0ff28c23eba699f49b7a0cc24816e83e, type: 3}
+  leftSprite: {fileID: -347068938, guid: 0ff28c23eba699f49b7a0cc24816e83e, type: 3}
+  rightSprite: {fileID: -1886261859, guid: 0ff28c23eba699f49b7a0cc24816e83e, type: 3}
   numberOfButtons: 5
   modifier: 0
+  cpuMashInterval: 0.5
 --- !u!1 &747602939077525470
 GameObject:
   m_ObjectHideFlags: 0
