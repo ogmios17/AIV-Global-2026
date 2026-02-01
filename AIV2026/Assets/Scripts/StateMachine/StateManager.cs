@@ -16,6 +16,8 @@ public class StateManager : MonoBehaviour
     [SerializeField]
     private StartGameState startGameState;
     [SerializeField]
+    private EndGameState endGameState;
+    [SerializeField]
     private MiniMashState miniMashState;
     [SerializeField]
     private MiniSequenceState miniSequenceState;
@@ -30,6 +32,7 @@ public class StateManager : MonoBehaviour
     public MiniSequenceState MiniSequenceState { get { return miniSequenceState; } }
     public IdleState IdleState { get { return idleState; } set { idleState = value; } }
     public ChooseMoveState ChooseMoveState { get { return chooseMoveState; } }
+    // public EndGameState EndGameState { get { return endGameState; } }
 
     private void Start()
     {
@@ -44,7 +47,9 @@ public class StateManager : MonoBehaviour
             new FuncPredicate(() => chooseMoveState.NextMinigame==0));
         gameStateMachine.AddTransition(chooseMoveState, miniSequenceState,
             new FuncPredicate(() => chooseMoveState.NextMinigame == 1));
-        gameStateMachine.AddTransition(chooseMoveState, startGameState,
+        // gameStateMachine.AddTransition(chooseMoveState, startGameState,
+        //    new FuncPredicate(() => (GlobalData.Instance.Player1.Health<=0 || GlobalData.Instance.Player2.Health<=0)));
+        gameStateMachine.AddTransition(chooseMoveState, endGameState,
            new FuncPredicate(() => (GlobalData.Instance.Player1.Health<=0 || GlobalData.Instance.Player2.Health<=0)));
         // Transizioni per uscire dai minigiochi quando finiscono
         gameStateMachine.AddTransition(miniMashState, chooseMoveState,

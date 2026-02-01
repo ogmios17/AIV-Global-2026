@@ -237,7 +237,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         if (!player2.IsCPUMode)
             player2.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = false;
 
-        GlobalData.Instance.text.SetTextMessage(" ");
+        // GlobalData.Instance.text.SetTextMessage(" ");
 
     }
     

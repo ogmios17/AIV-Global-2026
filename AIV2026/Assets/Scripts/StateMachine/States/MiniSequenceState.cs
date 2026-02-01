@@ -14,6 +14,8 @@ public class MiniSequenceState : ScriptableObject, StateInterface
     public SequenceHandler Handler { get { return handler; } }
     public void OnStateEnter()
     {
+        GlobalData.Instance.text.SetTextMessage("The kaijus dive in hell!");
+
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
 

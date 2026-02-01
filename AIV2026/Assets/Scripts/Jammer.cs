@@ -31,6 +31,9 @@ public class Jammer
     public Animator CardsAnim { get => cardsAnim; set => cardsAnim = value; }
     public List<CardTypes> Cards  { get => cards; set => cards = value; }
 
+    private bool isDead = false;
+    public bool IsDead { get => isDead; }
+
 
     public int Health { get => health;}
     public bool IsCPUMode { get => isCPUMode; set => isCPUMode = value; }
@@ -46,6 +49,8 @@ public class Jammer
 
     public void Die()
     {
+        Debug.Log("dead");
+        Debug.Log("abcde " + character);
         FighterAnim.SetTrigger("Defeat");
         Input.SwitchCurrentActionMap("Defeat");
         if(character == CharacterType.NotZilla)
@@ -55,10 +60,9 @@ public class Jammer
         {
             GlobalData.Instance.text.SetTextMessage("Krack Ken was a squid all along!");
         }
-        Debug.Log("abcde " + character);
-            Debug.Log("dead");
         //logica
-    }
 
+        isDead = true;
+    }
 
 }
