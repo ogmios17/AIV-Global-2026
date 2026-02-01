@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -24,6 +25,10 @@ public class MashHandler : MonoBehaviour
     public float cpuMashInterval  = 0.15f; // CPU masha ogni {cpuMashInterval} secondi
     private float cpuMashTimer;
 
+    private bool isFinished = false;
+    private bool isEnding = false; // Per evitare chiamate multiple a EndMinigame
+    public bool IsFinished { get => isFinished; }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,6 +44,8 @@ public class MashHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isFinished || isEnding) return;
+
         if (player2.IsCPUMode)
         {
             cpuMashTimer += Time.deltaTime;
@@ -48,24 +55,25 @@ public class MashHandler : MonoBehaviour
             {
                 Onp2Mash();
                 cpuMashTimer = 0f;
-            }  
+            }
         }
-            
+
         divider.transform.position = new Vector3(points,divider.transform.position.y,divider.transform.position.z);
-        
-        // Debug.Log("Kiss amount: " + points);
+
         if (divider.transform.position.x <= targetLeft.transform.position.x)
         {
-            Debug.Log("player 2 wins");
+            EndMinigame(player2, player1);
         }
         if (divider.transform.position.x >= targetRight.transform.position.x)
         {
-            Debug.Log("player 1 wins");
+            EndMinigame(player1, player2);
         }
     }
 
     private void FixedUpdate()
     {
+        if (isFinished || isEnding) return;
+
         if (randomizeAdvantage && Random.Range(0, randomAdvantage_chance) == 0) //p1 gets a help!
         {
             points -= advantageStrength;
@@ -86,5 +94,41 @@ public class MashHandler : MonoBehaviour
     public void Onp2Mash()
     {
         points += mashStrength + Random.Range(0, modifierRange);
+    }
+
+    private void EndMinigame(Jammer winner, Jammer loser)
+    {
+        if (isEnding) return; // Evita chiamate multiple
+        isEnding = true;
+
+        // Determina chi ha vinto/perso usando GlobalData per sicurezza
+        bool player1Wins = (winner == player1);
+        Jammer globalLoser = player1Wins ? GlobalData.Instance.Player2 : GlobalData.Instance.Player1;
+
+        // Determina il nome del vincitore
+        string winnerName;
+        if (player1Wins)
+            winnerName = "Player 1";
+        else
+            winnerName = GlobalData.Instance.Player2.IsCPUMode ? "CPU" : "Player 2";
+
+        GlobalData.Instance.text.SetTextMessage($"{winnerName} Wins!");
+
+        // Il perdente viene colpito (usa GlobalData per assicurarsi che la vita venga aggiornata)
+        globalLoser.TakeAHit();
+        if (globalLoser.FighterAnim != null)
+            globalLoser.FighterAnim.SetTrigger("Damage");
+
+        Debug.Log($"{winnerName} wins the mash minigame! Loser health: {globalLoser.Health}");
+
+        // Aspetta 3 secondi prima di segnalare la fine del minigioco
+        StartCoroutine(WaitAndFinish());
+    }
+
+    private IEnumerator WaitAndFinish()
+    {
+        yield return new WaitForSeconds(3f);
+        GlobalData.Instance.text.SetTextMessage("");
+        isFinished = true;
     }
 }

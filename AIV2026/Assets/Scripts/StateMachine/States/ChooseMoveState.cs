@@ -50,7 +50,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         Debug.Log(GlobalData.Instance.Player1);
         Debug.Log(GlobalData.Instance.Player2);
 
-        prefabClone = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
+        // prefabClone = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
 
         // Human P1
         player1.Input.gameObject.GetComponent<PlayerMoveInput>().enabled = true;

@@ -37,6 +37,15 @@ public class MiniMashState : ScriptableObject, StateInterface
 
         if (!player2.IsCPUMode)
             player2.Input.gameObject.GetComponent<PlayerMashScript>().enabled = false;
+
+        // Distruggi il prefab del minigioco e resetta l'handler
+        Debug.Log("OnStateExit");
+        if (prefabClone != null)
+        {
+            GameObject.Destroy(prefabClone);
+            prefabClone = null;
+        }
+        handler = null;
     }
 
     public void OnStateStay()
