@@ -73,45 +73,45 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        if (!PlayerPrefs.HasKey("HasSetInitialVolume"))
-        {
-            
-            SetMasterVolume(0.5f);
+    //  if (!PlayerPrefs.HasKey("HasSetInitialVolume"))
+    //  {
+    //      
+    //      SetMasterVolume(0.5f);
+    //
+    //      PlayerPrefs.SetInt("HasSetInitialVolume", 1);
+    //      PlayerPrefs.Save();
+    //  }
+    //  else
+    //  {
+    //      float savedVolume = PlayerPrefs.GetFloat(VolumeKey, 1f);
+    //      SetMasterVolume(savedVolume);
+    //  }
 
-            PlayerPrefs.SetInt("HasSetInitialVolume", 1);
-            PlayerPrefs.Save();
-        }
-        else
-        {
-            float savedVolume = PlayerPrefs.GetFloat(VolumeKey, 1f);
-            SetMasterVolume(savedVolume);
-        }
-
-        if (!hasStartedMainTitle)
-        {
-            PlayMainTitle();
-            hasStartedMainTitle = true;
-        }
+    //  if (!hasStartedMainTitle)
+    //  {
+    //      PlayMainTitle();
+    //      hasStartedMainTitle = true;
+    //  }
     }
     #region MUSIC
-    public void SetMasterVolume(float volume)
-    {
-        if (masterBus.isValid())
-        {
-            masterBus.setVolume(volume);
-            PlayerPrefs.SetFloat(VolumeKey, volume);
-            PlayerPrefs.Save();
-        }
-    }
-    public float GetMasterVolume()
-    {
-        if (masterBus.isValid())
-        {
-            masterBus.getVolume(out float volume);
-            return volume;
-        }
-        return 1f;
-    }
+//   public void SetMasterVolume(float volume)
+//   {
+//       if (masterBus.isValid())
+//       {
+//           masterBus.setVolume(volume);
+//           PlayerPrefs.SetFloat(VolumeKey, volume);
+//           PlayerPrefs.Save();
+//       }
+//   }
+//   public float GetMasterVolume()
+//   {
+//       if (masterBus.isValid())
+//       {
+//           masterBus.getVolume(out float volume);
+//           return volume;
+//       }
+//       return 1f;
+//  }
     public void PlayLastHP()
     {
         RuntimeManager.PlayOneShot(lastHP);
@@ -120,27 +120,27 @@ public class AudioManager : MonoBehaviour
     {
         RuntimeManager.PlayOneShot(HPRecovery);
     }
-    public void PlayMainTitle()
-    {
-        if (mainTitleInstance.isValid())
-        {
-            FMOD.Studio.PLAYBACK_STATE state;
-            mainTitleInstance.getPlaybackState(out state);
-            if (state != FMOD.Studio.PLAYBACK_STATE.STOPPED) return;
-            mainTitleInstance.release();
-        }
+//   public void PlayMainTitle()
+//   {
+//       if (mainTitleInstance.isValid())
+//       {
+//           FMOD.Studio.PLAYBACK_STATE state;
+//           mainTitleInstance.getPlaybackState(out state);
+//           if (state != FMOD.Studio.PLAYBACK_STATE.STOPPED) return;
+//           mainTitleInstance.release();
+//       }
+//
+//       mainTitleInstance = RuntimeManager.CreateInstance(mainTitleLoop);
+//       mainTitleInstance.start();
+//   }
 
-        mainTitleInstance = RuntimeManager.CreateInstance(mainTitleLoop);
-        mainTitleInstance.start();
-    }
-
-    public void StopMainTitle()
-    {
-        if (!mainTitleInstance.isValid()) return;
-
-        mainTitleInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        mainTitleInstance.release();
-    }
+//   public void StopMainTitle()
+//   {
+//       if (!mainTitleInstance.isValid()) return;
+//
+//       mainTitleInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+//       mainTitleInstance.release();
+//   }
 
     public void PlayCombatMusic()
     {

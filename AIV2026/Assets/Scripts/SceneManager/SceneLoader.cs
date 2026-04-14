@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,6 +7,13 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance { get; private set; }
+
+    [Header("Music Settings")]
+    [Tooltip("Assegna le tracce musicali")]
+    [SerializeField] private EventReference[] evtRef;
+    private EventInstance musicTitleInstance;
+    private EventInstance musicCombatInstance;
+
 
     private void Awake()
     {
@@ -39,7 +48,7 @@ public class SceneLoader : MonoBehaviour
         asyncLoad.allowSceneActivation = true;
         if (IsCombatScene(sceneName))
         {
-            AudioManager.Instance.PlayCombatMusic();
+            //AudioManager.Instance.PlayCombatMusic();
         }
 
         asyncLoad.allowSceneActivation = true;
@@ -67,13 +76,13 @@ public class SceneLoader : MonoBehaviour
     {
         if (IsCombatScene(sceneName))
         {
-            AudioManager.Instance.StopMainTitle();
-            AudioManager.Instance.PlayCombatMusic();
+            FMODAudioManager.Instance.StopAudioInstance(musicTitleInstance);
+            musicCombatInstance = FMODAudioManager.Instance.PlayAudioInstance(evtRef[1]);
         }
         else
         {
-            AudioManager.Instance.StopCombatMusic();
-            AudioManager.Instance.PlayMainTitle();
+           FMODAudioManager.Instance.StopAudioInstance(musicCombatInstance);
+           musicTitleInstance = FMODAudioManager.Instance.PlayAudioInstance(evtRef[0]);
         }
     }
 }
