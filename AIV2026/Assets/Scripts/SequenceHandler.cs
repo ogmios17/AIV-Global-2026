@@ -11,6 +11,10 @@ public class SequenceHandler : MonoBehaviour
     [SerializeField] private Sprite downSprite;
     [SerializeField] private Sprite leftSprite;
     [SerializeField] private Sprite rightSprite;
+    [SerializeField] private SpriteRenderer p1SpritePlaceholder;
+    [SerializeField] private SpriteRenderer p2SpritePlaceholder;
+    [SerializeField] private SpriteRenderer p1barPlaceHolder;
+    [SerializeField] private SpriteRenderer p2barPlaceHolder;
 
     [Header("Player 1 Slots")]
     [SerializeField] List<GameObject> Player1Slots;
@@ -57,6 +61,11 @@ public class SequenceHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        p1SpritePlaceholder.sprite = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player1.CharacterType].icon;   
+        p2SpritePlaceholder.sprite = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player2.CharacterType].icon;
+        p1barPlaceHolder.sprite = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player1.CharacterType].minigameMashIcon;
+        p2barPlaceHolder.sprite = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player2.CharacterType].minigameMashIcon;
+
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
 
