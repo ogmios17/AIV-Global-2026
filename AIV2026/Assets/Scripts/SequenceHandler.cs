@@ -15,6 +15,8 @@ public class SequenceHandler : MonoBehaviour
     [SerializeField] private SpriteRenderer p2SpritePlaceholder;
     [SerializeField] private SpriteRenderer p1barPlaceHolder;
     [SerializeField] private SpriteRenderer p2barPlaceHolder;
+    private bool canPress = false;
+    private float timer = 3f;
 
     [Header("Player 1 Slots")]
     [SerializeField] List<GameObject> Player1Slots;
@@ -128,10 +130,29 @@ public class SequenceHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canPress)
+        {
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                canPress = true;
+                GlobalData.Instance.text.SetTextMessage("");
+            }else if(timer >= 2)
+            {
+                GlobalData.Instance.text.SetTextMessage("Ready...");
+            }else if(timer >= 1)
+            {
+                GlobalData.Instance.text.SetTextMessage("Set...");
+            }
+            else
+            {
+                GlobalData.Instance.text.SetTextMessage("Go!");
+            }
+        }
         if (isFinished || isEnding) return;
 
         // CPU Logic
-        if (player2.IsCPUMode)
+        if (canPress && player2.IsCPUMode)
         {
             cpuMashTimer += Time.deltaTime;
             if (cpuMashTimer >= cpuMashInterval)
@@ -184,7 +205,7 @@ public class SequenceHandler : MonoBehaviour
 
     public void Onp1Press(string pressed)
     {
-        if (sequence1.Count == 0 || isFinished || isEnding) return;
+        if (!canPress || sequence1.Count == 0 || isFinished || isEnding) return;
 
         string expected = sequence1.Peek();
 
@@ -218,7 +239,7 @@ public class SequenceHandler : MonoBehaviour
 
     public void Onp2Press(string pressed)
     {
-        if (sequence2.Count == 0 || isFinished || isEnding) return;
+        if (!canPress || sequence2.Count == 0 || isFinished || isEnding) return;
 
         string expected = sequence2.Peek();
 

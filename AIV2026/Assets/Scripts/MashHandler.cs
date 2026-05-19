@@ -32,6 +32,8 @@ public class MashHandler : MonoBehaviour
     private float timer =0;
     private List<string> loveSentences;
     private bool timerActive = true;
+    private bool canPress = false;
+    private float timerCountdown = 3f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,7 +53,29 @@ public class MashHandler : MonoBehaviour
     {
         if (isFinished || isEnding) return;
 
-        if (player2.IsCPUMode)
+        if (!canPress)
+        {
+            timerCountdown -= Time.deltaTime;
+            if (timerCountdown <= 0)
+            {
+                canPress = true;
+                GlobalData.Instance.text.SetTextMessage("");
+            }
+            else if (timerCountdown >= 2)
+            {
+                GlobalData.Instance.text.SetTextMessage("Ready...");
+            }
+            else if (timerCountdown >= 1)
+            {
+                GlobalData.Instance.text.SetTextMessage("Set...");
+            }
+            else
+            {
+                GlobalData.Instance.text.SetTextMessage("Go!");
+            }
+        }
+
+        if (canPress && player2.IsCPUMode)
         {
             cpuMashTimer += Time.deltaTime;
             Debug.Log("cpuMashTimer: " + cpuMashTimer);
@@ -86,11 +110,11 @@ public class MashHandler : MonoBehaviour
     {
         if (isFinished || isEnding) return;
 
-        if (randomizeAdvantage && Random.Range(0, randomAdvantage_chance) == 0) //p1 gets a help!
+        if (canPress && randomizeAdvantage && Random.Range(0, randomAdvantage_chance) == 0) //p1 gets a help!
         {
             points -= advantageStrength;
         }
-        if (randomizeAdvantage && Random.Range(0, randomAdvantage_chance) == 0) //p2 gets a help!
+        if (canPress && randomizeAdvantage && Random.Range(0, randomAdvantage_chance) == 0) //p2 gets a help!
         {
             points += advantageStrength;
         }
@@ -100,12 +124,14 @@ public class MashHandler : MonoBehaviour
 
     public void Onp1Mash()
     {
+        if (!canPress) return;
         points += mashStrength + Random.Range(0, modifierRange);
 
     }
 
     public void Onp2Mash()
     {
+        if (!canPress) return;
         points -= mashStrength + Random.Range(0, modifierRange);
     }
 
