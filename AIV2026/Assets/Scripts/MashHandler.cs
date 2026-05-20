@@ -21,6 +21,7 @@ public class MashHandler : MonoBehaviour
     public int randomAdvantage_chance;
     public bool randomizeAdvantage = true;
     public float advantageStrength;
+    private Animator m_animator;
 
     [Header("CPU Settings")]
     public float cpuMashInterval  = 0.15f; // CPU masha ogni {cpuMashInterval} secondi
@@ -38,6 +39,7 @@ public class MashHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        m_animator = GetComponent<Animator>();
         loveSentences = GlobalData.Instance.stateManager.MiniMashState.loveSentences;
         points = 0;
         player1 = GlobalData.Instance.Player1;
@@ -167,6 +169,7 @@ public class MashHandler : MonoBehaviour
 
     private IEnumerator WaitAndFinish()
     {
+        m_animator.SetTrigger("Out");
         yield return new WaitForSeconds(3f);
         GlobalData.Instance.text.SetTextMessage("");
         isFinished = true;
