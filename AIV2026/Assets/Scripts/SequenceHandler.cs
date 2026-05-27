@@ -217,6 +217,7 @@ public class SequenceHandler : MonoBehaviour
 
             // Cambio il colore della sprite in verde
             Player1Slots[player1SequenceIndex].GetComponent<SpriteRenderer>().color = GreenColor;
+            Player1Slots[player1SequenceIndex].GetComponentInParent<Animator>()?.SetTrigger("Right");
             player1SequenceIndex++;
 
             // Check vittoria
@@ -231,6 +232,7 @@ public class SequenceHandler : MonoBehaviour
         {
             // Cambio il colore della sprite in rosso
             Player1Slots[player1SequenceIndex].GetComponent<SpriteRenderer>().color = RedColor;
+            Player1Slots[player1SequenceIndex].GetComponentInParent<Animator>()?.SetTrigger("Wrong");
 
             AudioManager.Instance.PlayUIError();
             EndMinigame(player2, player1);
@@ -251,6 +253,7 @@ public class SequenceHandler : MonoBehaviour
 
             // TODO Cambio il colore della sprite in verde
             Player2Slots[player2SequenceIndex].GetComponent<SpriteRenderer>().color = GreenColor;
+            Player2Slots[player2SequenceIndex].GetComponentInParent<Animator>()?.SetTrigger("Right");
             player2SequenceIndex++;
 
             // Check vittoria
@@ -265,6 +268,7 @@ public class SequenceHandler : MonoBehaviour
         {
             // Cambio il colore della sprite in rosso
             Player2Slots[player2SequenceIndex].GetComponent<SpriteRenderer>().color = RedColor;
+            Player2Slots[player2SequenceIndex].GetComponentInParent<Animator>()?.SetTrigger("Wrong");
 
             AudioManager.Instance.PlayUIError();
             EndMinigame(player1, player2);
