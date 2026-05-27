@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NotZillaP2
+  m_Name: CrackKenP2
   m_Shader: {fileID: -6465566751694194690, guid: 5aaad4cab89fcdf4fabf80774b1719e6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -46,28 +46,28 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0.71
-    - _CrackKen: 1
+    - _CrackKen: 0
     - _Fuzziness: 0.1
-    - _KrackenOutline: 1
-    - _NotZilla: 1
-    - _NotzillaOutline: 1
+    - _KrackenOutline: 0
+    - _NotZilla: 0
+    - _NotzillaOutline: 0
     - _Range: 0.384
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
     - _DettagliMascher: {r: 0.4031497, g: 0.5, b: 0.3419811, a: 1}
-    - _DettagliMaschera: {r: 0.9843138, g: 0.73333335, b: 0.6784314, a: 1}
-    - _DettagliMaschera_1: {r: 0.7529413, g: 0.9176471, b: 0.38823527, a: 1}
+    - _DettagliMaschera: {r: 0.6666667, g: 0.9647059, b: 0.47843134, a: 1}
+    - _DettagliMaschera_1: {r: 0.91764706, g: 0.7783693, b: 0.38823524, a: 1}
     - _From: {r: 0.098039225, g: 0.3921569, b: 0.81568635, a: 1}
-    - _Guanti: {r: 0.2901961, g: 0.47450984, b: 0.5882353, a: 1}
+    - _Guanti: {r: 0.2666667, g: 0.854902, b: 0, a: 1}
     - _Guantoni: {r: 0.76470596, g: 0.02745098, b: 0.34509796, a: 1}
-    - _Maschera: {r: 1, g: 0.12156857, b: 0.7098039, a: 1}
+    - _Maschera: {r: 1, g: 0.12156862, b: 0.33211967, a: 1}
     - _Maschera2: {r: 0.7529413, g: 0.07450979, b: 0.5803921, a: 1}
-    - _Occhio: {r: 0.37647057, g: 0.854902, b: 0.9058824, a: 1}
-    - _Pancia: {r: 0.20000002, g: 0.24705884, b: 0.34509805, a: 1}
-    - _Pelle: {r: 0.2090305, g: 0.18916874, b: 0.3679245, a: 1}
-    - _Spikes: {r: 0.9333334, g: 0.5254902, b: 0.58431375, a: 1}
-    - _TentacoliSopra: {r: 1, g: 0.5411765, b: 1, a: 1}
-    - _TentacoliSotto: {r: 0.35686278, g: 0.5137254, b: 0.972549, a: 1}
+    - _Occhio: {r: 1, g: 0.92154884, b: 0.759434, a: 1}
+    - _Pancia: {r: 0.09411766, g: 0.8274511, b: 1, a: 1}
+    - _Pelle: {r: 0.09411766, g: 0.3843138, b: 0.9921569, a: 1}
+    - _Spikes: {r: 0.854902, g: 0.3568628, b: 0.8509805, a: 1}
+    - _TentacoliSopra: {r: 1, g: 0.6745283, b: 0.7535537, a: 1}
+    - _TentacoliSotto: {r: 0.8679245, g: 0.45830154, b: 0.41349235, a: 1}
     - _To: {r: 0.34996653, g: 0.04313725, b: 0.5176471, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
