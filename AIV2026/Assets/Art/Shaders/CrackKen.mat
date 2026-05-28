@@ -55,7 +55,7 @@ Material:
     - _CHARACTER: 1
     - _Fuzziness: 0.1
     - _NotZilla: 0
-    - _Outline: 1
+    - _Outline: 0
     - _OutlineStrenght: 55.8
     - _PatternScale: 18
     - _Range: 0.384

@@ -68,7 +68,7 @@ Material:
     - _CHARACTER: 0
     - _Fuzziness: 0.1
     - _NotZilla: 1
-    - _Outline: 1
+    - _Outline: 0
     - _OutlineStrenght: 20
     - _PatternScale: 18
     - _QueueControl: 0
