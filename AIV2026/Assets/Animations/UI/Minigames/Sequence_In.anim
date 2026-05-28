@@ -160,7 +160,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Tasti/P1/SlotContainer/Slot1
+    path: Tasti/P1/SlotOuterContainer/SlotContainer/Slot1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -203,7 +203,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Tasti/P1/SlotContainer2/Slot2
+    path: Tasti/P1/SlotOuterContainer2/SlotContainer2/Slot2
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -246,7 +246,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Tasti/P1/SlotContainer3/Slot3
+    path: Tasti/P1/SlotOuterContainer3/SlotContainer3/Slot3
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -289,7 +289,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Tasti/P1/SlotContainer4/Slot4
+    path: Tasti/P1/SlotOuterContainer4/SlotContainer4/Slot4
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -332,7 +332,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Tasti/P1/SlotContainer5/Slot5
+    path: Tasti/P1/SlotOuterContainer5/SlotContainer5/Slot5
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -375,7 +375,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Tasti/P2/SlotContainer/Slot1
+    path: Tasti/P2/SlotOuterContainer/SlotContainer/Slot1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -418,7 +418,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Tasti/P2/SlotContainer2/Slot2
+    path: Tasti/P2/SlotOuterContainer2/SlotContainer2/Slot2
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -461,7 +461,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Tasti/P2/SlotContainer3/Slot3
+    path: Tasti/P2/SlotOuterContainer3/SlotContainer3/Slot3
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -504,7 +504,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Tasti/P2/SlotContainer4/Slot4
+    path: Tasti/P2/SlotOuterContainer4/SlotContainer4/Slot4
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -547,7 +547,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Tasti/P2/SlotContainer5/Slot5
+    path: Tasti/P2/SlotOuterContainer5/SlotContainer5/Slot5
   m_FloatCurves: []
   m_PPtrCurves: []
   m_SampleRate: 60
@@ -585,7 +585,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 2194360580
+      path: 2909992420
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -594,7 +594,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3412784769
+      path: 1758051465
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -603,7 +603,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 437964195
+      path: 2928796523
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -612,7 +612,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1104766606
+      path: 2425058822
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -621,7 +621,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 2427018668
+      path: 1456679396
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -630,7 +630,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 4191538151
+      path: 2278442348
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -639,7 +639,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 4061289409
+      path: 1358051322
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -648,7 +648,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 593649891
+      path: 2527750168
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -657,7 +657,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 2023869390
+      path: 2830171509
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -666,7 +666,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 2849108204
+      path: 1860739735
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -1091,7 +1091,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Tasti/P1/SlotContainer/Slot1
+    path: Tasti/P1/SlotOuterContainer/SlotContainer/Slot1
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1139,7 +1139,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Tasti/P1/SlotContainer/Slot1
+    path: Tasti/P1/SlotOuterContainer/SlotContainer/Slot1
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1187,7 +1187,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Tasti/P1/SlotContainer/Slot1
+    path: Tasti/P1/SlotOuterContainer/SlotContainer/Slot1
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1235,7 +1235,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Tasti/P1/SlotContainer2/Slot2
+    path: Tasti/P1/SlotOuterContainer2/SlotContainer2/Slot2
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1283,7 +1283,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Tasti/P1/SlotContainer2/Slot2
+    path: Tasti/P1/SlotOuterContainer2/SlotContainer2/Slot2
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1331,7 +1331,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Tasti/P1/SlotContainer2/Slot2
+    path: Tasti/P1/SlotOuterContainer2/SlotContainer2/Slot2
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1379,7 +1379,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Tasti/P1/SlotContainer3/Slot3
+    path: Tasti/P1/SlotOuterContainer3/SlotContainer3/Slot3
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1427,7 +1427,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Tasti/P1/SlotContainer3/Slot3
+    path: Tasti/P1/SlotOuterContainer3/SlotContainer3/Slot3
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1475,7 +1475,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Tasti/P1/SlotContainer3/Slot3
+    path: Tasti/P1/SlotOuterContainer3/SlotContainer3/Slot3
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1523,7 +1523,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Tasti/P1/SlotContainer4/Slot4
+    path: Tasti/P1/SlotOuterContainer4/SlotContainer4/Slot4
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1571,7 +1571,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Tasti/P1/SlotContainer4/Slot4
+    path: Tasti/P1/SlotOuterContainer4/SlotContainer4/Slot4
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1619,7 +1619,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Tasti/P1/SlotContainer4/Slot4
+    path: Tasti/P1/SlotOuterContainer4/SlotContainer4/Slot4
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1667,7 +1667,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Tasti/P1/SlotContainer5/Slot5
+    path: Tasti/P1/SlotOuterContainer5/SlotContainer5/Slot5
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1715,7 +1715,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Tasti/P1/SlotContainer5/Slot5
+    path: Tasti/P1/SlotOuterContainer5/SlotContainer5/Slot5
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1763,7 +1763,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Tasti/P1/SlotContainer5/Slot5
+    path: Tasti/P1/SlotOuterContainer5/SlotContainer5/Slot5
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1811,7 +1811,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Tasti/P2/SlotContainer/Slot1
+    path: Tasti/P2/SlotOuterContainer/SlotContainer/Slot1
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1859,7 +1859,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Tasti/P2/SlotContainer/Slot1
+    path: Tasti/P2/SlotOuterContainer/SlotContainer/Slot1
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1907,7 +1907,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Tasti/P2/SlotContainer/Slot1
+    path: Tasti/P2/SlotOuterContainer/SlotContainer/Slot1
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -1955,7 +1955,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Tasti/P2/SlotContainer2/Slot2
+    path: Tasti/P2/SlotOuterContainer2/SlotContainer2/Slot2
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2003,7 +2003,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Tasti/P2/SlotContainer2/Slot2
+    path: Tasti/P2/SlotOuterContainer2/SlotContainer2/Slot2
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2051,7 +2051,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Tasti/P2/SlotContainer2/Slot2
+    path: Tasti/P2/SlotOuterContainer2/SlotContainer2/Slot2
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2099,7 +2099,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Tasti/P2/SlotContainer3/Slot3
+    path: Tasti/P2/SlotOuterContainer3/SlotContainer3/Slot3
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2147,7 +2147,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Tasti/P2/SlotContainer3/Slot3
+    path: Tasti/P2/SlotOuterContainer3/SlotContainer3/Slot3
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2195,7 +2195,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Tasti/P2/SlotContainer3/Slot3
+    path: Tasti/P2/SlotOuterContainer3/SlotContainer3/Slot3
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2243,7 +2243,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Tasti/P2/SlotContainer4/Slot4
+    path: Tasti/P2/SlotOuterContainer4/SlotContainer4/Slot4
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2291,7 +2291,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Tasti/P2/SlotContainer4/Slot4
+    path: Tasti/P2/SlotOuterContainer4/SlotContainer4/Slot4
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2339,7 +2339,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Tasti/P2/SlotContainer4/Slot4
+    path: Tasti/P2/SlotOuterContainer4/SlotContainer4/Slot4
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2387,7 +2387,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: Tasti/P2/SlotContainer5/Slot5
+    path: Tasti/P2/SlotOuterContainer5/SlotContainer5/Slot5
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2435,7 +2435,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: Tasti/P2/SlotContainer5/Slot5
+    path: Tasti/P2/SlotOuterContainer5/SlotContainer5/Slot5
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -2483,7 +2483,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: Tasti/P2/SlotContainer5/Slot5
+    path: Tasti/P2/SlotOuterContainer5/SlotContainer5/Slot5
     classID: 4
     script: {fileID: 0}
     flags: 0
