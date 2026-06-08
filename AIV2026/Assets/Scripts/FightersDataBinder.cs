@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,10 @@ public class FightersDataBinder : MonoBehaviour
 {
     public List<GameObject> healthBars;
     public List<GameObject> cards;
+    [SerializeField] private float healthLoseAnimationDuration;
+    [SerializeField] private float shakeThreshold;
+    [SerializeField] private float shakeSpeed;
+    [SerializeField] private float colorChangeSpeed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   
@@ -26,11 +31,52 @@ public class FightersDataBinder : MonoBehaviour
         {
             Debug.Log("barra: ", healthBars[0]);
             Debug.Log("Taking a hit: how many bars left" + healthBars.Count + " index: " + (health - 1));
-            healthBars[health - 1].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+            StartCoroutine(ChangeHealthColorCO(healthBars[health - 1].GetComponent<SpriteRenderer>()));
+            StartCoroutine(LoseHealthCO(healthBars[health - 1]));
+            //healthBars[health - 1].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
             //healthBars.RemoveAt(health - 1);
             Debug.Log("new bars left: " + health);
         }
 
         player.TakeAHit();
+    }
+
+    public IEnumerator ChangeHealthColorCO(SpriteRenderer sprite)
+    {
+        while(sprite.color.r>0.01 || sprite.color.g >0.01 || sprite.color.b > 0.01)
+        {
+            Debug.Log("Changing color "+ sprite.color);
+            sprite.color = new Color(Mathf.Lerp(sprite.color.r, 0, Time.deltaTime * colorChangeSpeed), Mathf.Lerp(sprite.color.g, 0, Time.deltaTime * colorChangeSpeed), Mathf.Lerp(sprite.color.b, 0, Time.deltaTime * colorChangeSpeed));
+            yield return null;
+        }
+        sprite.color = new Color(0, 0, 0);
+    }
+
+
+    public IEnumerator LoseHealthCO(GameObject bar)
+    {
+        float timer = 0;
+        Vector3 target, startPos;
+        SpriteRenderer sprite = bar.GetComponent<SpriteRenderer>();
+        startPos = bar.transform.position;
+        while(timer < healthLoseAnimationDuration)
+        {
+            //we randomly choose a target position inside given thresholds
+            target = new Vector3(Random.Range(startPos.x - shakeThreshold, startPos.x + shakeThreshold), Random.Range(startPos.y - shakeThreshold, startPos.y + shakeThreshold), startPos.z);
+            
+            //we move to that position
+            while(Mathf.Abs(bar.transform.position.x- target.x)>0.1f || Mathf.Abs(bar.transform.position.y - target.y) > 0.1f)
+            {
+                timer += Time.deltaTime;
+                bar.transform.position = new Vector3(Mathf.Lerp(bar.transform.position.x, target.x, Time.deltaTime * shakeSpeed), Mathf.Lerp(bar.transform.position.y, target.y, Time.deltaTime * shakeSpeed), startPos.z);
+                yield return null;
+            }
+
+            //repeat after 1 frame
+            yield return null;
+        }
+
+        //reset position
+        bar.transform.position = startPos;
     }
 }
