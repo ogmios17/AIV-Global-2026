@@ -75,7 +75,7 @@ Material:
     - _KrackenOutline: 0
     - _NotZilla: 0
     - _NotzillaOutline: 0
-    - _Outline: 1
+    - _Outline: 0
     - _OutlineStrenght: 100
     - _PatternScale: 18
     - _QueueControl: -1
