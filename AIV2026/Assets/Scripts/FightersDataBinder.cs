@@ -58,17 +58,18 @@ public class FightersDataBinder : MonoBehaviour
         float timer = 0;
         Vector3 target, startPos;
         SpriteRenderer sprite = bar.GetComponent<SpriteRenderer>();
-        startPos = bar.transform.position;
+        startPos = bar.transform.localPosition;
+        Debug.Log("Hello " + startPos);
         while(timer < healthLoseAnimationDuration)
         {
             //we randomly choose a target position inside given thresholds
             target = new Vector3(Random.Range(startPos.x - shakeThreshold, startPos.x + shakeThreshold), Random.Range(startPos.y - shakeThreshold, startPos.y + shakeThreshold), startPos.z);
             
             //we move to that position
-            while(Mathf.Abs(bar.transform.position.x- target.x)>0.1f || Mathf.Abs(bar.transform.position.y - target.y) > 0.1f)
+            while(Mathf.Abs(bar.transform.localPosition.x- target.x)>0.1f || Mathf.Abs(bar.transform.localPosition.y - target.y) > 0.1f)
             {
                 timer += Time.deltaTime;
-                bar.transform.position = new Vector3(Mathf.Lerp(bar.transform.position.x, target.x, Time.deltaTime * shakeSpeed), Mathf.Lerp(bar.transform.position.y, target.y, Time.deltaTime * shakeSpeed), startPos.z);
+                bar.transform.localPosition = new Vector3(Mathf.Lerp(bar.transform.localPosition.x, target.x, Time.deltaTime * shakeSpeed), Mathf.Lerp(bar.transform.localPosition.y, target.y, Time.deltaTime * shakeSpeed), startPos.z);
                 yield return null;
             }
 
@@ -77,6 +78,7 @@ public class FightersDataBinder : MonoBehaviour
         }
 
         //reset position
-        bar.transform.position = startPos;
+        bar.transform.localPosition = startPos;
+        Debug.Log("Hello 2" + startPos + bar.transform.localPosition);
     }
 }

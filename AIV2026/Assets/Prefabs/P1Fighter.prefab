@@ -1281,8 +1281,8 @@ MonoBehaviour:
   - {fileID: 8469150919751529148}
   - {fileID: 4205832020648246658}
   - {fileID: 6856065103506735231}
-  healthLoseAnimationDuration: 0.5
-  shakeThreshold: 0.45
+  healthLoseAnimationDuration: 0.2
+  shakeThreshold: 0.1
   shakeSpeed: 100
   colorChangeSpeed: 3
 --- !u!1 &8770207999273422699
