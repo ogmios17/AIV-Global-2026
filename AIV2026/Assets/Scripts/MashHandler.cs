@@ -158,6 +158,8 @@ public class MashHandler : MonoBehaviour
 
         // Il perdente viene colpito (usa GlobalData per assicurarsi che la vita venga aggiornata)
         globalLoser.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(globalLoser);
+        winner.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(2, winner);
+        loser.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1, loser);
         if (globalLoser.FighterAnim != null)
             globalLoser.FighterAnim.SetTrigger("Damage");
 

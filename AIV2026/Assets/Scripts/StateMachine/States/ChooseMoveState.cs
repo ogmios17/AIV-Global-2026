@@ -218,7 +218,9 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             timerActive = true;
             player2.FighterAnim.SetTrigger("Next");
             player1.FighterAnim.SetTrigger("Next");
-            
+            player1.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1, player1);
+            player2.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1, player2);
+
             Debug.Log("DRAW");
             AudioManager.Instance.PlayCancelCard();
             AudioManager.Instance.PlayCrowdPanic(1f);
@@ -241,6 +243,8 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             timerActive = true;
             player2.FighterAnim.SetTrigger("Damage");
             player2.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player2);
+            player1.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(2, player1);
+            player2.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1, player2);
             AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
             AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
             AudioManager.Instance.PlayCardSound(P1Move);
@@ -255,6 +259,8 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             timerActive = true;
             player1.FighterAnim.SetTrigger("Damage");
             player1.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player1);
+            player1.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1,player1);
+            player2.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(2, player2);
             AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
             AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
             AudioManager.Instance.PlayCardSound(P2Move);

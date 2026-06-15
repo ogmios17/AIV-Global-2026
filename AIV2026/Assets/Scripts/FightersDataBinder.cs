@@ -5,6 +5,7 @@ using UnityEngine;
 public class FightersDataBinder : MonoBehaviour
 {
     public List<GameObject> healthBars;
+    public List<GameObject> manaBars;
     public List<GameObject> cards;
     [SerializeField] private float healthLoseAnimationDuration;
     [SerializeField] private float shakeThreshold;
@@ -41,6 +42,29 @@ public class FightersDataBinder : MonoBehaviour
         player.TakeAHit();
     }
 
+    public void GainMana(int mana, Jammer player)
+    {
+        for (int i=  0; i < mana; i++)
+        {
+            if (mana < manaBars.Count)
+            {
+                StartCoroutine(GainManaCO(manaBars[player.Mana]));
+                player.GainMana(1);
+            }
+        }
+
+    }
+
+    public void UseMana(int mana, Jammer player)
+    {
+        if (mana > player.Mana) return;
+        for (int i = 0; i < mana; i++)
+        {
+            StartCoroutine(LoseManaCO(manaBars[player.Mana-1]));
+            player.SpendMana(1);
+            
+        }
+    }
     public IEnumerator ChangeHealthColorCO(SpriteRenderer sprite)
     {
         while(sprite.color.r>0.01 || sprite.color.g >0.01 || sprite.color.b > 0.01)
@@ -52,7 +76,15 @@ public class FightersDataBinder : MonoBehaviour
         sprite.color = new Color(0, 0, 0);
     }
 
+    public IEnumerator GainManaCO(GameObject bar)
+    {
+        yield return null;
+    }
 
+    public IEnumerator LoseManaCO(GameObject bar)
+    {
+        yield return null;
+    }
     public IEnumerator LoseHealthCO(GameObject bar)
     {
         float timer = 0;

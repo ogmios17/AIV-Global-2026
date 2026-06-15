@@ -20,6 +20,7 @@ public class Jammer
     private Animator fighterAnim;
     private Animator cardsAnim;
     private List<CardTypes> cards;
+    private int mana = 0;
 
     public PlayerType PlayerType { get => playerType; set => playerType = value; }
     public CharacterType CharacterType { get => character; set => character = value; }
@@ -37,6 +38,7 @@ public class Jammer
 
     public int Health { get => health;}
     public bool IsCPUMode { get => isCPUMode; set => isCPUMode = value; }
+    public int Mana { get => mana; set => mana = value; }
 
     public void TakeAHit(int value = 1)
     {
@@ -47,6 +49,25 @@ public class Jammer
         }
     }
 
+    public bool SpendMana(int value)
+    {
+        if(value > mana)
+        {
+            return false;
+        }
+        mana -= value;
+        return true;
+    }
+
+    public void GainMana(int value)
+    {
+        mana+=value;
+    }
+
+    public void SetMana(int value)
+    {
+        mana = value;
+    }
     public void Die()
     {
         Debug.Log("dead");
