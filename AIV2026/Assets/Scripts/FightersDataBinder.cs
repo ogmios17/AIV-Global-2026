@@ -11,6 +11,8 @@ public class FightersDataBinder : MonoBehaviour
     [SerializeField] private float shakeThreshold;
     [SerializeField] private float shakeSpeed;
     [SerializeField] private float colorChangeSpeed;
+    [SerializeField] private float manaAnimationDelay = 1;
+    [SerializeField] private Color manaColor;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   
@@ -44,15 +46,7 @@ public class FightersDataBinder : MonoBehaviour
 
     public void GainMana(int mana, Jammer player)
     {
-        for (int i=  0; i < mana; i++)
-        {
-            if (mana < manaBars.Count)
-            {
-                StartCoroutine(GainManaCO(manaBars[player.Mana]));
-                player.GainMana(1);
-            }
-        }
-
+        StartCoroutine(GainManaCO(mana, player));
     }
 
     public void UseMana(int mana, Jammer player)
@@ -76,8 +70,27 @@ public class FightersDataBinder : MonoBehaviour
         sprite.color = new Color(0, 0, 0);
     }
 
-    public IEnumerator GainManaCO(GameObject bar)
+    //public IEnumerator ChangeManaColorCO(SpriteRenderer sprite)
+    //{
+    //    while (sprite.color.r < manaColor.r || sprite.color.g < manaColor.g || sprite.color.b < manaColor.b)
+    //    {
+    //        Debug.Log("Changing color " + sprite.color);
+    //        sprite.color = new Color(Mathf.Lerp(sprite.color.r, manaColor.r, Time.deltaTime * colorChangeSpeed), Mathf.Lerp(sprite.color.g, manaColor.g, Time.deltaTime * colorChangeSpeed), Mathf.Lerp(sprite.color.b, manaColor.b, Time.deltaTime * colorChangeSpeed));
+    //        yield return null;
+    //    }
+    //    sprite.color = manaColor;
+    //}
+    public IEnumerator GainManaCO(int mana, Jammer player)
     {
+        for (int i = 0; i < mana; i++)
+        {
+            if (player.Mana < manaBars.Count)
+            {
+                manaBars[player.Mana].gameObject.GetComponent<Animator>().SetTrigger("In");
+                yield return new WaitForSecondsRealtime(manaAnimationDelay);
+                player.GainMana(1);
+            }
+        }
         yield return null;
     }
 
