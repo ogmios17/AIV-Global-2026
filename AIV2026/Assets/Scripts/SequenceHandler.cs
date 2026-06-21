@@ -192,6 +192,8 @@ public class SequenceHandler : MonoBehaviour
         if (globalLoser.FighterAnim != null)
             globalLoser.FighterAnim.SetTrigger("Damage");
 
+        winner.onMoveHits?.Invoke();
+        loser.onMoveMisses?.Invoke();
         Debug.Log($"{winnerName} wins the mash minigame! Loser health: {globalLoser.Health}");
 
         // Aspetta 3 secondi prima di segnalare la fine del minigioco

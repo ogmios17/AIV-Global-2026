@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -143,5 +144,13 @@ public class PlayerMoveInput : MonoBehaviour
         else
             moveState.OnP2Received(shove);
         // Debug.Log("Shove");
+    }
+
+    public void Ability()
+    {
+        if (binder.Jammer.PlayerType == PlayerType.Player1)
+            moveState.OnP1Ability();
+        else
+            moveState.OnP2Ability();
     }
 }

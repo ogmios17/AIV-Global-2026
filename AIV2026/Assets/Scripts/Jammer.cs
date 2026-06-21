@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,6 +22,9 @@ public class Jammer
     private Animator cardsAnim;
     private List<CardTypes> cards;
     private int mana = 0;
+    public Action onMoveChosen;
+    public Action onMoveHits;
+    public Action onMoveMisses;
 
     public PlayerType PlayerType { get => playerType; set => playerType = value; }
     public CharacterType CharacterType { get => character; set => character = value; }
@@ -31,6 +35,9 @@ public class Jammer
     public Animator FighterAnim { get => fighterAnim; set => fighterAnim = value; }
     public Animator CardsAnim { get => cardsAnim; set => cardsAnim = value; }
     public List<CardTypes> Cards  { get => cards; set => cards = value; }
+
+    public ICharacter characterMethods;
+
 
     private bool isDead = false;
     public bool IsDead { get => isDead; }
@@ -47,6 +54,11 @@ public class Jammer
         {
             Die();
         }
+    }
+
+    public void Cure(int value = 1)
+    {
+        health += value;
     }
 
     public bool SpendMana(int value)

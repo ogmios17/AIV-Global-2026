@@ -13,11 +13,12 @@ public class FightersDataBinder : MonoBehaviour
     [SerializeField] private float colorChangeSpeed;
     [SerializeField] private float manaAnimationDelay = 1;
     [SerializeField] private Color manaColor;
+    private Color healthColor;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   
         cards[0].transform.parent.transform.rotation = new Quaternion(0, 0, 0, 1);
-
+        healthColor = healthBars[0].GetComponent<SpriteRenderer>().color;
     }
 
     // Update is called once per frame
@@ -44,6 +45,17 @@ public class FightersDataBinder : MonoBehaviour
         player.TakeAHit();
     }
 
+    public void Cure(Jammer player)
+    {
+        var health = player.Health;
+
+        if(health < healthBars.Count)
+        {
+            player.Cure();
+            healthBars[health].GetComponent<SpriteRenderer>().color = healthColor;
+        }
+    }
+
     public void GainMana(int mana, Jammer player)
     {
         StartCoroutine(GainManaCO(mana, player));
@@ -51,12 +63,12 @@ public class FightersDataBinder : MonoBehaviour
 
     public void UseMana(int mana, Jammer player)
     {
+        Debug.Log("Use mana " + mana);
         if (mana > player.Mana) return;
         for (int i = 0; i < mana; i++)
         {
             StartCoroutine(LoseManaCO(manaBars[player.Mana-1]));
-            player.SpendMana(1);
-            
+            player.SpendMana(1);     
         }
     }
     public IEnumerator ChangeHealthColorCO(SpriteRenderer sprite)
@@ -96,7 +108,26 @@ public class FightersDataBinder : MonoBehaviour
 
     public IEnumerator LoseManaCO(GameObject bar)
     {
-        yield return null;
+        float timer = 0;
+        Vector3 target, startPos;
+        SpriteRenderer sprite = bar.GetComponent<SpriteRenderer>();
+        startPos = bar.transform.localPosition;
+        while (timer < healthLoseAnimationDuration)
+        {
+            //we randomly choose a target position inside given thresholds
+            target = new Vector3(Random.Range(startPos.x - shakeThreshold, startPos.x + shakeThreshold), Random.Range(startPos.y - shakeThreshold, startPos.y + shakeThreshold), startPos.z);
+
+            //we move to that position
+            while (Mathf.Abs(bar.transform.localPosition.x - target.x) > 0.1f || Mathf.Abs(bar.transform.localPosition.y - target.y) > 0.1f)
+            {
+                timer += Time.deltaTime;
+                bar.transform.localPosition = new Vector3(Mathf.Lerp(bar.transform.localPosition.x, target.x, Time.deltaTime * shakeSpeed), Mathf.Lerp(bar.transform.localPosition.y, target.y, Time.deltaTime * shakeSpeed), startPos.z);
+                yield return null;
+            }
+
+            //repeat after 1 frame
+            yield return null;
+        }
     }
     public IEnumerator LoseHealthCO(GameObject bar)
     {

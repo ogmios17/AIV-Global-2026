@@ -160,6 +160,8 @@ public class MashHandler : MonoBehaviour
         globalLoser.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(globalLoser);
         winner.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(2, winner);
         loser.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1, loser);
+        winner.onMoveHits?.Invoke();
+        loser.onMoveMisses?.Invoke();
         if (globalLoser.FighterAnim != null)
             globalLoser.FighterAnim.SetTrigger("Damage");
 
