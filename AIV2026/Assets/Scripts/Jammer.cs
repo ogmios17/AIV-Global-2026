@@ -26,6 +26,31 @@ public class Jammer
     public Action onMoveHits;
     public Action onMoveMisses;
 
+    //.m
+    //    marin kitammuort
+    //    127 k
+    //.m
+    //    loris ambrosano
+    //    -100 k
+    //.m
+    //    il jonkler
+    //    muori k
+    //.m
+    //    eren jagerbomb
+    //    1000 k
+    //.m
+    //    le streghette bdsm
+    //    elisa k
+    //.m
+    //    il life note
+    //    6 k
+    //.m
+    //    la mamma degli scarrafoni
+    //    è sempre incinta k
+
+    //    no aspetta ho sbagliato k
+    
+
     public PlayerType PlayerType { get => playerType; set => playerType = value; }
     public CharacterType CharacterType { get => character; set => character = value; }
     public string Controller { get => controller; set => controller = value; }
@@ -63,6 +88,7 @@ public class Jammer
 
     public bool SpendMana(int value)
     {
+        Debug.Log("Spent mana");
         if(value > mana)
         {
             return false;

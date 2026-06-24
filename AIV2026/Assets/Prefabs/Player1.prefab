@@ -280,7 +280,7 @@ MonoBehaviour:
       - m_Target: {fileID: 1647129735725488762}
         m_TargetAssemblyTypeName: PlayerMoveInput, Assembly-CSharp
         m_MethodName: Ability
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

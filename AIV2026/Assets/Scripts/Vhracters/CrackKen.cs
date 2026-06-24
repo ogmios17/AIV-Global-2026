@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class CrackKen : ICharacter
 {
@@ -19,7 +20,8 @@ public class CrackKen : ICharacter
 
     public override void TriggerAbility()
     {
-        associatedPlayer.onMoveHits += AbilityHits; 
+        associatedPlayer.onMoveHits += AbilityHits;
+        abilityTriggeredThisTurn = true;
     }
 
     public override void TriggerUlt()
@@ -30,11 +32,15 @@ public class CrackKen : ICharacter
     public void AbilityHits()
     {
         associatedPlayer.onMoveHits -= AbilityHits;
-        associatedPlayer.Cure();
+        associatedPlayer.CharacterPrefab.GetComponent<FightersDataBinder>().Cure(associatedPlayer);
     }
 
     public void AbilityMiss()
     {
         associatedPlayer.onMoveHits -= AbilityHits;
+    }
+    public override void ResetAbilityTrigger()
+    {
+        abilityTriggeredThisTurn = false;
     }
 }

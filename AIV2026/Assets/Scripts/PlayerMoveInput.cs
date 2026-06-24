@@ -146,8 +146,9 @@ public class PlayerMoveInput : MonoBehaviour
         // Debug.Log("Shove");
     }
 
-    public void Ability()
+    public void Ability(InputAction.CallbackContext ctx)
     {
+        if (!ctx.performed) return;
         if (binder.Jammer.PlayerType == PlayerType.Player1)
             moveState.OnP1Ability();
         else

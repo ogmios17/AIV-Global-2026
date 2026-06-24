@@ -67,7 +67,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             // int randomIndex = Random.Range(0, 4);
             // player2.ChosenMove = availableMoves[randomIndex];
 
-            GlobalData.Instance.Player2.ChosenMove = SelectRandomMoveCard();
+            GlobalData.Instance.Player2.ChosenMove = availableMoves[0];//SelectRandomMoveCard();
 
             //handle animation
             HandleAnimationsP2();
@@ -281,6 +281,8 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
         GlobalData.Instance.Player1.CardsAnim.SetTrigger("Out");
         GlobalData.Instance.Player2.CardsAnim.SetTrigger("Out");
+        player1.characterMethods?.ResetAbilityTrigger();
+        player2.characterMethods?.ResetAbilityTrigger();
     }
     public void OnFixedStateStay()
     {
@@ -322,20 +324,22 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
     public void OnP1Ability()
     {
+        int cost = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player1.CharacterType].abilityCost;
         Debug.Log("p1 ability");
-        if (player1.Mana >= GlobalData.Instance.Characters[(int)GlobalData.Instance.Player1.CharacterType].abilityCost)
+        if (player1.Mana >= cost && !player1.characterMethods.AbilityTriggeredThisTurn)
         {
             player1.characterMethods?.TriggerAbility();
-            player1.CharacterPrefab.GetComponent<FightersDataBinder>().UseMana(1, player1);
+            player1.CharacterPrefab.GetComponent<FightersDataBinder>().UseMana(cost, player1);
         }
     }
 
     public void OnP2Ability()
     {
-        if (player2.Mana >= GlobalData.Instance.Characters[(int)GlobalData.Instance.Player2.CharacterType].abilityCost)
+        int cost = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player2.CharacterType].abilityCost;
+        if (player2.Mana >= cost && player2.characterMethods.AbilityTriggeredThisTurn)
         {
             player2.characterMethods?.TriggerAbility();
-            player2.CharacterPrefab.GetComponent<FightersDataBinder>().UseMana(1, player2);
+            player2.CharacterPrefab.GetComponent<FightersDataBinder>().UseMana(GlobalData.Instance.Characters[(int)GlobalData.Instance.Player2.CharacterType].abilityCost, player2);
         }
     }
 

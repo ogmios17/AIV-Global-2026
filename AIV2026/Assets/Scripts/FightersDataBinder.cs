@@ -65,17 +65,13 @@ public class FightersDataBinder : MonoBehaviour
     {
         Debug.Log("Use mana " + mana);
         if (mana > player.Mana) return;
-        for (int i = 0; i < mana; i++)
-        {
-            StartCoroutine(LoseManaCO(manaBars[player.Mana-1]));
-            player.SpendMana(1);     
-        }
+        StartCoroutine(LoseManaCO(mana, player));     
     }
     public IEnumerator ChangeHealthColorCO(SpriteRenderer sprite)
     {
         while(sprite.color.r>0.01 || sprite.color.g >0.01 || sprite.color.b > 0.01)
         {
-            Debug.Log("Changing color "+ sprite.color);
+
             sprite.color = new Color(Mathf.Lerp(sprite.color.r, 0, Time.deltaTime * colorChangeSpeed), Mathf.Lerp(sprite.color.g, 0, Time.deltaTime * colorChangeSpeed), Mathf.Lerp(sprite.color.b, 0, Time.deltaTime * colorChangeSpeed));
             yield return null;
         }
@@ -106,28 +102,18 @@ public class FightersDataBinder : MonoBehaviour
         yield return null;
     }
 
-    public IEnumerator LoseManaCO(GameObject bar)
+    public IEnumerator LoseManaCO(int mana, Jammer player)
     {
-        float timer = 0;
-        Vector3 target, startPos;
-        SpriteRenderer sprite = bar.GetComponent<SpriteRenderer>();
-        startPos = bar.transform.localPosition;
-        while (timer < healthLoseAnimationDuration)
+        for (int i = 0; i < mana; i++)
         {
-            //we randomly choose a target position inside given thresholds
-            target = new Vector3(Random.Range(startPos.x - shakeThreshold, startPos.x + shakeThreshold), Random.Range(startPos.y - shakeThreshold, startPos.y + shakeThreshold), startPos.z);
-
-            //we move to that position
-            while (Mathf.Abs(bar.transform.localPosition.x - target.x) > 0.1f || Mathf.Abs(bar.transform.localPosition.y - target.y) > 0.1f)
-            {
-                timer += Time.deltaTime;
-                bar.transform.localPosition = new Vector3(Mathf.Lerp(bar.transform.localPosition.x, target.x, Time.deltaTime * shakeSpeed), Mathf.Lerp(bar.transform.localPosition.y, target.y, Time.deltaTime * shakeSpeed), startPos.z);
-                yield return null;
-            }
-
-            //repeat after 1 frame
+            Debug.Log("SPENDING MADONNA TROIA " + player.Mana);
+            manaBars[player.Mana - 1].gameObject.GetComponent<Animator>().SetTrigger("Out");
+            yield return new WaitForSecondsRealtime(manaAnimationDelay);
+            player.SpendMana(1);
             yield return null;
         }
+        
+        yield return null;
     }
     public IEnumerator LoseHealthCO(GameObject bar)
     {

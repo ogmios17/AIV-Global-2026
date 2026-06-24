@@ -80,7 +80,6 @@ public class MashHandler : MonoBehaviour
         if (canPress && player2.IsCPUMode)
         {
             cpuMashTimer += Time.deltaTime;
-            Debug.Log("cpuMashTimer: " + cpuMashTimer);
 
             if (cpuMashTimer >= cpuMashInterval)
             {
