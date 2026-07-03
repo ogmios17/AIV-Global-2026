@@ -154,4 +154,13 @@ public class PlayerMoveInput : MonoBehaviour
         else
             moveState.OnP2Ability();
     }
+
+    public void Ultimate(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        if (binder.Jammer.PlayerType == PlayerType.Player1)
+            moveState.OnP1Ulti();
+        else
+            moveState.OnP2Ulti();
+    }
 }

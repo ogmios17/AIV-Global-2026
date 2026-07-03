@@ -45,16 +45,24 @@ public class FightersDataBinder : MonoBehaviour
         player.TakeAHit();
     }
 
-    public void Cure(Jammer player)
+    public void RefullLife(Jammer jammer)
+    {
+        Cure(jammer, healthBars.Count - jammer.Health);
+    }
+
+    public void Cure(Jammer player, int value = 1)
     {
         var health = player.Health;
 
-        if(health < healthBars.Count)
+        while(health < healthBars.Count && value>0)
         {
             player.Cure();
             healthBars[health].GetComponent<SpriteRenderer>().color = healthColor;
+            value--;
+            health++;
         }
     }
+
 
     public void GainMana(int mana, Jammer player)
     {

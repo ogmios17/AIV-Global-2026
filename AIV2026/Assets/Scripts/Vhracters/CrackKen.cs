@@ -11,11 +11,17 @@ public class CrackKen : ICharacter
     public void Awake()
     {
         associatedPlayer.onMoveMisses += AbilityMiss;
+        associatedPlayer.onMoveMisses += UltiMiss;
+        associatedPlayer.onMoveChosen += ResetAbilityTrigger;
+        associatedPlayer.onMoveChosen += ResetUltiTrigger;
     }
 
     public void OnDestroy()
     {
         associatedPlayer.onMoveMisses -= AbilityMiss;
+        associatedPlayer.onMoveMisses -= UltiMiss;
+        associatedPlayer.onMoveChosen -= ResetAbilityTrigger;
+        associatedPlayer.onMoveChosen -= ResetUltiTrigger;
     }
 
     public override void TriggerAbility()
@@ -26,13 +32,29 @@ public class CrackKen : ICharacter
 
     public override void TriggerUlt()
     {
+        associatedPlayer.onMoveHits += UltiHits;
+        ultiTriggeredThisTurn = true;
+    }
 
+    public void UltiHits()
+    {
+        associatedPlayer.onMoveHits -= UltiHits;
+        associatedPlayer.CharacterPrefab.GetComponent<FightersDataBinder>().RefullLife(associatedPlayer);
     }
 
     public void AbilityHits()
     {
         associatedPlayer.onMoveHits -= AbilityHits;
         associatedPlayer.CharacterPrefab.GetComponent<FightersDataBinder>().Cure(associatedPlayer);
+    }
+
+    public void UltiMiss()
+    {
+        associatedPlayer.onMoveHits -= UltiHits;
+    }
+    public override void ResetUltiTrigger()
+    {
+        ultiTriggeredThisTurn = false;
     }
 
     public void AbilityMiss()

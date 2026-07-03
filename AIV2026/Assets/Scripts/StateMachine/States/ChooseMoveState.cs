@@ -281,8 +281,6 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
         GlobalData.Instance.Player1.CardsAnim.SetTrigger("Out");
         GlobalData.Instance.Player2.CardsAnim.SetTrigger("Out");
-        player1.characterMethods?.ResetAbilityTrigger();
-        player2.characterMethods?.ResetAbilityTrigger();
     }
     public void OnFixedStateStay()
     {
@@ -339,7 +337,28 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         if (player2.Mana >= cost && player2.characterMethods.AbilityTriggeredThisTurn)
         {
             player2.characterMethods?.TriggerAbility();
-            player2.CharacterPrefab.GetComponent<FightersDataBinder>().UseMana(GlobalData.Instance.Characters[(int)GlobalData.Instance.Player2.CharacterType].abilityCost, player2);
+            player2.CharacterPrefab.GetComponent<FightersDataBinder>().UseMana(cost, player2);
+        }
+    }
+
+    public void OnP1Ulti()
+    {
+        int cost = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player1.CharacterType].ultCost;
+        Debug.Log("p1 ult");
+        if (player1.Mana >= cost && !player1.characterMethods.UltiTriggeredThisTurn)
+        {
+            player1.characterMethods?.TriggerUlt();
+            player1.CharacterPrefab.GetComponent<FightersDataBinder>().UseMana(cost, player1);
+        }
+    }
+
+    public void OnP2Ulti()
+    {
+        int cost = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player2.CharacterType].ultCost;
+        if (player2.Mana >= cost && player2.characterMethods.UltiTriggeredThisTurn)
+        {
+            player2.characterMethods?.TriggerUlt();
+            player2.CharacterPrefab.GetComponent<FightersDataBinder>().UseMana(cost, player2);
         }
     }
 
