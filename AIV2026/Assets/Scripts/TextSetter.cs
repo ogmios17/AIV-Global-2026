@@ -1,10 +1,13 @@
 using TMPro;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class TextSetter : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI text;
+    [SerializeField]
+    private TextMeshProUGUI countdown;
 
     public void Awake()
     {
@@ -14,5 +17,10 @@ public class TextSetter : MonoBehaviour
     public void SetTextMessage(string message)
     {
         text.text = message;
+    }
+
+    public void SetCountDownMessage(string message)
+    {
+        countdown.text = message;
     }
 }

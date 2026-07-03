@@ -117,7 +117,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
                 default:
                     if(GlobalData.Instance.text)
-                        GlobalData.Instance.text.SetTextMessage(Mathf.CeilToInt(timer) + " seconds left");
+                        GlobalData.Instance.text.SetCountDownMessage(Mathf.CeilToInt(timer).ToString());
                     break;
             }
         }
