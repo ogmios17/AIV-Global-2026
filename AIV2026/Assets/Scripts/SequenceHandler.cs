@@ -80,7 +80,7 @@ public class SequenceHandler : MonoBehaviour
             player2.Input.SwitchCurrentActionMap("Sequence");
 
         // Setto la keyboard per il Player 1
-        if (player1.Controller.Contains("Keyboard"))
+        if (player1.Controller is Keyboard)
             InitSetup(player1, keyboardInputs, sequence1);
         // Setto il controller per il Player 1
         else
@@ -94,7 +94,7 @@ public class SequenceHandler : MonoBehaviour
         else
         {
             // Setto la keyboard per il Player 2
-            if (player2.Controller.Contains("Keyboard"))
+            if (player2.Controller is Keyboard)
                 InitSetup(player2, keyboardInputs, sequence2);
             // Setto il controller per il Player 2
             else

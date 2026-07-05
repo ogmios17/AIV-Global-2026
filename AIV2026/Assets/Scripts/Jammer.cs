@@ -12,7 +12,7 @@ public class Jammer
 {
     private PlayerType playerType;
     private CharacterType character;
-    private string controller;
+    private InputDevice controller;
     private MoveCard chosenMove;
     private PlayerInput input;
     private GameObject characterPrefab;
@@ -53,7 +53,7 @@ public class Jammer
 
     public PlayerType PlayerType { get => playerType; set => playerType = value; }
     public CharacterType CharacterType { get => character; set => character = value; }
-    public string Controller { get => controller; set => controller = value; }
+    public InputDevice Controller { get => controller; set => controller = value; }
     public PlayerInput Input { get => input; set => input = value; }
     public MoveCard ChosenMove { get => chosenMove; set => chosenMove = value; }
     public GameObject CharacterPrefab { get => characterPrefab; set => characterPrefab = value; }

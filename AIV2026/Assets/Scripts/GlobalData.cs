@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -14,6 +15,9 @@ public class GlobalData : MonoBehaviour
 
     public Jammer Player1;
     public Jammer Player2;
+
+    public Action onP1ControllerChosen;
+    public Action onP2ControllerChosen;
 
     private void Awake()
     {
