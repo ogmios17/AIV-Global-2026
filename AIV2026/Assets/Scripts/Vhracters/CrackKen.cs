@@ -6,22 +6,10 @@ public class CrackKen : ICharacter
     public CrackKen(Jammer associatedPlayer)
     {
         this.associatedPlayer = associatedPlayer;
-    }
-
-    public void Awake()
-    {
         associatedPlayer.onMoveMisses += AbilityMiss;
         associatedPlayer.onMoveMisses += UltiMiss;
         associatedPlayer.onMoveChosen += ResetAbilityTrigger;
         associatedPlayer.onMoveChosen += ResetUltiTrigger;
-    }
-
-    public void OnDestroy()
-    {
-        associatedPlayer.onMoveMisses -= AbilityMiss;
-        associatedPlayer.onMoveMisses -= UltiMiss;
-        associatedPlayer.onMoveChosen -= ResetAbilityTrigger;
-        associatedPlayer.onMoveChosen -= ResetUltiTrigger;
     }
 
     public override void TriggerAbility()

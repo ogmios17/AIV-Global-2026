@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerBinder : MonoBehaviour
 {
-    public CrackKen crackKen;
     public int playerIndex;
     public Jammer Jammer { get; private set; }
     public CharacterType character;
@@ -21,15 +20,7 @@ public class PlayerBinder : MonoBehaviour
             GlobalData.Instance.onP1ControllerChosen?.Invoke();
             Jammer.CharacterType = character;
             Debug.Log("controller: " + Jammer.Controller);
-            GlobalData.Instance.Player1 = Jammer;
-
-            switch (character)
-            {
-                case CharacterType.CrackKen:
-                    GlobalData.Instance.Player1.characterMethods = new CrackKen(Jammer);
-                    break;
-            }
-
+            GlobalData.Instance.Player1 = Jammer;      
         }
         else if (input.playerIndex == 1)
         {
@@ -39,13 +30,6 @@ public class PlayerBinder : MonoBehaviour
             Jammer.Controller = input.devices[1];
             Debug.Log("controller: " + Jammer.Controller);
             GlobalData.Instance.Player2 = Jammer;
-
-            switch (character)
-            {
-                case CharacterType.CrackKen:
-                    GlobalData.Instance.Player2.characterMethods = new CrackKen(Jammer);
-                    break;
-            }
         }
         DontDestroyOnLoad(gameObject);
     }

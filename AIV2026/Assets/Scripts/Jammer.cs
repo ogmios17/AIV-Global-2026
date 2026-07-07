@@ -52,7 +52,21 @@ public class Jammer
     
 
     public PlayerType PlayerType { get => playerType; set => playerType = value; }
-    public CharacterType CharacterType { get => character; set => character = value; }
+    public CharacterType CharacterType { get => character;
+        set
+        {
+            character = value;
+            switch (character)
+            {
+                case CharacterType.CrackKen:
+                    characterMethods = new CrackKen(this);
+                    break;
+                case CharacterType.NotZilla:
+                    characterMethods = new NotZilla(this);
+                    break;
+            }
+        }
+    }
     public InputDevice Controller { get => controller; set => controller = value; }
     public PlayerInput Input { get => input; set => input = value; }
     public MoveCard ChosenMove { get => chosenMove; set => chosenMove = value; }
