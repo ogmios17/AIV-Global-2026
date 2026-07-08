@@ -19,6 +19,8 @@ public class GlobalData : MonoBehaviour
     public Action onP1ControllerChosen;
     public Action onP2ControllerChosen;
 
+    public Jammer GetOpponent(Jammer player) => player == Player1 ? Player2 : Player1;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)

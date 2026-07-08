@@ -741,16 +741,9 @@ MonoBehaviour:
   _cpuImage: {fileID: 21300000, guid: 663f302deff6ecb44ba8db5b12ed5607, type: 3}
   _player1CharacterGameObject: {fileID: 6098943505322515598}
   _player2CharacterGameObject: {fileID: 802528966405951850}
-  _notzillaCharacterImage: {fileID: 21300000, guid: 3a17ea87fbd0ca2499d0a170fb2ac239, type: 3}
-  _crackkenCharacterImage: {fileID: 21300000, guid: c617741f6e433024ea0a831c2b3716a8, type: 3}
-  _casualCharacterImage: {fileID: 21300000, guid: 2f4f3662b2f26b04fbc7d0eea3317eb0, type: 3}
   _navigationCooldown: 0
   Player1Prefab: {fileID: 5860056793942186639, guid: a0075e1e75d215748be03215645f440a, type: 3}
-  Player2Prefab: {fileID: 0}
-  notZilla: {fileID: 8364574429403050944, guid: 4ebe36684a3dae84b92c8626adcd1118, type: 3}
-  crackKen: {fileID: 3627437899303586132, guid: 6b749f1c34801734a8458de142aaba6c, type: 3}
-  OldPlayerInputManager: {fileID: 0}
-  _choicesDone: 0
+  Player2Prefab: {fileID: 5860056793942186639, guid: 0bca63504fe8d004aaec395606d3a271, type: 3}
 --- !u!1 &3498509976049947704
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,6 +922,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1143,6 +1137,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1678,6 +1673,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1816,6 +1812,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2131,6 +2128,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

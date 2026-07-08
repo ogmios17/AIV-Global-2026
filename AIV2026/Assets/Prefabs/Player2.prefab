@@ -67,6 +67,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -88,9 +90,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &680297516631450003
 BoxCollider:
@@ -242,6 +246,42 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fea1ae60-12cd-4811-bdfc-23c1856189f4
     m_ActionName: Sequence/Press
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1647129735725488762}
+        m_TargetAssemblyTypeName: PlayerMoveInput, Assembly-CSharp
+        m_MethodName: Ability
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 936d34ae-e40f-48b0-8b95-c5971c04c8d2
+    m_ActionName: 'CardSelection/Ability[/Keyboard/1]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1647129735725488762}
+        m_TargetAssemblyTypeName: PlayerMoveInput, Assembly-CSharp
+        m_MethodName: Ultimate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ad1bc097-2091-44be-aa92-7b54bb4eeeb2
+    m_ActionName: 'CardSelection/Ulti[/Keyboard/2]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 400d55af-832a-4d38-bfcf-194d6dd51fd6
+    m_ActionName: Defeat/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: CardSelection

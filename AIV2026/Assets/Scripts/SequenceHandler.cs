@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,24 +37,10 @@ public class SequenceHandler : MonoBehaviour
     private Color RedColor = new(1.0f, 0.2352941f, 0.2745098f, 1);
 
     // Queues
-    private Queue<string> sequence1 = new Queue<string>();
-    private Queue<string> sequence2 = new Queue<string>();
+    private Queue<Direction> sequence1 = new Queue<Direction>();
+    private Queue<Direction> sequence2 = new Queue<Direction>();
     private int player1SequenceIndex;
     private int player2SequenceIndex;
-    
-    // Input Maps
-    private string[] controllerInputs = {
-        "/dpad/up",
-        "/dpad/down",
-        "/dpad/left",
-        "/dpad/right",
-    };
-    private string[] keyboardInputs = {
-        "/up",
-        "/down",
-        "/left",
-        "/right",
-    };
 
     // Game logic
     private bool isFinished = false;
@@ -75,55 +62,24 @@ public class SequenceHandler : MonoBehaviour
         player2SequenceIndex = 0;
 
         // Switcho l'ActionMap
-        player1.Input.SwitchCurrentActionMap("Sequence");
+        player1.Input.SwitchCurrentActionMap(ActionMaps.Sequence);
         if (!player2.IsCPUMode)
-            player2.Input.SwitchCurrentActionMap("Sequence");
+            player2.Input.SwitchCurrentActionMap(ActionMaps.Sequence);
 
-        // Setto la keyboard per il Player 1
-        if (player1.Controller is Keyboard)
-            InitSetup(player1, keyboardInputs, sequence1);
-        // Setto il controller per il Player 1
-        else
-            InitSetup(player1, controllerInputs, sequence1);
-
-        // CPU
-        if (player2.IsCPUMode)
-        {
-            InitSetup(player2, controllerInputs, sequence2);
-        }
-        else
-        {
-            // Setto la keyboard per il Player 2
-            if (player2.Controller is Keyboard)
-                InitSetup(player2, keyboardInputs, sequence2);
-            // Setto il controller per il Player 2
-            else
-                InitSetup(player2, controllerInputs, sequence2);
-        }
+        InitSetup(player1, sequence1);
+        InitSetup(player2, sequence2);
     }
 
-    private void InitSetup(Jammer player, string[] pool, Queue<string> sequence)
-    {   
-        // Per ogni indice da 0 a Player1Slots.Count (per velocita') inizializzo la coda e cambio la sprite nella UI
-        for (int i = 0; i < Player1Slots.Count; i++)
+    private void InitSetup(Jammer player, Queue<Direction> sequence)
+    {
+        // Player1 uses its own slots; everyone else (Player2 / CPU) uses the P2 slots.
+        List<GameObject> slots = player.PlayerType == PlayerType.Player1 ? Player1Slots : Player2Slots;
+
+        for (int i = 0; i < slots.Count; i++)
         {
-            var index = Random.Range(0, pool.Length);
-            var item = pool[index];
-
-            // Aggiungo nella coda
-            sequence.Enqueue(item);
-
-            // Cambio la sprite del giocatore 1
-            if (player.PlayerType == PlayerType.Player1)
-            {
-                Player1Slots[i].GetComponent<SpriteRenderer>().sprite = InputToSprite(item);
-            }
-            // Cambio la sprite del giocatore 2
-            else
-            {
-                Player2Slots[i].GetComponent<SpriteRenderer>().sprite = InputToSprite(item);
-            }
-            Debug.Log("Tasto: " + pool[index]);
+            Direction dir = (Direction)UnityEngine.Random.Range(0, 4);
+            sequence.Enqueue(dir);
+            slots[i].GetComponent<SpriteRenderer>().sprite = DirectionToSprite(dir);
         }
     }
 
@@ -158,10 +114,8 @@ public class SequenceHandler : MonoBehaviour
             if (cpuMashTimer >= cpuMashInterval)
             {
                 if (sequence2.Count > 0)
-                {
-                    string nextExpected = sequence2.Peek();
-                    Onp2Press(nextExpected);
-                }
+                    ResolvePress(player2, player1, sequence2, Player2Slots, ref player2SequenceIndex,
+                        AudioManager.Instance.PlaySpamButtonP2, sequence2.Peek());
                 cpuMashTimer = 0f;
             }
         }
@@ -185,16 +139,17 @@ public class SequenceHandler : MonoBehaviour
         
         GlobalData.Instance.text.SetTextMessage($"{winnerName} Wins!");
 
-        // Il perdente viene colpito (usa GlobalData per assicurarsi che la vita venga aggiornata)
-        globalLoser.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(globalLoser);
+        // Il perdente viene colpito; la UI vita si aggiorna via evento OnHealthChanged.
+        globalLoser.TakeAHit();
+
+        // Mana e segnali ability: 2 al vincitore, 1 al perdente (delta team).
         winner.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(2, winner);
         loser.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1, loser);
-        if (globalLoser.FighterAnim != null)
-            globalLoser.FighterAnim.SetTrigger("Damage");
-
         winner.onMoveHits?.Invoke();
         loser.onMoveMisses?.Invoke();
-        Debug.Log($"{winnerName} wins the mash minigame! Loser health: {globalLoser.Health}");
+        if (globalLoser.FighterAnim != null)
+            globalLoser.FighterAnim.SetTrigger(AnimTriggers.Damage);
+
 
         // Aspetta 3 secondi prima di segnalare la fine del minigioco
         StartCoroutine(WaitAndFinish());
@@ -207,96 +162,71 @@ public class SequenceHandler : MonoBehaviour
         isFinished = true;
     }
 
-    public void Onp1Press(string pressed)
+    public void Onp1Press(string pressedPath)
     {
-        if (!canPress || sequence1.Count == 0 || isFinished || isEnding) return;
+        if (TryParseDirection(pressedPath, out Direction dir))
+            ResolvePress(player1, player2, sequence1, Player1Slots, ref player1SequenceIndex,
+                AudioManager.Instance.PlaySpamButtonP1, dir);
+    }
 
-        string expected = sequence1.Peek();
+    public void Onp2Press(string pressedPath)
+    {
+        if (TryParseDirection(pressedPath, out Direction dir))
+            ResolvePress(player2, player1, sequence2, Player2Slots, ref player2SequenceIndex,
+                AudioManager.Instance.PlaySpamButtonP2, dir);
+    }
 
-        // se pressed = dequeue allora tutto apposto se no muori
-        if (pressed.ToLower().Contains(expected.ToLower()))
+    /// <summary>
+    /// Shared logic for a single input in the sequence minigame.
+    /// On a correct press it advances the queue; on a wrong press the player loses.
+    /// </summary>
+    private void ResolvePress(Jammer self, Jammer other, Queue<Direction> sequence, List<GameObject> slots,
+        ref int slotIndex, Action winSound, Direction pressed)
+    {
+        if (!canPress || sequence.Count == 0 || isFinished || isEnding) return;
+
+        GameObject slot = slots[slotIndex];
+
+        if (pressed == sequence.Peek())
         {
-            Debug.Log("Player1 Corretto!");
-            sequence1.Dequeue();
+            sequence.Dequeue();
+            slot.GetComponent<SpriteRenderer>().color = GreenColor;
+            slot.GetComponentInParent<Animator>()?.SetTrigger(AnimTriggers.Right);
+            slotIndex++;
 
-            // Cambio il colore della sprite in verde
-            Player1Slots[player1SequenceIndex].GetComponent<SpriteRenderer>().color = GreenColor;
-            Player1Slots[player1SequenceIndex].GetComponentInParent<Animator>()?.SetTrigger("Right");
-            player1SequenceIndex++;
-
-            // Check vittoria
-            if (sequence1.Count <= 0)
+            if (sequence.Count <= 0)
             {
-                AudioManager.Instance.PlaySpamButtonP1();
-                EndMinigame(player1, player2);
+                winSound();
+                EndMinigame(self, other);
             }
         }
-        // Se sbaglio ho perso
         else
         {
-            // Cambio il colore della sprite in rosso
-            Player1Slots[player1SequenceIndex].GetComponent<SpriteRenderer>().color = RedColor;
-            Player1Slots[player1SequenceIndex].GetComponentInParent<Animator>()?.SetTrigger("Wrong");
-
+            slot.GetComponent<SpriteRenderer>().color = RedColor;
+            slot.GetComponentInParent<Animator>()?.SetTrigger(AnimTriggers.Wrong);
             AudioManager.Instance.PlayUIError();
-            EndMinigame(player2, player1);
+            EndMinigame(other, self);
         }
     }
 
-    public void Onp2Press(string pressed)
+    private Sprite DirectionToSprite(Direction dir) => dir switch
     {
-        if (!canPress || sequence2.Count == 0 || isFinished || isEnding) return;
+        Direction.Up => upSprite,
+        Direction.Down => downSprite,
+        Direction.Right => rightSprite,
+        _ => leftSprite,
+    };
 
-        string expected = sequence2.Peek();
-
-        // se pressed = dequeue allora tutto apposto se no muori
-        if (pressed.ToLower().Contains(expected.ToLower()))
-        {
-            Debug.Log("Player2 Corretto!");
-            sequence2.Dequeue();
-
-            // TODO Cambio il colore della sprite in verde
-            Player2Slots[player2SequenceIndex].GetComponent<SpriteRenderer>().color = GreenColor;
-            Player2Slots[player2SequenceIndex].GetComponentInParent<Animator>()?.SetTrigger("Right");
-            player2SequenceIndex++;
-
-            // Check vittoria
-            if (sequence2.Count <= 0)
-            {
-                AudioManager.Instance.PlaySpamButtonP2();
-                EndMinigame(player2, player1);
-            }
-        }
-        // Se sbaglio ho perso
-        else
-        {
-            // Cambio il colore della sprite in rosso
-            Player2Slots[player2SequenceIndex].GetComponent<SpriteRenderer>().color = RedColor;
-            Player2Slots[player2SequenceIndex].GetComponentInParent<Animator>()?.SetTrigger("Wrong");
-
-            AudioManager.Instance.PlayUIError();
-            EndMinigame(player1, player2);
-        }
-    }
-
-    private Sprite InputToSprite(string input)
+    /// <summary>Maps an InputSystem control path (dpad or keyboard) to a Direction.</summary>
+    private bool TryParseDirection(string controlPath, out Direction dir)
     {
-        string parsedInput = ParseInput(input);
+        string path = controlPath.ToLower();
+        if (path.Contains("/up")) { dir = Direction.Up; return true; }
+        if (path.Contains("/down")) { dir = Direction.Down; return true; }
+        if (path.Contains("/right")) { dir = Direction.Right; return true; }
+        if (path.Contains("/left")) { dir = Direction.Left; return true; }
 
-        return parsedInput switch
-        {
-            "up" => upSprite,
-            "right" => rightSprite,
-            "down" => downSprite,
-            _ => leftSprite,
-        };
-    }
-
-    private string ParseInput(string input)
-    {
-        if (input.Contains("/up")) return "up";
-        else if (input.Contains("/right")) return "right";
-        else if (input.Contains("/down")) return "down";
-        else return "left";
+        dir = Direction.Left;
+        return false;
     }
 }

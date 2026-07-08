@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class MashHandler : MonoBehaviour
 {
@@ -45,9 +43,9 @@ public class MashHandler : MonoBehaviour
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
 
-        player1.Input.SwitchCurrentActionMap("Mash");
+        player1.Input.SwitchCurrentActionMap(ActionMaps.Mash);
         if (!player2.IsCPUMode)
-            player2.Input.SwitchCurrentActionMap("Mash");
+            player2.Input.SwitchCurrentActionMap(ActionMaps.Mash);
     }
 
     // Update is called once per frame
@@ -111,13 +109,15 @@ public class MashHandler : MonoBehaviour
     {
         if (isFinished || isEnding) return;
 
+        // P1 mashing pushes the divider right (toward targetRight) and wins there, so an
+        // advantage for P1 must move the divider right (+). P2 is the mirror case (-).
         if (canPress && randomizeAdvantage && Random.Range(0, randomAdvantage_chance) == 0) //p1 gets a help!
         {
-            points -= advantageStrength;
+            points += advantageStrength;
         }
         if (canPress && randomizeAdvantage && Random.Range(0, randomAdvantage_chance) == 0) //p2 gets a help!
         {
-            points += advantageStrength;
+            points -= advantageStrength;
         }
 
 
@@ -155,16 +155,17 @@ public class MashHandler : MonoBehaviour
 
         GlobalData.Instance.text.SetTextMessage($"{winnerName} Wins!");
 
-        // Il perdente viene colpito (usa GlobalData per assicurarsi che la vita venga aggiornata)
-        globalLoser.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(globalLoser);
+        // Il perdente viene colpito; la UI vita si aggiorna via evento OnHealthChanged.
+        globalLoser.TakeAHit();
+
+        // Mana e segnali ability: 2 al vincitore, 1 al perdente (delta team).
         winner.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(2, winner);
         loser.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1, loser);
         winner.onMoveHits?.Invoke();
         loser.onMoveMisses?.Invoke();
         if (globalLoser.FighterAnim != null)
-            globalLoser.FighterAnim.SetTrigger("Damage");
+            globalLoser.FighterAnim.SetTrigger(AnimTriggers.Damage);
 
-        Debug.Log($"{winnerName} wins the mash minigame! Loser health: {globalLoser.Health}");
 
         // Aspetta 3 secondi prima di segnalare la fine del minigioco
         StartCoroutine(WaitAndFinish());
@@ -172,7 +173,7 @@ public class MashHandler : MonoBehaviour
 
     private IEnumerator WaitAndFinish()
     {
-        m_animator.SetTrigger("Out");
+        m_animator.SetTrigger(AnimTriggers.Out);
         yield return new WaitForSeconds(3f);
         GlobalData.Instance.text.SetTextMessage("");
         isFinished = true;

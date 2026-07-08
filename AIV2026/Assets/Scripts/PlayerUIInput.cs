@@ -1,4 +1,3 @@
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,12 +15,6 @@ public class PlayerUIInput : MonoBehaviour
         idleState = stateManager.IdleState;
         binder = GetComponent<PlayerBinder>();
         playerType = binder.Jammer.PlayerType;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void OnSubmitPressed(InputAction.CallbackContext ctx)

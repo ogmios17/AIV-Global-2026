@@ -1,12 +1,12 @@
 using System;
 using UnityEngine;
 
-public interface Predicate
+public interface IPredicate
 {
     bool Evaluate();
 }
 
-public class FuncPredicate : Predicate
+public class FuncPredicate : IPredicate
 {
     readonly Func<bool> func;
 

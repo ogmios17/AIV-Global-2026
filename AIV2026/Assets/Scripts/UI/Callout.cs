@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XInput;
 using UnityEngine.UI;
 
 public class Callout : MonoBehaviour
@@ -24,54 +22,38 @@ public class Callout : MonoBehaviour
 
     void OnDestroy()
     {
+        if (GlobalData.Instance == null) return;
         GlobalData.Instance.onP1ControllerChosen -= UpdateP1Sprite;
-        GlobalData.Instance.onP2ControllerChosen += UpdateP2Sprite;
+        GlobalData.Instance.onP2ControllerChosen -= UpdateP2Sprite;
     }
 
     public void UpdateP1Sprite()
     {
-        InputDevice controller = GlobalData.Instance.Player1.Controller;
-        string name = controller.description.product.ToLower();
-        if (name.Contains("xbox"))
-        {
-            p1Sprite.sprite = xbox;
-        }else if (name.Contains("dualsense") || name.Contains("dualshock") || name.Contains("playstation"))
-        {
-            p1Sprite.sprite = sony;
-        }else if (name.Contains("switch") || name.Contains("pro"))
-        {
-            p1Sprite.sprite = nintendo;
-        }
-        else
-        {
-            p1Sprite.sprite = keyboard;
-        }
+        UpdateSprite(p1Sprite, GlobalData.Instance.Player1?.Controller);
     }
 
     public void UpdateP2Sprite()
     {
-        InputDevice controller = GlobalData.Instance.Player2.Controller;
-        if(controller == null)
+        UpdateSprite(p2Sprite, GlobalData.Instance.Player2?.Controller);
+    }
+
+    private void UpdateSprite(Image target, InputDevice controller)
+    {
+        // CPU (o giocatore non ancora connesso): mostra la tastiera come fallback.
+        if (controller == null)
         {
-            p2Sprite.sprite = keyboard;
+            target.sprite = keyboard;
             return;
         }
-        string name = controller.description.product.ToLower();
+
+        string name = controller.description.product?.ToLower() ?? "";
         if (name.Contains("xbox"))
-        {
-            p2Sprite.sprite = xbox;
-        }
+            target.sprite = xbox;
         else if (name.Contains("dualsense") || name.Contains("dualshock") || name.Contains("playstation"))
-        {
-            p2Sprite.sprite = sony;
-        }
+            target.sprite = sony;
         else if (name.Contains("switch") || name.Contains("pro"))
-        {
-            p2Sprite.sprite = nintendo;
-        }
+            target.sprite = nintendo;
         else
-        {
-            p2Sprite.sprite = keyboard;
-        }
+            target.sprite = keyboard;
     }
 }

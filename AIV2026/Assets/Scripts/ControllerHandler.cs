@@ -21,7 +21,6 @@ public class ControllerHandler: MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput input)
     {
-        Debug.Log("Player joined: " + input.playerIndex);
 
         if (playerInput.playerCount >= 2)
         {

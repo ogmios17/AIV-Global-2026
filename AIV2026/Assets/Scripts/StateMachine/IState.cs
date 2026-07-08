@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface StateInterface 
+public interface IState 
 {
     void OnStateEnter();
     void OnStateExit();

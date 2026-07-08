@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,11 +21,6 @@ public class PlayerMoveInput : MonoBehaviour
     private void Start()
     {
         moveState = GlobalData.Instance.stateManager.ChooseMoveState;
-    }
-
-    private void Update()
-    {
-        
     }
 
     public void Attack(InputAction.CallbackContext ctx)
@@ -149,18 +143,12 @@ public class PlayerMoveInput : MonoBehaviour
     public void Ability(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
-        if (binder.Jammer.PlayerType == PlayerType.Player1)
-            moveState.OnP1Ability();
-        else
-            moveState.OnP2Ability();
+        moveState.TryUseAbility(binder.Jammer);
     }
 
     public void Ultimate(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
-        if (binder.Jammer.PlayerType == PlayerType.Player1)
-            moveState.OnP1Ulti();
-        else
-            moveState.OnP2Ulti();
+        moveState.TryUseUlti(binder.Jammer);
     }
 }

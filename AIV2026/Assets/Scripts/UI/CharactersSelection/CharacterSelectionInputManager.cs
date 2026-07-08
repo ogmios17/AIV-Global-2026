@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
+using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Manages character selection input for two players simultaneously.
@@ -28,23 +27,12 @@ public class CharacterSelectionInputManager : MonoBehaviour
     [SerializeField] private GameObject _player1CharacterGameObject;
     [SerializeField] private GameObject _player2CharacterGameObject;
 
-    [Header("Player Characters Images")]
-    [SerializeField] private Sprite _notzillaCharacterImage;
-    [SerializeField] private Sprite _crackkenCharacterImage;
-    [SerializeField] private Sprite _casualCharacterImage;
-
     [Header("Navigation Settings")]
     [SerializeField] private float _navigationCooldown = 0.2f;
 
     [Header("Player Prefab")]
     [SerializeField] private GameObject Player1Prefab;
     [SerializeField] private GameObject Player2Prefab;
-    [SerializeField] private GameObject notZilla;
-    [SerializeField] private GameObject crackKen;
-
-    [Header("Player Input Managers")]
-    [SerializeField] private GameObject OldPlayerInputManager;
-
 
     // References to all character selection items
     private List<CharacterSelectionItem> _characterItems = new List<CharacterSelectionItem>();
@@ -79,14 +67,13 @@ public class CharacterSelectionInputManager : MonoBehaviour
     private CharacterType? _player1CharacterChoice ;
     private CharacterType? _player2CharacterChoice ;
 
-    public bool _choicesDone = false;
+    public bool ChoicesDone { get; private set; }
 
     GameObject player1PrefabInstance;
     GameObject player2PrefabInstance;
 
     void Start()
     {
-        Debug.Log("Is CPU mode: " + _isCPUMode);
 
         var gamepads = Gamepad.all;
 
@@ -110,7 +97,7 @@ public class CharacterSelectionInputManager : MonoBehaviour
         // Human P2
         else
         {
-            player2PrefabInstance = Instantiate(Player1Prefab); // Human P2
+            player2PrefabInstance = Instantiate(Player2Prefab); // Human P2
         }
 
         // Initialize - set P1 and P2 to first items
@@ -144,7 +131,6 @@ public class CharacterSelectionInputManager : MonoBehaviour
             _player2CharacterChoice = choice;
         }
 
-        // Aggiorno _choicesDone
         if (_player1CharacterChoice != null && _player2CharacterChoice != null)
         {
             FinalizeSelection();
@@ -166,7 +152,6 @@ public class CharacterSelectionInputManager : MonoBehaviour
         // Se è stato già scelto un personaggio per il P1, ignora l'input
         if (_player1CharacterChoice != null) return;
 
-        Debug.Log("Handle navigation p1");
         // Only process new navigation input when cooldown has expired
         if (_player1CooldownTimer > 0) 
         {
@@ -208,7 +193,6 @@ public class CharacterSelectionInputManager : MonoBehaviour
         // Se è stato già scelto un personaggio per il P2, ignora l'input
         if (_player2CharacterChoice != null) return;
 
-        Debug.Log("Handle navigation p2");
         // Only process new navigation input when cooldown has expired
         if (_player2CooldownTimer > 0)
         {
@@ -261,62 +245,25 @@ public class CharacterSelectionInputManager : MonoBehaviour
 
     private void UpdateCharacterImage(PlayerType player, CharacterSelectionItem characterItem)
     {
-        Sprite sprite = GetCharacterByCharacterItem(characterItem);
+        if (characterItem.Card == null) return;
+        Sprite sprite = characterItem.Card.previewImage;
 
-        switch (player)
-        {
-            case PlayerType.Player1:
-                // Prendo la CharacterImage del Player1 (_player1CharacterGameObject.sprite)
-
-                // TODO Leggero slide verso sinistra
-
-                // Sostituisco l'immagine
-                //TODO Leggero slide verso sinistra
-                _player1CharacterGameObject.transform.GetComponent<Image>().sprite = sprite;
-                break;
-            case PlayerType.Player2:
-                _player2CharacterGameObject.transform.GetComponent<Image>().sprite = sprite;
-                break;
-            case PlayerType.CPU:
-                _player2CharacterGameObject.transform.GetComponent<Image>().sprite = sprite;
-                break;
-            default:
-                Debug.LogWarning($"[CharacterSelectionInputManager] Unknown character item name: {characterItem.name}");
-                break;
-        }
-    }
-
-    private Sprite GetCharacterByCharacterItem(CharacterSelectionItem characterItem)
-    {
-        string name = characterItem.name;
-
-        switch(name)
-        {
-            case "Notzilla":
-                return _notzillaCharacterImage;
-            case "Crack-Ken":
-                return _crackkenCharacterImage;
-            case "Casual":
-                return _casualCharacterImage;
-            default:
-                return _notzillaCharacterImage;
-        }
+        // Player1 has its own preview slot; Player2 and CPU share the other.
+        GameObject target = player == PlayerType.Player1 ? _player1CharacterGameObject : _player2CharacterGameObject;
+        target.GetComponent<Image>().sprite = sprite;
     }
 
     private CharacterType GetCharacterByIndex(int index)
     {
-        switch(index)
-        {
-            case 0:
-                return CharacterType.NotZilla;
-            case 1:
-                return CharacterType.CrackKen;
-            case 2:
-                int randomInt = UnityEngine.Random.Range(0, 2);
-                return randomInt == 0 ? CharacterType.NotZilla : CharacterType.CrackKen;
-            default:
-                return CharacterType.NotZilla;
-        }
+        CharacterSelectionCard card = _characterItems[index].Card;
+        if (card == null) return RandomPlayableType();
+        return card.isRandom ? RandomPlayableType() : card.characterType;
+    }
+
+    private static CharacterType RandomPlayableType()
+    {
+        int count = Enum.GetValues(typeof(CharacterType)).Length;
+        return (CharacterType)UnityEngine.Random.Range(0, count);
     }
 
     private void DisablePlayer1Input()
@@ -356,10 +303,8 @@ public class CharacterSelectionInputManager : MonoBehaviour
 
     private void FinalizeSelection()
     {
-        _choicesDone = true;
+        ChoicesDone = true;
 
-        Debug.Log("Player 1 choice: " + _player1CharacterChoice.Value);
-        Debug.Log("Player 2 choice: " + _player2CharacterChoice.Value);
 
         // Player 1 - sempre umano
         player1PrefabInstance.GetComponent<PlayerBinder>().Jammer.CharacterType = _player1CharacterChoice.Value;

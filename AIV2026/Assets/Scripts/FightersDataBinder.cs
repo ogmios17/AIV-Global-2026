@@ -14,55 +14,59 @@ public class FightersDataBinder : MonoBehaviour
     [SerializeField] private float manaAnimationDelay = 1;
     [SerializeField] private Color manaColor;
     private Color healthColor;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {   
-        cards[0].transform.parent.transform.rotation = new Quaternion(0, 0, 0, 1);
+
+    private Jammer boundJammer;
+    private int lastKnownHealth;
+
+    void Awake()
+    {
         healthColor = healthBars[0].GetComponent<SpriteRenderer>().color;
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        cards[0].transform.parent.transform.rotation = Quaternion.identity;
     }
 
-    public void GetHit(Jammer player)
+    /// <summary>
+    /// Links this UI to a Jammer and keeps the health bars in sync via OnHealthChanged.
+    /// Health is mutated ONLY through Jammer.TakeAHit/Cure; this component just animates.
+    /// Call once after the fighter prefab is instantiated (see LoadFight).
+    /// </summary>
+    public void Bind(Jammer jammer)
     {
-        var health = player.Health;
+        if (boundJammer != null)
+            boundJammer.OnHealthChanged -= OnHealthChanged;
 
-        if (health > 0)
+        boundJammer = jammer;
+        boundJammer.OnHealthChanged += OnHealthChanged;
+        lastKnownHealth = jammer.MaxHealth;
+        OnHealthChanged(jammer.Health, jammer.MaxHealth);
+    }
+
+    private void OnDestroy()
+    {
+        if (boundJammer != null)
+            boundJammer.OnHealthChanged -= OnHealthChanged;
+    }
+
+    private void OnHealthChanged(int currentHealth, int maxHealth)
+    {
+        // Animate the bars that were just lost...
+        for (int i = currentHealth; i < lastKnownHealth && i < healthBars.Count; i++)
         {
-            Debug.Log("barra: ", healthBars[0]);
-            Debug.Log("Taking a hit: how many bars left" + healthBars.Count + " index: " + (health - 1));
-            StartCoroutine(ChangeHealthColorCO(healthBars[health - 1].GetComponent<SpriteRenderer>()));
-            StartCoroutine(LoseHealthCO(healthBars[health - 1]));
-            //healthBars[health - 1].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
-            //healthBars.RemoveAt(health - 1);
-            Debug.Log("new bars left: " + health);
+            StartCoroutine(ChangeHealthColorCO(healthBars[i].GetComponent<SpriteRenderer>()));
+            StartCoroutine(LoseHealthCO(healthBars[i]));
         }
 
-        player.TakeAHit();
-    }
-
-    public void RefullLife(Jammer jammer)
-    {
-        Cure(jammer, healthBars.Count - jammer.Health);
-    }
-
-    public void Cure(Jammer player, int value = 1)
-    {
-        var health = player.Health;
-
-        while(health < healthBars.Count && value>0)
+        // ...and restore the ones that were just cured.
+        for (int i = lastKnownHealth; i < currentHealth && i < healthBars.Count; i++)
         {
-            player.Cure();
-            healthBars[health].GetComponent<SpriteRenderer>().color = healthColor;
-            value--;
-            health++;
+            healthBars[i].GetComponent<SpriteRenderer>().color = healthColor;
         }
-    }
 
+        lastKnownHealth = currentHealth;
+    }
 
     public void GainMana(int mana, Jammer player)
     {
@@ -71,84 +75,74 @@ public class FightersDataBinder : MonoBehaviour
 
     public void UseMana(int mana, Jammer player)
     {
-        Debug.Log("Use mana " + mana);
         if (mana > player.Mana) return;
-        StartCoroutine(LoseManaCO(mana, player));     
+        StartCoroutine(LoseManaCO(mana, player));
     }
-    public IEnumerator ChangeHealthColorCO(SpriteRenderer sprite)
-    {
-        while(sprite.color.r>0.01 || sprite.color.g >0.01 || sprite.color.b > 0.01)
-        {
 
-            sprite.color = new Color(Mathf.Lerp(sprite.color.r, 0, Time.deltaTime * colorChangeSpeed), Mathf.Lerp(sprite.color.g, 0, Time.deltaTime * colorChangeSpeed), Mathf.Lerp(sprite.color.b, 0, Time.deltaTime * colorChangeSpeed));
+    private IEnumerator ChangeHealthColorCO(SpriteRenderer sprite)
+    {
+        while (sprite.color.r > 0.01 || sprite.color.g > 0.01 || sprite.color.b > 0.01)
+        {
+            sprite.color = new Color(
+                Mathf.Lerp(sprite.color.r, 0, Time.deltaTime * colorChangeSpeed),
+                Mathf.Lerp(sprite.color.g, 0, Time.deltaTime * colorChangeSpeed),
+                Mathf.Lerp(sprite.color.b, 0, Time.deltaTime * colorChangeSpeed));
             yield return null;
         }
-        sprite.color = new Color(0, 0, 0);
+        sprite.color = Color.black;
     }
 
-    //public IEnumerator ChangeManaColorCO(SpriteRenderer sprite)
-    //{
-    //    while (sprite.color.r < manaColor.r || sprite.color.g < manaColor.g || sprite.color.b < manaColor.b)
-    //    {
-    //        Debug.Log("Changing color " + sprite.color);
-    //        sprite.color = new Color(Mathf.Lerp(sprite.color.r, manaColor.r, Time.deltaTime * colorChangeSpeed), Mathf.Lerp(sprite.color.g, manaColor.g, Time.deltaTime * colorChangeSpeed), Mathf.Lerp(sprite.color.b, manaColor.b, Time.deltaTime * colorChangeSpeed));
-    //        yield return null;
-    //    }
-    //    sprite.color = manaColor;
-    //}
-    public IEnumerator GainManaCO(int mana, Jammer player)
+    private IEnumerator GainManaCO(int mana, Jammer player)
     {
         for (int i = 0; i < mana; i++)
         {
             if (player.Mana < manaBars.Count)
             {
-                manaBars[player.Mana].gameObject.GetComponent<Animator>().SetTrigger("In");
+                manaBars[player.Mana].GetComponent<Animator>().SetTrigger("In");
                 yield return new WaitForSecondsRealtime(manaAnimationDelay);
                 player.GainMana(1);
             }
         }
-        yield return null;
     }
 
-    public IEnumerator LoseManaCO(int mana, Jammer player)
+    private IEnumerator LoseManaCO(int mana, Jammer player)
     {
         for (int i = 0; i < mana; i++)
         {
-            Debug.Log("SPENDING MADONNA TROIA " + player.Mana);
-            manaBars[player.Mana - 1].gameObject.GetComponent<Animator>().SetTrigger("Out");
+            manaBars[player.Mana - 1].GetComponent<Animator>().SetTrigger("Out");
             yield return new WaitForSecondsRealtime(manaAnimationDelay);
             player.SpendMana(1);
-            yield return null;
         }
-        
-        yield return null;
     }
-    public IEnumerator LoseHealthCO(GameObject bar)
+
+    private IEnumerator LoseHealthCO(GameObject bar)
     {
         float timer = 0;
         Vector3 target, startPos;
-        SpriteRenderer sprite = bar.GetComponent<SpriteRenderer>();
         startPos = bar.transform.localPosition;
-        Debug.Log("Hello " + startPos);
-        while(timer < healthLoseAnimationDuration)
+
+        while (timer < healthLoseAnimationDuration)
         {
-            //we randomly choose a target position inside given thresholds
-            target = new Vector3(Random.Range(startPos.x - shakeThreshold, startPos.x + shakeThreshold), Random.Range(startPos.y - shakeThreshold, startPos.y + shakeThreshold), startPos.z);
-            
-            //we move to that position
-            while(Mathf.Abs(bar.transform.localPosition.x- target.x)>0.1f || Mathf.Abs(bar.transform.localPosition.y - target.y) > 0.1f)
+            // Pick a random shake target inside the threshold, then move toward it.
+            target = new Vector3(
+                Random.Range(startPos.x - shakeThreshold, startPos.x + shakeThreshold),
+                Random.Range(startPos.y - shakeThreshold, startPos.y + shakeThreshold),
+                startPos.z);
+
+            while (Mathf.Abs(bar.transform.localPosition.x - target.x) > 0.1f ||
+                   Mathf.Abs(bar.transform.localPosition.y - target.y) > 0.1f)
             {
                 timer += Time.deltaTime;
-                bar.transform.localPosition = new Vector3(Mathf.Lerp(bar.transform.localPosition.x, target.x, Time.deltaTime * shakeSpeed), Mathf.Lerp(bar.transform.localPosition.y, target.y, Time.deltaTime * shakeSpeed), startPos.z);
+                bar.transform.localPosition = new Vector3(
+                    Mathf.Lerp(bar.transform.localPosition.x, target.x, Time.deltaTime * shakeSpeed),
+                    Mathf.Lerp(bar.transform.localPosition.y, target.y, Time.deltaTime * shakeSpeed),
+                    startPos.z);
                 yield return null;
             }
 
-            //repeat after 1 frame
             yield return null;
         }
 
-        //reset position
         bar.transform.localPosition = startPos;
-        Debug.Log("Hello 2" + startPos + bar.transform.localPosition);
     }
 }

@@ -1,12 +1,13 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MiniSequenceState", menuName = "Scriptable Objects/MiniSequenceState")]
-public class MiniSequenceState : ScriptableObject, StateInterface
+public class MiniSequenceState : ScriptableObject, IState
 {
-    public Jammer player1;
-    public Jammer player2;
+    private Jammer player1;
+    private Jammer player2;
 
     public GameObject prefab;
+    [SerializeField] private Vector3 spawnOffset = new Vector3(0, -14, -1);
     private SequenceHandler handler;
     private GameObject prefabClone;
     
@@ -19,11 +20,11 @@ public class MiniSequenceState : ScriptableObject, StateInterface
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
 
-        // Prendo il transform del GameObject "Fight" e ci aggiungo il prefab del minigioco
+        // Posiziono il prefab del minigioco rispetto al root del Fight (vedi FightInstanceManager).
         Vector3 position = Vector3.zero;
-        GameObject fight = GameObject.Find("Fight");
-        if(fight != null)
-            position = fight.transform.position + new Vector3(0, -14, -1);
+        Transform fight = GlobalData.Instance.miniGameTransform;
+        if (fight != null)
+            position = fight.position + spawnOffset;
 
         prefabClone = Instantiate(prefab, position, Quaternion.identity);
         handler = prefabClone.GetComponent<SequenceHandler>();
@@ -42,7 +43,6 @@ public class MiniSequenceState : ScriptableObject, StateInterface
             player2.Input.gameObject.GetComponent<PlayerSequenceInput>().enabled = false;
         
         // Distruggi il prefab del minigioco e resetta l'handler
-        Debug.Log("OnStateExit");
         if (prefabClone != null)
         {
             GameObject.Destroy(prefabClone);

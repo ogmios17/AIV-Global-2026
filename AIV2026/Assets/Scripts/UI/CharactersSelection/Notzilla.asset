@@ -15,3 +15,6 @@ MonoBehaviour:
   characterName: Notzilla
   characterImage: {fileID: 21300000, guid: 457bf412a8d3b6a40af98edf2f2567f8, type: 3}
   zoom: 1
+  characterType: 1
+  isRandom: 0
+  previewImage: {fileID: 21300000, guid: 3a17ea87fbd0ca2499d0a170fb2ac239, type: 3}

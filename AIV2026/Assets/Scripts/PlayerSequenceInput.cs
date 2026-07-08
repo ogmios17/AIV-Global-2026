@@ -10,19 +10,9 @@ public class PlayerSequenceInput : MonoBehaviour
     private void Awake()
     {
         stateManager = GlobalData.Instance.stateManager;
-        Debug.Log(" state manager: ", stateManager);
         binder = GetComponent<PlayerBinder>();
         playerType = binder.Jammer.PlayerType;
         miniSequenceState = stateManager.MiniSequenceState;
-    }
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
     }
 
     public void Press(InputAction.CallbackContext ctx)

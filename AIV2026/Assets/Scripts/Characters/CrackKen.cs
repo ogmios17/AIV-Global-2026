@@ -1,7 +1,8 @@
-using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
-
-public class CrackKen : ICharacter
+/// <summary>
+/// Crack-Ken: ability heals 1 on the next hit; ultimate fully heals on the next hit.
+/// Both are armed by TriggerAbility/TriggerUlt and disarmed if the next move misses.
+/// </summary>
+public class CrackKen : CharacterBase
 {
     public CrackKen(Jammer associatedPlayer)
     {
@@ -10,6 +11,16 @@ public class CrackKen : ICharacter
         associatedPlayer.onMoveMisses += UltiMiss;
         associatedPlayer.onMoveChosen += ResetAbilityTrigger;
         associatedPlayer.onMoveChosen += ResetUltiTrigger;
+    }
+
+    public override void Unsubscribe()
+    {
+        associatedPlayer.onMoveMisses -= AbilityMiss;
+        associatedPlayer.onMoveMisses -= UltiMiss;
+        associatedPlayer.onMoveChosen -= ResetAbilityTrigger;
+        associatedPlayer.onMoveChosen -= ResetUltiTrigger;
+        associatedPlayer.onMoveHits -= AbilityHits;
+        associatedPlayer.onMoveHits -= UltiHits;
     }
 
     public override void TriggerAbility()
@@ -24,33 +35,25 @@ public class CrackKen : ICharacter
         ultiTriggeredThisTurn = true;
     }
 
-    public void UltiHits()
+    private void UltiHits()
     {
         associatedPlayer.onMoveHits -= UltiHits;
-        associatedPlayer.CharacterPrefab.GetComponent<FightersDataBinder>().RefullLife(associatedPlayer);
+        associatedPlayer.Cure(associatedPlayer.MaxHealth); // full heal; la UI segue via OnHealthChanged
     }
 
-    public void AbilityHits()
+    private void AbilityHits()
     {
         associatedPlayer.onMoveHits -= AbilityHits;
-        associatedPlayer.CharacterPrefab.GetComponent<FightersDataBinder>().Cure(associatedPlayer);
+        associatedPlayer.Cure();
     }
 
-    public void UltiMiss()
+    private void UltiMiss()
     {
         associatedPlayer.onMoveHits -= UltiHits;
     }
-    public override void ResetUltiTrigger()
-    {
-        ultiTriggeredThisTurn = false;
-    }
 
-    public void AbilityMiss()
+    private void AbilityMiss()
     {
         associatedPlayer.onMoveHits -= AbilityHits;
-    }
-    public override void ResetAbilityTrigger()
-    {
-        abilityTriggeredThisTurn = false;
     }
 }
