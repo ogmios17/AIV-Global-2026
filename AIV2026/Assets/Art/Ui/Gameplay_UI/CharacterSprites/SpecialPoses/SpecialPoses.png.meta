@@ -1,0 +1,462 @@
+fileFormatVersion: 2
+guid: 41a92fdd645b875499322445be116cda
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Character_CrackKen_Attack0004
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 1318
+        width: 865
+        height: 810
+      alignment: 9
+      pivot: {x: 0.49595377, y: 0.50864196}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e45146b98b469fe4897815f2cce48b3a
+      internalID: -604653990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_CrackKen_Damage
+      rect:
+        serializedVersion: 2
+        x: 2426
+        y: 380
+        width: 852
+        height: 908
+      alignment: 9
+      pivot: {x: 0.5105634, y: 0.4526432}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54308bcdd12c9f54eb498fe3f06e4ed4
+      internalID: -972763483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_CrackKen_Defeat
+      rect:
+        serializedVersion: 2
+        x: 2733
+        y: 2130
+        width: 757
+        height: 787
+      alignment: 9
+      pivot: {x: 0.61162484, y: 0.52223635}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee65997931fcd554fb314b298ceec99c
+      internalID: 299706798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_CrackKen_Guard
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 2990
+        width: 774
+        height: 541
+      alignment: 9
+      pivot: {x: 0.5736434, y: 0.7375231}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ce74d476206f8c4a93f78df8e0f45e2
+      internalID: -973716404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_NotZilla_Attack0000
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 2191
+        width: 923
+        height: 726
+      alignment: 9
+      pivot: {x: 0.5492958, y: 0.54407716}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60353c9209060e346a7b69ad72c5c59b
+      internalID: -1111489977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_NotZilla_Attack0001
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 1321
+        width: 971
+        height: 807
+      alignment: 9
+      pivot: {x: 0.51184344, y: 0.4832714}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f28285bc6fb101543990134a0133141e
+      internalID: 731120138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_NotZilla_Attack0002
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 2928
+        width: 1010
+        height: 603
+      alignment: 9
+      pivot: {x: 0.5069307, y: 0.5771144}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba3ebae26c65e11498a45cb5dc0d4c96
+      internalID: -1601126687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_NotZilla_Attack0003
+      rect:
+        serializedVersion: 2
+        x: 1789
+        y: 2919
+        width: 994
+        height: 612
+      alignment: 9
+      pivot: {x: 0.5150905, y: 0.5849673}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f6eb450499af1248bc1aab5a67fc913
+      internalID: 1038788153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_NotZilla_Damage
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 2276
+        width: 858
+        height: 641
+      alignment: 9
+      pivot: {x: 0.55827504, y: 0.5475819}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61d36127744efe84fa65f783bca56325
+      internalID: 788515945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_NotZilla_Defeat
+      rect:
+        serializedVersion: 2
+        x: 1786
+        y: 2178
+        width: 945
+        height: 739
+      alignment: 9
+      pivot: {x: 0.5037037, y: 0.54533154}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 721602a8872c7a94f9ff3428decb93dc
+      internalID: -832156107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_NotZilla_Guard
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 431
+        width: 774
+        height: 857
+      alignment: 9
+      pivot: {x: 0.41989663, y: 0.46674445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85f3686f1db89f54aba532995de27c76
+      internalID: -840178250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_CrackKen_Attack0000
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1328
+        width: 784
+        height: 800
+      alignment: 9
+      pivot: {x: 0.6505102, y: 0.515}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91bcb5cc945f3f7409784c80c8844c25
+      internalID: 1141168016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_CrackKen_Attack0001
+      rect:
+        serializedVersion: 2
+        x: 1720
+        y: 410
+        width: 704
+        height: 878
+      alignment: 9
+      pivot: {x: 0.609375, y: 0.4692483}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f10ea07c6d208f4aba3974e6e72c663
+      internalID: -346692735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_CrackKen_Attack0002
+      rect:
+        serializedVersion: 2
+        x: 2627
+        y: 1290
+        width: 904
+        height: 838
+      alignment: 9
+      pivot: {x: 0.47455752, y: 0.49164677}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fb9d30c276a6214990c125c3f6d6dac
+      internalID: 1200778546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_CrackKen_Attack0003
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 430
+        width: 941
+        height: 858
+      alignment: 9
+      pivot: {x: 0.455898, y: 0.4801865}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8527cde2936b9d42bfd111a214cbd25
+      internalID: 429145181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: af0fa3aee1c41844887c3b0623fe8ade
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Character_CrackKen_Attack0000: 1141168016
+      Character_CrackKen_Attack0001: -346692735
+      Character_CrackKen_Attack0002: 1200778546
+      Character_CrackKen_Attack0003: 429145181
+      Character_CrackKen_Attack0004: -604653990
+      Character_CrackKen_Damage: -972763483
+      Character_CrackKen_Defeat: 299706798
+      Character_CrackKen_Guard: -973716404
+      Character_NotZilla_Attack0000: -1111489977
+      Character_NotZilla_Attack0001: 731120138
+      Character_NotZilla_Attack0002: -1601126687
+      Character_NotZilla_Attack0003: 1038788153
+      Character_NotZilla_Damage: 788515945
+      Character_NotZilla_Defeat: -832156107
+      Character_NotZilla_Guard: -840178250
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
