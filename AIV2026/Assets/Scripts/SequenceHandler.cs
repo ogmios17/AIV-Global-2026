@@ -40,7 +40,7 @@ public class SequenceHandler : MonoBehaviour
     private Queue<string> sequence2 = new Queue<string>();
     private int player1SequenceIndex;
     private int player2SequenceIndex;
-    
+
     // Input Maps
     private string[] controllerInputs = {
         "/dpad/up",

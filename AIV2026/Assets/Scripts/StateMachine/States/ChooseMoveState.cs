@@ -27,6 +27,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     public GameObject prefab;
     private int nextMinigame;
     private bool clashSentencePerformed;
+    private GameObject fade;
 
     [Header("Available Move Cards")]
     public MoveCard[] availableMoves;
@@ -35,6 +36,9 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
     public void OnStateEnter()
     {
+        fade = GameObject.Find("Fight/Canvas/Fader");
+        if(fade!= null)
+            fade.GetComponent<Animator>().SetTrigger("Out");
         // Setto la scelta delle carte dei giocatori a null (quando entrano in choosemove ancora non hanno scelto nulla)
         GlobalData.Instance.Player1.ChosenMove = null;
         GlobalData.Instance.Player2.ChosenMove = null;
@@ -236,6 +240,10 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             player1.FighterAnim.SetTrigger("Next");
             AudioManager.Instance.PlayCancelCard();
             AudioManager.Instance.PlayCrowdPanic(1f);
+            if(fade == null)
+                fade = GameObject.Find("Fight/Canvas/Fader");
+            fade.GetComponent<Animator>().ResetTrigger("Out");
+            fade.GetComponent<Animator>().SetTrigger("In");
             ChooseMinigame();
             Debug.Log("Clash");
         }

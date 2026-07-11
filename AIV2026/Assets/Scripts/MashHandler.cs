@@ -30,6 +30,7 @@ public class MashHandler : MonoBehaviour
     private bool isFinished = false;
     private bool isEnding = false; // Per evitare chiamate multiple a EndMinigame
     public bool IsFinished { get => isFinished; }
+
     private float timer =0;
     private List<string> loveSentences;
     private bool timerActive = true;
