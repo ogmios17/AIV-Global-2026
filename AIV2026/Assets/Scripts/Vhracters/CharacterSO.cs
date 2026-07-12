@@ -8,4 +8,6 @@ public class CharacterSO : ScriptableObject
     public Sprite minigameMashIcon;
     public int abilityCost = 2;
     public int ultCost = 8;
+    public string abilityText;
+    public string ultiText;
 }

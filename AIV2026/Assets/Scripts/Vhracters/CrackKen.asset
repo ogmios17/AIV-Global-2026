@@ -15,3 +15,7 @@ MonoBehaviour:
   characterType: 0
   icon: {fileID: 21300000, guid: b9c0d503a5fc01b40b454b3e8f124e05, type: 3}
   minigameMashIcon: {fileID: 21300000, guid: 969e0d6835a06084b9bcc1f873abaf57, type: 3}
+  abilityCost: 2
+  ultCost: 8
+  abilityText: Lifesteal turn!
+  ultiText: MEGA LIFESTEAL! \nRestore full health if you deal damage next turn

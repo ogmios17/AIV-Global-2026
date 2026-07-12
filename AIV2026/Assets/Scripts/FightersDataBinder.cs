@@ -114,7 +114,6 @@ public class FightersDataBinder : MonoBehaviour
     {
         for (int i = 0; i < mana; i++)
         {
-            Debug.Log("SPENDING MADONNA TROIA " + player.Mana);
             manaBars[player.Mana - 1].gameObject.GetComponent<Animator>().SetTrigger("Out");
             yield return new WaitForSecondsRealtime(manaAnimationDelay);
             player.SpendMana(1);

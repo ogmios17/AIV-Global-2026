@@ -36,7 +36,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
     public void OnStateEnter()
     {
-        fade = GameObject.Find("Fight/Canvas/Fader");
+        fade = DataFightHelper.Instance?.Fader;
         if(fade!= null)
             fade.GetComponent<Animator>().SetTrigger("Out");
         // Setto la scelta delle carte dei giocatori a null (quando entrano in choosemove ancora non hanno scelto nulla)
