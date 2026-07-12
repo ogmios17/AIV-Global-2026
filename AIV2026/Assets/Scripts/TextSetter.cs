@@ -11,7 +11,8 @@ public class TextSetter : MonoBehaviour
 
     public void Awake()
     {
-        GlobalData.Instance.text = this;
+        if(GlobalData.Instance.text == null)
+            GlobalData.Instance.text = this;
     }
 
     public void SetTextMessage(string message)
