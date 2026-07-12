@@ -7,6 +7,7 @@ public class CrackKen : ICharacter
     private GameObject popUp;
     public CrackKen(Jammer associatedPlayer)
     {
+        this.CharacterData = GlobalData.Instance.Characters.Find(x => x.characterType == associatedPlayer.CharacterType);
         this.associatedPlayer = associatedPlayer;
         associatedPlayer.onMoveMisses += AbilityMiss;
         associatedPlayer.onMoveMisses += UltiMiss;
