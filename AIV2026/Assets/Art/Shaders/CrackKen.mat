@@ -32,7 +32,19 @@ Material:
         m_Texture: {fileID: 2800000, guid: eeed8cce9c4308b4e96a0c93eaa19d53, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_9e73e0a59cc54fc090f06b2ee6af10b5_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 13f8a2c6eed5781438663cdf9d204f2f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_c4db972e03d54eedb2ed63dd540df45e_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 173625665c88cf2448e3d8a0f6809908, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture2DAsset_943f9df4b06b4a7bb9880e1601764dce_Out_0_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Ultimate:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -55,12 +67,17 @@ Material:
     - _CHARACTER: 1
     - _Fuzziness: 0.1
     - _NotZilla: 0
-    - _Outline: 0
+    - _Outline: 1
     - _OutlineStrenght: 55.8
     - _PatternScale: 18
     - _Range: 0.384
     - _SpeedX: 0.81
     - _SpeedY: 0.49
+    - _UltimateSecondarySpeed: -0.12
+    - _UltimateSpeed: 0.2
+    - _UltimateSpeed_1: -0.12
+    - _Ultimate_Opacity: 0.5
+    - _Ultimate_Tiling: 33
     - _Widht: 0.1
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
@@ -80,6 +97,7 @@ Material:
     - _TentacoliSopra: {r: 1, g: 0.5411765, b: 1, a: 1}
     - _TentacoliSotto: {r: 0.35686278, g: 0.5137254, b: 0.972549, a: 1}
     - _To: {r: 0.34996653, g: 0.04313725, b: 0.5176471, a: 1}
+    - _UltimateColor: {r: 3.6886063, g: 0, b: 0.18081476, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5366177582167285581

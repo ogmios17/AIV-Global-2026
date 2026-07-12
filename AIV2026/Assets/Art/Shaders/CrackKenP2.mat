@@ -83,7 +83,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 1
+    - _Alpha: -2
     - _AlphaClip: 0.71
     - _CHARACTER: 1
     - _CrackKen: 0
@@ -91,7 +91,7 @@ Material:
     - _KrackenOutline: 0
     - _NotZilla: 0
     - _NotzillaOutline: 0
-    - _Outline: 0
+    - _Outline: 1
     - _OutlineStrenght: 100
     - _PatternScale: 18
     - _QueueControl: -1
@@ -101,6 +101,7 @@ Material:
     - _SpeedY: 0.72
     - _UltimateSpeed: 0.68
     - _UltimateSpeed_1: 0.22
+    - _Ultimate_Opacity: 1
     - _Ultimate_Tiling: 31.86
     - _Ultimate_opacity: 0.51
     - _Widht: 0.095
@@ -122,7 +123,7 @@ Material:
     - _TentacoliSopra: {r: 1, g: 0.6745283, b: 0.7535537, a: 1}
     - _TentacoliSotto: {r: 0.8679245, g: 0.45830154, b: 0.41349235, a: 1}
     - _To: {r: 0.34996653, g: 0.04313725, b: 0.5176471, a: 1}
-    - _UltimateColor: {r: 1, g: 1, b: 1, a: 1}
+    - _UltimateColor: {r: 8, g: 5.292864, b: 1.0943398, a: 1}
     - _UltimateTiling: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
