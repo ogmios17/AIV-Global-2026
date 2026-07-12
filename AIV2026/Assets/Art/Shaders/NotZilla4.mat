@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NotZillaP2
+  m_Name: NotZilla4
   m_Shader: {fileID: -6465566751694194690, guid: 5aaad4cab89fcdf4fabf80774b1719e6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -87,7 +87,7 @@ Material:
     - _KrackenOutline: 1
     - _NotZilla: 1
     - _NotzillaOutline: 1
-    - _Outline: 1
+    - _Outline: 0
     - _OutlineStrenght: 100
     - _PatternScale: 18
     - _QueueControl: -1
@@ -95,30 +95,32 @@ Material:
     - _Range: 0.384
     - _SpeedX: 0.44
     - _SpeedY: 0.53
+    - _UltimateSecondarySpeed: -0.12
     - _UltimateSpeed: 0.68
     - _UltimateSpeed_1: 0.22
+    - _Ultimate_Opacity: 0.2
     - _Ultimate_Tiling: 69.6
     - _Ultimate_opacity: 0.51
     - _Widht: 0.159
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
     - _DettagliMascher: {r: 0.4031497, g: 0.5, b: 0.3419811, a: 1}
-    - _DettagliMaschera: {r: 0.9843138, g: 0.73333335, b: 0.6784314, a: 1}
+    - _DettagliMaschera: {r: 0.759434, g: 1, b: 0.9632469, a: 1}
     - _DettagliMaschera_1: {r: 0.7529413, g: 0.9176471, b: 0.38823527, a: 1}
     - _From: {r: 0.098039225, g: 0.3921569, b: 0.81568635, a: 1}
-    - _Guanti: {r: 0.2901961, g: 0.47450984, b: 0.5882353, a: 1}
+    - _Guanti: {r: 0.19873619, g: 0.5471698, b: 0.5402701, a: 1}
     - _Guantoni: {r: 0.76470596, g: 0.02745098, b: 0.34509796, a: 1}
     - _Maschera: {r: 1, g: 0.12156857, b: 0.7098039, a: 1}
     - _Maschera2: {r: 0.7529413, g: 0.07450979, b: 0.5803921, a: 1}
     - _Occhio: {r: 0.37647057, g: 0.854902, b: 0.9058824, a: 1}
     - _OutlineColor: {r: 0.31102327, g: 6.498019, b: 0, a: 1}
-    - _Pancia: {r: 0.20000002, g: 0.24705884, b: 0.34509805, a: 1}
-    - _Pelle: {r: 0.2090305, g: 0.18916874, b: 0.3679245, a: 1}
-    - _Spikes: {r: 0.9333334, g: 0.5254902, b: 0.58431375, a: 1}
+    - _Pancia: {r: 0.2707369, g: 0.36943564, b: 0.49056602, a: 1}
+    - _Pelle: {r: 0.10980393, g: 0.14509805, b: 0.25490198, a: 1}
+    - _Spikes: {r: 0.9716981, g: 0.14208792, b: 0.32779637, a: 1}
     - _TentacoliSopra: {r: 1, g: 0.5411765, b: 1, a: 1}
     - _TentacoliSotto: {r: 0.35686278, g: 0.5137254, b: 0.972549, a: 1}
     - _To: {r: 0.34996653, g: 0.04313725, b: 0.5176471, a: 1}
-    - _UltimateColor: {r: 1, g: 0.25, b: 0.25, a: 1}
+    - _UltimateColor: {r: 3.4339628, g: 0, b: 0.12427032, a: 1}
     - _UltimateColor_1: {r: 0.9150943, g: 0.3237362, b: 0.6821026, a: 1}
     - _UltimateTiling: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
