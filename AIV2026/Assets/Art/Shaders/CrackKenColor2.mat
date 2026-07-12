@@ -91,7 +91,7 @@ Material:
     - _KrackenOutline: 0
     - _NotZilla: 0
     - _NotzillaOutline: 0
-    - _Outline: 0
+    - _Outline: 1
     - _OutlineStrenght: 100
     - _PatternScale: 18
     - _QueueControl: -1
@@ -124,7 +124,7 @@ Material:
     - _TentacoliSopra: {r: 0.75243384, g: 0.4669811, b: 1, a: 1}
     - _TentacoliSotto: {r: 0.6812199, g: 0.99215686, b: 0.23921566, a: 1}
     - _To: {r: 0.34996653, g: 0.04313725, b: 0.5176471, a: 1}
-    - _UltimateColor: {r: 2.9960785, g: 1.5716703, b: 0.07843135, a: 1}
+    - _UltimateColor: {r: 3.2155943, g: 0.76323986, b: 0, a: 1}
     - _UltimateTiling: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

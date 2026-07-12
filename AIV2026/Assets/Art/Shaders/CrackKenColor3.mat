@@ -124,7 +124,7 @@ Material:
     - _TentacoliSopra: {r: 0.45882356, g: 0.5294118, b: 0.5647059, a: 1}
     - _TentacoliSotto: {r: 0.6901961, g: 0.81568635, b: 0.2627451, a: 1}
     - _To: {r: 0.34996653, g: 0.04313725, b: 0.5176471, a: 1}
-    - _UltimateColor: {r: 4.079591, g: 5.992157, b: 0.1568627, a: 1}
+    - _UltimateColor: {r: 2.0397954, g: 2.9960785, b: 0.07843135, a: 1}
     - _UltimateTiling: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

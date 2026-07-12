@@ -91,7 +91,7 @@ Material:
     - _KrackenOutline: 0
     - _NotZilla: 0
     - _NotzillaOutline: 0
-    - _Outline: 0
+    - _Outline: 1
     - _OutlineStrenght: 100
     - _PatternScale: 18
     - _QueueControl: -1
@@ -102,7 +102,7 @@ Material:
     - _UltimateSecondarySpeed: -0.12
     - _UltimateSpeed: 0.2
     - _UltimateSpeed_1: 0.22
-    - _Ultimate_Opacity: 0.5
+    - _Ultimate_Opacity: 0.2
     - _Ultimate_Tiling: 33
     - _Ultimate_opacity: 0.51
     - _Widht: 0.095
@@ -110,21 +110,21 @@ Material:
     - White: {r: 1, g: 1, b: 1, a: 1}
     - _DettagliMascher: {r: 0.4031497, g: 0.5, b: 0.3419811, a: 1}
     - _DettagliMaschera: {r: 0.6666667, g: 0.9647059, b: 0.47843134, a: 1}
-    - _DettagliMaschera_1: {r: 1, g: 0.9279464, b: 0.8537736, a: 1}
+    - _DettagliMaschera_1: {r: 0.36981624, g: 0.15294115, b: 0.81960785, a: 1}
     - _From: {r: 0.098039225, g: 0.3921569, b: 0.81568635, a: 1}
     - _Guanti: {r: 0.2666667, g: 0.854902, b: 0, a: 1}
-    - _Guantoni: {r: 1, g: 0.46330824, b: 0.24056602, a: 1}
-    - _Maschera: {r: 1, g: 0.8750726, b: 0.2783019, a: 1}
-    - _Maschera2: {r: 1, g: 0.8745099, b: 0.2784314, a: 1}
-    - _Occhio: {r: 0.28773582, g: 0.67592496, b: 1, a: 1}
+    - _Guantoni: {r: 0.64434415, g: 0.14509803, b: 0.96862745, a: 1}
+    - _Maschera: {r: 0.9353567, g: 0.99215686, b: 0, a: 1}
+    - _Maschera2: {r: 0.9921569, g: 0.7725491, b: 0, a: 1}
+    - _Occhio: {r: 0.48126557, g: 0.9716981, b: 0.6564975, a: 1}
     - _OutlineColor: {r: 0.31102327, g: 6.498019, b: 0, a: 1}
     - _Pancia: {r: 0.09411766, g: 0.8274511, b: 1, a: 1}
     - _Pelle: {r: 0.89019614, g: 0.26666668, b: 0.54901963, a: 1}
     - _Spikes: {r: 0.854902, g: 0.3568628, b: 0.8509805, a: 1}
-    - _TentacoliSopra: {r: 0.46226418, g: 0.4350412, b: 0.4077519, a: 1}
-    - _TentacoliSotto: {r: 0.514151, g: 0.8557897, b: 1, a: 1}
+    - _TentacoliSopra: {r: 1, g: 0.83554184, b: 0.5990566, a: 1}
+    - _TentacoliSotto: {r: 0.8773585, g: 0.24417053, b: 0.492169, a: 1}
     - _To: {r: 0.34996653, g: 0.04313725, b: 0.5176471, a: 1}
-    - _UltimateColor: {r: 0.64535713, g: 0.07843135, b: 2.9960785, a: 1}
+    - _UltimateColor: {r: 1.2907143, g: 0.1568627, b: 5.992157, a: 1}
     - _UltimateTiling: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
