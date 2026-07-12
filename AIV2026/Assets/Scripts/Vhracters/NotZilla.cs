@@ -94,7 +94,7 @@ public class NotZilla : ICharacter
 
     public void ChargeUlti()
     {
-        ultiCharge+=2;
+        ultiCharge+=1;
         Debug.Log("Notzilla charges " + ultiCharge);
     }
 }
