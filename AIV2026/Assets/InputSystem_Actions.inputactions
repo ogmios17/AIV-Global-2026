@@ -169,8 +169,19 @@
                 },
                 {
                     "name": "",
+                    "id": "47c0dc8f-db85-42d0-b165-2122d7cf4863",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "199fd69c-e097-42bd-9df1-133bc0dd7c88",
-                    "path": "",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
