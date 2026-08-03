@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class StateNode
 {
-    public StateInterface state { get; }
-    public HashSet<TransitionInterface> transitions { get; }
+    public IState State { get; }
+    public HashSet<ITransition> Transitions { get; }
 
-    public StateNode(StateInterface state)
+    public StateNode(IState state)
     {
-        this.state = state;
-        transitions = new HashSet<TransitionInterface>();
+        this.State = state;
+        Transitions = new HashSet<ITransition>();
     }
 
-    public void AddTransition(StateInterface to, Predicate condition)
+    public void AddTransition(IState to, IPredicate condition)
     {
-        transitions.Add(new Transition(to,condition));
+        Transitions.Add(new Transition(to, condition));
     }
 }

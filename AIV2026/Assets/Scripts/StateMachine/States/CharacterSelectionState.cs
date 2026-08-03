@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CharacterSelectionState", menuName = "Scriptable Objects/CharacterSelectionState")]
-public class CharacterSelectionState : ScriptableObject, StateInterface
+public class CharacterSelectionState : ScriptableObject, IState
 {
 
     public void OnStateEnter() {

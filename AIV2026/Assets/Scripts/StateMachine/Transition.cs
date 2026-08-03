@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class Transition:TransitionInterface
+public class Transition:ITransition
 {
-    public StateInterface to { get; }
-    public Predicate condition { get; }
+    public IState To { get; }
+    public IPredicate Condition { get; }
 
-    public Transition(StateInterface to, Predicate condition)
+    public Transition(IState to, IPredicate condition)
     {
-        this.to = to;
-        this.condition = condition;
+        this.To = to;
+        this.Condition = condition;
     }
 }

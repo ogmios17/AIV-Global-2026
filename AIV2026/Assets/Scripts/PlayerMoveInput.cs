@@ -23,11 +23,6 @@ public class PlayerMoveInput : MonoBehaviour
         moveState = GlobalData.Instance.stateManager.ChooseMoveState;
     }
 
-    private void Update()
-    {
-        
-    }
-
     public void Attack(InputAction.CallbackContext ctx)
     {
         if (!ctx.performed) return;
@@ -143,5 +138,17 @@ public class PlayerMoveInput : MonoBehaviour
         else
             moveState.OnP2Received(shove);
         // Debug.Log("Shove");
+    }
+
+    public void Ability(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        moveState.TryUseAbility(binder.Jammer);
+    }
+
+    public void Ultimate(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        moveState.TryUseUlti(binder.Jammer);
     }
 }

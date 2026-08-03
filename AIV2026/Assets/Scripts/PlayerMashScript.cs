@@ -1,5 +1,3 @@
-using FMODUnity;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,20 +12,9 @@ public class PlayerMashScript : MonoBehaviour
     private void OnEnable()
     {
         stateManager = GlobalData.Instance.stateManager;
-        Debug.Log(" state manager: ", stateManager);
         binder = GetComponent<PlayerBinder>();
         playerType = binder.Jammer.PlayerType;
         miniMashState = stateManager.MiniMashState;
-    }
-    
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
     }
 
     public void Mash(InputAction.CallbackContext ctx)

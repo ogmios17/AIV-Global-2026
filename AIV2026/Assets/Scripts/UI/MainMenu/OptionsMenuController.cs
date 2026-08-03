@@ -6,6 +6,7 @@ public class OptionsMenuController : MonoBehaviour
     [SerializeField] private Slider slider;
 
 
+<<<<<<< HEAD
 //   void Awake()
 //   {
 //       if (AudioManager.Instance != null)
@@ -29,4 +30,19 @@ public class OptionsMenuController : MonoBehaviour
 //   {
 //
 //   }
+=======
+    void Awake()
+    {
+        if (AudioManager.Instance != null)
+        {
+            slider.value = AudioManager.Instance.GetMasterVolume();
+            slider.onValueChanged.AddListener(OnVolumeChanged);
+        }
+    }
+
+    private void OnVolumeChanged(float value)
+    {
+        AudioManager.Instance.SetMasterVolume(value);
+    }
+>>>>>>> origin/develop
 }

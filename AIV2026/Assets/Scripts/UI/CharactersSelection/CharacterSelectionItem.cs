@@ -30,6 +30,10 @@ public class CharacterSelectionItem : MonoBehaviour
     private bool _isPlayer1Hovering = false;
     private bool _isPlayer2Hovering = false;
 
+    /// <summary>The data card this item represents, set by CharacterSelectionManager on spawn.</summary>
+    public CharacterSelectionCard Card { get; private set; }
+    public void Bind(CharacterSelectionCard card) => Card = card;
+
     void Start()
     {
         CharacterSelectionInputManager inputManager = transform.GetComponentInParent<CharacterSelectionInputManager>();

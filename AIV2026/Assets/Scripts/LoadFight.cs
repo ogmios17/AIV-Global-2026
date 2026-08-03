@@ -18,16 +18,14 @@ public class LoadFight : MonoBehaviour
 
     private Jammer player1;
     private Jammer player2;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
 
-        Debug.Log(player1.CharacterType + " "+ player2.CharacterType);
         player1.CharacterPrefab = Instantiate(GetPrefab(player1.CharacterType), p1Position);
         player2.CharacterPrefab = Instantiate(GetPrefab(player2.CharacterType), p2Position);
-        player2.CharacterPrefab.transform.rotation = new Quaternion(0, 180, 0, 1);
+        player2.CharacterPrefab.transform.rotation = Quaternion.Euler(0, 180, 0);
         Animator[] animators = player1.CharacterPrefab.GetComponentsInChildren<Animator>();
         GlobalData.Instance.Player1.FighterAnim = animators[0];
         GlobalData.Instance.Player1.CardsAnim = animators[1];
@@ -35,12 +33,10 @@ public class LoadFight : MonoBehaviour
         animators = player2.CharacterPrefab.GetComponentsInChildren<Animator>();
         GlobalData.Instance.Player2.FighterAnim = animators[0];
         GlobalData.Instance.Player2.CardsAnim = animators[1];
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Aggancio la UI vita ai rispettivi Jammer (aggiornamento via evento).
+        player1.CharacterPrefab.GetComponent<FightersDataBinder>().Bind(player1);
+        player2.CharacterPrefab.GetComponent<FightersDataBinder>().Bind(player2);
     }
 
     private GameObject GetPrefab(CharacterType type)

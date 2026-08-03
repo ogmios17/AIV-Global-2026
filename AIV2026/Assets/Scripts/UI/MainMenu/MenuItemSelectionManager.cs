@@ -30,23 +30,6 @@ public class MenuItemSelectionManager : MonoBehaviour
         StartCoroutine(SetSelectedAfterOneFrame(MenuItems[0]));
     }
 
-    private void Update()
-    {
-        // If we move right
-        //if (InputManager.Instance.NavigationInput.x > 0)
-        //{
-        //    // Select the next menu item
-        //    HandleNextMenuItemSelection(1);
-        //}
-        //else if (InputManager.Instance.NavigationInput.x < 0)
-        //{
-        //    // Select the previous menu item
-        //    HandleNextMenuItemSelection(-1);
-        //}
-
-        // If we move left
-    }
-
     private IEnumerator SetSelectedAfterOneFrame(GameObject menuItem)
     {
         yield return null; // Wait for one frame

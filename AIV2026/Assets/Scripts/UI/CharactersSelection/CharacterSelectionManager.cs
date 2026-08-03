@@ -21,6 +21,13 @@ public class CharacterSelectionManager : MonoBehaviour
         GameObject cardObject = Instantiate(characterCardPrefab, transform);
         cardObject.name = characterCard.characterName;
 
+        // Link the visual item to its data card (source of truth for type + preview).
+        CharacterSelectionItem item = cardObject.GetComponentInChildren<CharacterSelectionItem>();
+        if (item != null)
+            item.Bind(characterCard);
+        else
+            Debug.LogWarning($"[CharacterSelectionManager] No CharacterSelectionItem on card '{characterCard.characterName}'.");
+
         // Update UI elements
         Image characterImage = cardObject.transform.Find("CardContainer/CharacterImage").GetComponent<Image>();
         // TextMeshProUGUI characterName = cardObject.transform.Find("CardContainer/CharacterNameContainer").GetComponentInChildren<TextMeshProUGUI>();

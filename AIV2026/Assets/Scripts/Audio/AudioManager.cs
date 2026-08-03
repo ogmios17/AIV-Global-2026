@@ -211,7 +211,7 @@ public class AudioManager : MonoBehaviour
     private IEnumerator CrowdNomixAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        StartRandomCrowdNomix(); // Usa la Coroutine già presente
+        StartRandomCrowdNomix(); // Usa la Coroutine giï¿½ presente
     }
 
     public void UpdateCombatMusicByHealth(float crackenHP, float notZillaHP)
@@ -453,12 +453,5 @@ public class AudioManager : MonoBehaviour
     private void Play(EventReference evt)
     {
         FMODUnity.RuntimeManager.PlayOneShot(evt);
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

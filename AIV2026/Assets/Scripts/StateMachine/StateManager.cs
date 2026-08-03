@@ -21,12 +21,7 @@ public class StateManager : MonoBehaviour
     private MiniMashState miniMashState;
     [SerializeField]
     private MiniSequenceState miniSequenceState;
-    private Jammer player1;
-    private Jammer player2;
-    private bool next = false;
-
-    //public Jammer Player1 { get => player1; set => player1 = value; }
-    //public Jammer Player2 { get => player2; set => player2 = value; }
+    private bool nextRequested;
 
     public MiniMashState MiniMashState {  get { return miniMashState; } }
     public MiniSequenceState MiniSequenceState { get { return miniSequenceState; } }
@@ -40,9 +35,9 @@ public class StateManager : MonoBehaviour
         DontDestroyOnLoad(this);
         //chooseMoveState = new ChooseMoveState();
         gameStateMachine.AddTransition( idleState, chooseMoveState,
-        new FuncPredicate(() => idleState.Handler._choicesDone));
+        new FuncPredicate(() => idleState.Handler.ChoicesDone));
         gameStateMachine.AddTransition(startGameState, idleState,
-        new FuncPredicate(() => next));
+        new FuncPredicate(() => nextRequested));
         gameStateMachine.AddTransition( chooseMoveState, miniMashState,
             new FuncPredicate(() => chooseMoveState.NextMinigame==0));
         gameStateMachine.AddTransition(chooseMoveState, miniSequenceState,
@@ -79,7 +74,7 @@ public class StateManager : MonoBehaviour
     {
         if (gameStateMachine.NextNode != null)
         {
-            gameStateMachine.SetState(gameStateMachine.NextNode.state);
+            gameStateMachine.SetState(gameStateMachine.NextNode.State);
         }
     }
 
@@ -88,9 +83,10 @@ public class StateManager : MonoBehaviour
         gameStateMachine.NextNode = node;
     }
 
-    public void GoNext()
+    /// <summary>One-shot signal that advances StartGame -> Idle.</summary>
+    public void RequestNext()
     {
-        next = !next;
+        nextRequested = true;
     }
 
 }

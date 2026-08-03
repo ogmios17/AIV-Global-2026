@@ -9,7 +9,7 @@ public class StateMachine
     private StateNode previous;
     private StateNode next;
     private Dictionary<Type, StateNode> nodes = new();
-    private HashSet<TransitionInterface> anyTransition = new();
+    private HashSet<ITransition> anyTransition = new();
 
     public StateNode CurrentNode { get => current; }
     public StateNode PreviousNode { get => previous; }
@@ -21,18 +21,18 @@ public class StateMachine
         var transition = GetTransition();
         if(transition != null)
         {
-            ChangeState(transition.to);
+            ChangeState(transition.To);
         }
 
-        current.state?.OnStateStay();
+        current.State?.OnStateStay();
     }
 
     public void FixedUpdate()
     {
-        current.state?.OnFixedStateStay();
+        current.State?.OnFixedStateStay();
     }
 
-    public void SetState(StateInterface state)
+    public void SetState(IState state)
     {
         next = null;
         if(current != null)
@@ -40,44 +40,42 @@ public class StateMachine
             previous = current;
         }
         current = nodes[state.GetType()];
-        current.state?.OnStateEnter();
-        Debug.Log("state set! " +state);
+        current.State?.OnStateEnter();
     }
 
-    void ChangeState(StateInterface state)
+    void ChangeState(IState state)
     {
-        if (state == current.state) return;
+        if (state == current.State) return;
         next = null;
         previous = current;
-        var nextState = nodes[state.GetType()].state;
-        previous.state?.OnStateExit();
+        var nextState = nodes[state.GetType()].State;
+        previous.State?.OnStateExit();
         nextState?.OnStateEnter();
         current = nodes[state.GetType()];
-        Debug.Log("state changed! " + state);
     }
 
-    TransitionInterface GetTransition()
+    ITransition GetTransition()
     {
         foreach(var transition in anyTransition) 
-            if(transition.condition.Evaluate())
+            if(transition.Condition.Evaluate())
                 return transition;
-        foreach(var transition in current.transitions)
-            if (transition.condition.Evaluate())
+        foreach(var transition in current.Transitions)
+            if (transition.Condition.Evaluate())
                 return transition;
         return null;
     }
 
-    public void AddTransition(StateInterface from, StateInterface to, Predicate condition)
+    public void AddTransition(IState from, IState to, IPredicate condition)
     {
-        GetOrAddNode(from).AddTransition(GetOrAddNode(to).state, condition);
+        GetOrAddNode(from).AddTransition(GetOrAddNode(to).State, condition);
     }
 
-    public void AddAnyTransition(StateInterface to, Predicate condition)
+    public void AddAnyTransition(IState to, IPredicate condition)
     {
-        anyTransition.Add(new Transition(GetOrAddNode(to).state,condition));
+        anyTransition.Add(new Transition(GetOrAddNode(to).State,condition));
     }
 
-   public StateNode GetOrAddNode(StateInterface state)
+   public StateNode GetOrAddNode(IState state)
     {
         var node = nodes.GetValueOrDefault(state.GetType());  
         
