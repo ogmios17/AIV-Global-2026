@@ -13,8 +13,8 @@ public class FMODEvents : MonoBehaviour
     [System.Serializable]
     public class VCAElement
     {
-        public string name; 
-        public string vcaPath; 
+        public string name;
+        public string vcaPath;
         public Slider controllerSlider;
 
         [HideInInspector]
@@ -23,7 +23,6 @@ public class FMODEvents : MonoBehaviour
 
     public List<VCAElement> vcaList;
 
-   
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -36,24 +35,37 @@ public class FMODEvents : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
         foreach (var vca in vcaList)
         {
-            // Recupera l'istanza da FMOD
-            vca.vcaInstance = FMODUnity.RuntimeManager.GetVCA(vca.vcaPath);
+            // 1. Recupera l'istanza del VCA da FMOD
+            vca.vcaInstance = RuntimeManager.GetVCA(vca.vcaPath);
 
-            // Imposta lo slider al valore attuale del VCA (per coerenza all'avvio)
-            float currentVolume;
-            vca.vcaInstance.getVolume(out currentVolume);
+            // 2. Genera una chiave univoca di salvataggio per ogni VCA (es. "VCA_Volume_Music")
+            string saveKey = "VCA_Volume_" + vca.name;
+
+            // 3. Legge il valore salvato su disco. Se non esiste, imposta di default 0.5f (50%)
+            float savedVolume = PlayerPrefs.GetFloat(saveKey, 0.5f);
+
+            // 4. Applica subito il volume caricato all'istanza FMOD
+            vca.vcaInstance.setVolume(savedVolume);
+
+            // 5. Configura lo slider visivo (se presente)
             if (vca.controllerSlider != null)
             {
-                vca.controllerSlider.value = currentVolume;
+                // Rimuove vecchi listener per evitare duplicati
+                vca.controllerSlider.onValueChanged.RemoveAllListeners();
 
-                // Aggiunge l'ascoltatore via codice per non doverlo fare a mano in Unity
-                vca.controllerSlider.onValueChanged.AddListener((val) => {
+                // Imposta la posizione visiva dello slider al valore salvato
+                vca.controllerSlider.value = savedVolume;
+
+                // Quando muovi lo slider: aggiorna FMOD e salva su disco
+                vca.controllerSlider.onValueChanged.AddListener((val) =>
+                {
                     vca.vcaInstance.setVolume(val);
+                    PlayerPrefs.SetFloat(saveKey, val);
+                    PlayerPrefs.Save();
                 });
             }
         }

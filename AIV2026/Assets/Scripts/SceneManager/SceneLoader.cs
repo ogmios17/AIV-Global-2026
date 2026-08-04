@@ -10,7 +10,8 @@ public class SceneLoader : MonoBehaviour
 
     [Header("Music Settings")]
     [Tooltip("Assegna le tracce musicali")]
-    [SerializeField] private EventReference[] evtRef;
+    [SerializeField] private EventReference musicTitle;
+    [SerializeField] private EventReference musicCombat;
     private EventInstance musicTitleInstance;
     private EventInstance musicCombatInstance;
 
@@ -26,6 +27,12 @@ public class SceneLoader : MonoBehaviour
         {
             Destroy(gameObject);  // Distrugge duplicati
         }
+
+    }
+
+    private void Start()
+    {
+        musicTitleInstance = FMODAudioManager.Instance.PlayAudioInstance(musicTitle);
     }
 
     public void Load(string sceneName)
@@ -46,10 +53,11 @@ public class SceneLoader : MonoBehaviour
             yield return null;
 
         asyncLoad.allowSceneActivation = true;
-        if (IsCombatScene(sceneName))
-        {
-            //AudioManager.Instance.PlayCombatMusic();
-        }
+        // chiamata ridondante, la gestiamo da handle scene music
+      // if (IsCombatScene(sceneName))
+      // {
+      //     musicCombatInstance = FMODAudioManager.Instance.PlayAudioInstance(musicCombat);
+      // }
 
         asyncLoad.allowSceneActivation = true;
 
@@ -76,13 +84,22 @@ public class SceneLoader : MonoBehaviour
     {
         if (IsCombatScene(sceneName))
         {
-            FMODAudioManager.Instance.StopAudioInstance(musicTitleInstance);
-            musicCombatInstance = FMODAudioManager.Instance.PlayAudioInstance(evtRef[1]);
+            if (musicTitleInstance.isValid())
+            {
+                FMODAudioManager.Instance.StopAudioInstance(musicTitleInstance);
+            }
+
+            musicCombatInstance = FMODAudioManager.Instance.PlayAudioInstance(musicCombat);
         }
         else
-        {
-           FMODAudioManager.Instance.StopAudioInstance(musicCombatInstance);
-           musicTitleInstance = FMODAudioManager.Instance.PlayAudioInstance(evtRef[0]);
-        }
+            return;
+     //{
+     //    if (musicTitleInstance.isValid())
+     //    { 
+     //        FMODAudioManager.Instance.StopAudioInstance(musicCombatInstance); 
+     //    }
+     //
+     //    musicTitleInstance = FMODAudioManager.Instance.PlayAudioInstance(musicTitle);
+     //}
     }
 }

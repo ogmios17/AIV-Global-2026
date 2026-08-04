@@ -65,6 +65,7 @@ public class FMODAudioManager : MonoBehaviour
         if (instance.isValid())
         {
             instance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            instance.release();
         }
     }
 }
