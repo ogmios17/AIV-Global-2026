@@ -243,8 +243,10 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             player2.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player2);
             AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
             AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
-            AudioManager.Instance.PlayCardSound(P1Move);
-            AudioManager.Instance.PlayCardSound(P1Move);
+            FMODAudioManager.Instance.PlaySimpleSFX(P1Move.sfxCard);
+            FMODAudioManager.Instance.PlaySimpleSFX(P1Move.sfxCard);
+           //AudioManager.Instance.PlayCardSound(P1Move);
+           //AudioManager.Instance.PlayCardSound(P1Move);
             Debug.Log("PLAYER 1 WINS");
             AudioManager.Instance.PlayCrowdPanic(1f);
             GlobalData.Instance.Player1.ChosenMove = null;
@@ -257,9 +259,11 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             player1.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player1);
             AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
             AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
-            AudioManager.Instance.PlayCardSound(P2Move);
+            FMODAudioManager.Instance.PlaySimpleSFX(P2Move.sfxCard);
+            //AudioManager.Instance.PlayCardSound(P2Move);
             AudioManager.Instance.PlayCrowdPanic(1f);
-            AudioManager.Instance.PlayCardSound(P2Move);
+            FMODAudioManager.Instance.PlaySimpleSFX(P2Move.sfxCard);
+            //AudioManager.Instance.PlayCardSound(P2Move);
             Debug.Log("PLAYER 1 LOSE");
             GlobalData.Instance.Player1.ChosenMove = null;
             GlobalData.Instance.Player2.ChosenMove = null;

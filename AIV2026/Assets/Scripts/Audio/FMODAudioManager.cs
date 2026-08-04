@@ -29,6 +29,7 @@ public class FMODAudioManager : MonoBehaviour
         if (evt.IsNull) return;
 
         RuntimeManager.PlayOneShot(evt);
+        //Debug.Log(evt);
     }
 
     //Metodo da chiamare per suoni in loop come musica o ambience, oppure per suoni che hanno parametri. N.B. L'instanza in loop va stoppata da StopAudioInstance()

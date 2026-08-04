@@ -15,6 +15,13 @@ MonoBehaviour:
   cardName: Grapple
   wins: {fileID: 11400000, guid: deedce562fbabdc4393926caf3958233, type: 2}
   loses: {fileID: 11400000, guid: 5a9c8d9bd837f714d81c4c0ab6d0cedf, type: 2}
+  sfxCard:
+    Guid:
+      Data1: -503634418
+      Data2: 1208127372
+      Data3: -1451277696
+      Data4: 1080510888
+    Path: event:/SFX/Cards/Card Afferra
   draws: []
   clashes:
   - {fileID: 11400000}

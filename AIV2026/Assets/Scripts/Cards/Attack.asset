@@ -15,6 +15,13 @@ MonoBehaviour:
   cardName: Attack
   wins: {fileID: 11400000, guid: 5a9c8d9bd837f714d81c4c0ab6d0cedf, type: 2}
   loses: {fileID: 11400000, guid: deedce562fbabdc4393926caf3958233, type: 2}
+  sfxCard:
+    Guid:
+      Data1: -2138046908
+      Data2: 1276934741
+      Data3: 1144792723
+      Data4: -547827505
+    Path: event:/SFX/Cards/Card Attacca
   draws: []
   clashes:
   - {fileID: 11400000}

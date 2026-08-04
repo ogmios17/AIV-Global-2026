@@ -1,3 +1,4 @@
+using FMODUnity;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ public class MoveCard : ScriptableObject
     public String cardName;
     public MoveCard wins;
     public MoveCard loses;
+    public EventReference sfxCard;
     public List<MoveCard> draws;
     public List<MoveCard> clashes;
 }
