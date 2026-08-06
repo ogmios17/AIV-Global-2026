@@ -11,6 +11,12 @@ public class SequenceHandler : MonoBehaviour
     [SerializeField] private Sprite downSprite;
     [SerializeField] private Sprite leftSprite;
     [SerializeField] private Sprite rightSprite;
+    [SerializeField] private SpriteRenderer p1SpritePlaceholder;
+    [SerializeField] private SpriteRenderer p2SpritePlaceholder;
+    [SerializeField] private SpriteRenderer p1barPlaceHolder;
+    [SerializeField] private SpriteRenderer p2barPlaceHolder;
+    private bool canPress = false;
+    private float timer = 3f;
 
     [Header("Player 1 Slots")]
     [SerializeField] List<GameObject> Player1Slots;
@@ -34,7 +40,7 @@ public class SequenceHandler : MonoBehaviour
     private Queue<string> sequence2 = new Queue<string>();
     private int player1SequenceIndex;
     private int player2SequenceIndex;
-    
+
     // Input Maps
     private string[] controllerInputs = {
         "/dpad/up",
@@ -57,6 +63,11 @@ public class SequenceHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        p1SpritePlaceholder.sprite = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player1.CharacterType].icon;   
+        p2SpritePlaceholder.sprite = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player2.CharacterType].icon;
+        p1barPlaceHolder.sprite = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player1.CharacterType].minigameMashIcon;
+        p2barPlaceHolder.sprite = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player2.CharacterType].minigameMashIcon;
+
         player1 = GlobalData.Instance.Player1;
         player2 = GlobalData.Instance.Player2;
 
@@ -69,7 +80,7 @@ public class SequenceHandler : MonoBehaviour
             player2.Input.SwitchCurrentActionMap("Sequence");
 
         // Setto la keyboard per il Player 1
-        if (player1.Controller.Contains("Keyboard"))
+        if (player1.Controller is Keyboard)
             InitSetup(player1, keyboardInputs, sequence1);
         // Setto il controller per il Player 1
         else
@@ -83,7 +94,7 @@ public class SequenceHandler : MonoBehaviour
         else
         {
             // Setto la keyboard per il Player 2
-            if (player2.Controller.Contains("Keyboard"))
+            if (player2.Controller is Keyboard)
                 InitSetup(player2, keyboardInputs, sequence2);
             // Setto il controller per il Player 2
             else
@@ -119,10 +130,29 @@ public class SequenceHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canPress)
+        {
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                canPress = true;
+                GlobalData.Instance.text.SetTextMessage("");
+            }else if(timer >= 2)
+            {
+                GlobalData.Instance.text.SetTextMessage("Ready...");
+            }else if(timer >= 1)
+            {
+                GlobalData.Instance.text.SetTextMessage("Set...");
+            }
+            else
+            {
+                GlobalData.Instance.text.SetTextMessage("Go!");
+            }
+        }
         if (isFinished || isEnding) return;
 
         // CPU Logic
-        if (player2.IsCPUMode)
+        if (canPress && player2.IsCPUMode)
         {
             cpuMashTimer += Time.deltaTime;
             if (cpuMashTimer >= cpuMashInterval)
@@ -157,9 +187,13 @@ public class SequenceHandler : MonoBehaviour
 
         // Il perdente viene colpito (usa GlobalData per assicurarsi che la vita venga aggiornata)
         globalLoser.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(globalLoser);
+        winner.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(2, winner);
+        loser.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1, loser);
         if (globalLoser.FighterAnim != null)
             globalLoser.FighterAnim.SetTrigger("Damage");
 
+        winner.onMoveHits?.Invoke();
+        loser.onMoveMisses?.Invoke();
         Debug.Log($"{winnerName} wins the mash minigame! Loser health: {globalLoser.Health}");
 
         // Aspetta 3 secondi prima di segnalare la fine del minigioco
@@ -175,7 +209,7 @@ public class SequenceHandler : MonoBehaviour
 
     public void Onp1Press(string pressed)
     {
-        if (sequence1.Count == 0 || isFinished || isEnding) return;
+        if (!canPress || sequence1.Count == 0 || isFinished || isEnding) return;
 
         string expected = sequence1.Peek();
 
@@ -187,6 +221,7 @@ public class SequenceHandler : MonoBehaviour
 
             // Cambio il colore della sprite in verde
             Player1Slots[player1SequenceIndex].GetComponent<SpriteRenderer>().color = GreenColor;
+            Player1Slots[player1SequenceIndex].GetComponentInParent<Animator>()?.SetTrigger("Right");
             player1SequenceIndex++;
 
             // Check vittoria
@@ -201,6 +236,7 @@ public class SequenceHandler : MonoBehaviour
         {
             // Cambio il colore della sprite in rosso
             Player1Slots[player1SequenceIndex].GetComponent<SpriteRenderer>().color = RedColor;
+            Player1Slots[player1SequenceIndex].GetComponentInParent<Animator>()?.SetTrigger("Wrong");
 
             AudioManager.Instance.PlayUIError();
             EndMinigame(player2, player1);
@@ -209,7 +245,7 @@ public class SequenceHandler : MonoBehaviour
 
     public void Onp2Press(string pressed)
     {
-        if (sequence2.Count == 0 || isFinished || isEnding) return;
+        if (!canPress || sequence2.Count == 0 || isFinished || isEnding) return;
 
         string expected = sequence2.Peek();
 
@@ -221,6 +257,7 @@ public class SequenceHandler : MonoBehaviour
 
             // TODO Cambio il colore della sprite in verde
             Player2Slots[player2SequenceIndex].GetComponent<SpriteRenderer>().color = GreenColor;
+            Player2Slots[player2SequenceIndex].GetComponentInParent<Animator>()?.SetTrigger("Right");
             player2SequenceIndex++;
 
             // Check vittoria
@@ -235,6 +272,7 @@ public class SequenceHandler : MonoBehaviour
         {
             // Cambio il colore della sprite in rosso
             Player2Slots[player2SequenceIndex].GetComponent<SpriteRenderer>().color = RedColor;
+            Player2Slots[player2SequenceIndex].GetComponentInParent<Animator>()?.SetTrigger("Wrong");
 
             AudioManager.Instance.PlayUIError();
             EndMinigame(player1, player2);

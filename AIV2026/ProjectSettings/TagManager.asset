@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerInput
   - CardPosition
+  - Minigame
   layers:
   - Default
   - TransparentFX

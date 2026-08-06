@@ -40,7 +40,6 @@ public class MiniSequenceState : ScriptableObject, StateInterface
         
         if (!player2.IsCPUMode)
             player2.Input.gameObject.GetComponent<PlayerSequenceInput>().enabled = false;
-        
         // Distruggi il prefab del minigioco e resetta l'handler
         Debug.Log("OnStateExit");
         if (prefabClone != null)

@@ -27,6 +27,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     public GameObject prefab;
     private int nextMinigame;
     private bool clashSentencePerformed;
+    private GameObject fade;
 
     [Header("Available Move Cards")]
     public MoveCard[] availableMoves;
@@ -35,6 +36,9 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
     public void OnStateEnter()
     {
+        fade = DataFightHelper.Instance?.Fader;
+        if(fade!= null)
+            fade.GetComponent<Animator>().SetTrigger("Out");
         // Setto la scelta delle carte dei giocatori a null (quando entrano in choosemove ancora non hanno scelto nulla)
         GlobalData.Instance.Player1.ChosenMove = null;
         GlobalData.Instance.Player2.ChosenMove = null;
@@ -67,7 +71,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             // int randomIndex = Random.Range(0, 4);
             // player2.ChosenMove = availableMoves[randomIndex];
 
-            GlobalData.Instance.Player2.ChosenMove = SelectRandomMoveCard();
+            GlobalData.Instance.Player2.ChosenMove = availableMoves[0];//SelectRandomMoveCard();
 
             //handle animation
             HandleAnimationsP2();
@@ -117,7 +121,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
                 default:
                     if(GlobalData.Instance.text)
-                        GlobalData.Instance.text.SetTextMessage(Mathf.CeilToInt(timer) + " seconds left");
+                        GlobalData.Instance.text.SetCountDownMessage(Mathf.CeilToInt(timer).ToString());
                     break;
             }
         }
@@ -206,6 +210,9 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         timer = 10f;
         timerActive = false;
 
+        player1.onMoveChosen?.Invoke();
+        player2.onMoveChosen?.Invoke();
+
         // clashSentencePerformed = false;
          if(timer>=0 && encouragementSentences.Count>0)
              GlobalData.Instance.text.SetTextMessage(encouragementSentences[Random.Range(0, encouragementSentences.Count)]);
@@ -218,7 +225,9 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             timerActive = true;
             player2.FighterAnim.SetTrigger("Next");
             player1.FighterAnim.SetTrigger("Next");
-            
+            player1.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1, player1);
+            player2.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1, player2);
+
             Debug.Log("DRAW");
             AudioManager.Instance.PlayCancelCard();
             AudioManager.Instance.PlayCrowdPanic(1f);
@@ -231,6 +240,10 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             player1.FighterAnim.SetTrigger("Next");
             AudioManager.Instance.PlayCancelCard();
             AudioManager.Instance.PlayCrowdPanic(1f);
+            if(fade == null)
+                fade = GameObject.Find("Fight/Canvas/Fader");
+            fade.GetComponent<Animator>().ResetTrigger("Out");
+            fade.GetComponent<Animator>().SetTrigger("In");
             ChooseMinigame();
             Debug.Log("Clash");
         }
@@ -241,6 +254,8 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             timerActive = true;
             player2.FighterAnim.SetTrigger("Damage");
             player2.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player2);
+            player1.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(2, player1);
+            player2.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1, player2);
             AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
             AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
             FMODAudioManager.Instance.PlaySimpleSFX(P1Move.sfxCard);
@@ -249,6 +264,8 @@ public class ChooseMoveState : ScriptableObject, StateInterface
            //AudioManager.Instance.PlayCardSound(P1Move);
             Debug.Log("PLAYER 1 WINS");
             AudioManager.Instance.PlayCrowdPanic(1f);
+            player1.onMoveHits?.Invoke();
+            player2.onMoveMisses?.Invoke();
             GlobalData.Instance.Player1.ChosenMove = null;
             GlobalData.Instance.Player2.ChosenMove = null;
         }
@@ -257,6 +274,8 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             timerActive = true;
             player1.FighterAnim.SetTrigger("Damage");
             player1.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(player1);
+            player1.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1,player1);
+            player2.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(2, player2);
             AudioManager.Instance.UpdateCombatMusicByHealth(player1.Health, player2.Health);
             AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
             FMODAudioManager.Instance.PlaySimpleSFX(P2Move.sfxCard);
@@ -265,6 +284,8 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             FMODAudioManager.Instance.PlaySimpleSFX(P2Move.sfxCard);
             //AudioManager.Instance.PlayCardSound(P2Move);
             Debug.Log("PLAYER 1 LOSE");
+            player2.onMoveHits?.Invoke();
+            player1.onMoveMisses?.Invoke();
             GlobalData.Instance.Player1.ChosenMove = null;
             GlobalData.Instance.Player2.ChosenMove = null;
         }
@@ -309,6 +330,48 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         GlobalData.Instance.Player2.ChosenMove = move;
         HandleAnimationsP2();
         HandleFighterAnimationsP2();
+    }
+
+    public void OnP1Ability()
+    {
+        int cost = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player1.CharacterType].abilityCost;
+        Debug.Log("p1 ability");
+        if (player1.Mana >= cost && !player1.characterMethods.AbilityTriggeredThisTurn)
+        {
+            player1.characterMethods?.TriggerAbility();
+            player1.CharacterPrefab.GetComponent<FightersDataBinder>().UseMana(cost, player1);
+        }
+    }
+
+    public void OnP2Ability()
+    {
+        int cost = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player2.CharacterType].abilityCost;
+        if (player2.Mana >= cost && !player2.characterMethods.AbilityTriggeredThisTurn)
+        {
+            player2.characterMethods?.TriggerAbility();
+            player2.CharacterPrefab.GetComponent<FightersDataBinder>().UseMana(cost, player2);
+        }
+    }
+
+    public void OnP1Ulti()
+    {
+        int cost = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player1.CharacterType].ultCost;
+        Debug.Log("p1 ult");
+        if (player1.Mana >= cost && !player1.characterMethods.UltiTriggeredThisTurn)
+        {
+            player1.characterMethods?.TriggerUlt();
+            player1.CharacterPrefab.GetComponent<FightersDataBinder>().UseMana(cost, player1);
+        }
+    }
+
+    public void OnP2Ulti()
+    {
+        int cost = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player2.CharacterType].ultCost;
+        if (player2.Mana >= cost && player2.characterMethods.UltiTriggeredThisTurn)
+        {
+            player2.characterMethods?.TriggerUlt();
+            player2.CharacterPrefab.GetComponent<FightersDataBinder>().UseMana(cost, player2);
+        }
     }
 
     private MoveCard SelectRandomMoveCard()

@@ -16,16 +16,18 @@ public class PlayerBinder : MonoBehaviour
         if (input.playerIndex == 0)
         {
             Jammer.PlayerType = PlayerType.Player1;
-            Jammer.Controller = input.currentControlScheme;
+            Jammer.Controller = input.devices[0];
+            GlobalData.Instance.onP1ControllerChosen?.Invoke();
             Jammer.CharacterType = character;
             Debug.Log("controller: " + Jammer.Controller);
-            GlobalData.Instance.Player1 = Jammer;
+            GlobalData.Instance.Player1 = Jammer;      
         }
         else if (input.playerIndex == 1)
         {
             Jammer.PlayerType = PlayerType.Player2;
-            Jammer.Controller = input.currentControlScheme;
+            GlobalData.Instance.onP1ControllerChosen?.Invoke();
             Jammer.CharacterType = character;
+            Jammer.Controller = input.devices[1];
             Debug.Log("controller: " + Jammer.Controller);
             GlobalData.Instance.Player2 = Jammer;
         }

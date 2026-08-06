@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -143,5 +144,23 @@ public class PlayerMoveInput : MonoBehaviour
         else
             moveState.OnP2Received(shove);
         // Debug.Log("Shove");
+    }
+
+    public void Ability(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        if (binder.Jammer.PlayerType == PlayerType.Player1)
+            moveState.OnP1Ability();
+        else
+            moveState.OnP2Ability();
+    }
+
+    public void Ultimate(InputAction.CallbackContext ctx)
+    {
+        if (!ctx.performed) return;
+        if (binder.Jammer.PlayerType == PlayerType.Player1)
+            moveState.OnP1Ulti();
+        else
+            moveState.OnP2Ulti();
     }
 }

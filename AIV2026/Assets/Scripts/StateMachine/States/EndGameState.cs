@@ -61,7 +61,7 @@ public class EndGameState : ScriptableObject, StateInterface
                 GlobalData.Instance.text.SetTextMessage("Only five days, what did you expect?");
                 break;
             case <= 90:
-                GlobalData.Instance.text.SetTextMessage("Still here? Game is Over!");
+                GlobalData.Instance.text.SetTextMessage("Still here? The game is Over!");
                 break;
         }
      }

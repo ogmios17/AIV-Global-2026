@@ -1,8 +1,9 @@
-using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 
 /// <summary>
 /// Manages character selection input for two players simultaneously.

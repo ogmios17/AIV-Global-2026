@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CrackKenColor3
+  m_Shader: {fileID: -6465566751694194690, guid: 5aaad4cab89fcdf4fabf80774b1719e6, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _CHARACTER_CRACKKEN
+  m_InvalidKeywords:
+  - _CHARACTER_B
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _FlowMapTime_4933b3655f904962addc837bb9ab110a_PhaseOffsetMask_835282005_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 2fe31a8312ab8524ebd8601be367f0c8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Pattern:
+        m_Texture: {fileID: 2800000, guid: eeed8cce9c4308b4e96a0c93eaa19d53, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_9e73e0a59cc54fc090f06b2ee6af10b5_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 13f8a2c6eed5781438663cdf9d204f2f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_c4db972e03d54eedb2ed63dd540df45e_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 173625665c88cf2448e3d8a0f6809908, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_cf7919539d444063893e8e4d63594f0c_Texture_1_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_398cebc39ab54798bfde1530048323d6_Out_0_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_3ca55d59d3ba4400938937048b6c48ad_Out_0_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_5490845b95bf469194d3e704f3a1b8f7_Out_0_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2DAsset_943f9df4b06b4a7bb9880e1601764dce_Out_0_Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Ultimate:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Alpha: -2
+    - _AlphaClip: 0.71
+    - _CHARACTER: 1
+    - _CrackKen: 0
+    - _Fuzziness: 0.1
+    - _KrackenOutline: 0
+    - _NotZilla: 0
+    - _NotzillaOutline: 0
+    - _Outline: 0
+    - _OutlineStrenght: 100
+    - _PatternScale: 18
+    - _QueueControl: -1
+    - _QueueOffset: 0
+    - _Range: 0.384
+    - _SpeedX: 0.31
+    - _SpeedY: 0.72
+    - _UltimateSecondarySpeed: -0.12
+    - _UltimateSpeed: 0.2
+    - _UltimateSpeed_1: 0.22
+    - _Ultimate_Opacity: 0.2
+    - _Ultimate_Tiling: 33
+    - _Ultimate_opacity: 0.51
+    - _Widht: 0.095
+    m_Colors:
+    - White: {r: 1, g: 1, b: 1, a: 1}
+    - _DettagliMascher: {r: 0.4031497, g: 0.5, b: 0.3419811, a: 1}
+    - _DettagliMaschera: {r: 0.6666667, g: 0.9647059, b: 0.47843134, a: 1}
+    - _DettagliMaschera_1: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
+    - _From: {r: 0.098039225, g: 0.3921569, b: 0.81568635, a: 1}
+    - _Guanti: {r: 0.2666667, g: 0.854902, b: 0, a: 1}
+    - _Guantoni: {r: 0.58439916, g: 1, b: 0.1607843, a: 1}
+    - _Maschera: {r: 0.8735937, g: 1, b: 0.7122642, a: 1}
+    - _Maschera2: {r: 0.8745099, g: 1, b: 0.7137255, a: 1}
+    - _Occhio: {r: 0.7526978, g: 1, b: 0.25943398, a: 1}
+    - _OutlineColor: {r: 0.31102327, g: 6.498019, b: 0, a: 1}
+    - _Pancia: {r: 0.09411766, g: 0.8274511, b: 1, a: 1}
+    - _Pelle: {r: 0.89019614, g: 0.26666668, b: 0.54901963, a: 1}
+    - _Spikes: {r: 0.854902, g: 0.3568628, b: 0.8509805, a: 1}
+    - _TentacoliSopra: {r: 0.45882356, g: 0.5294118, b: 0.5647059, a: 1}
+    - _TentacoliSotto: {r: 0.6901961, g: 0.81568635, b: 0.2627451, a: 1}
+    - _To: {r: 0.34996653, g: 0.04313725, b: 0.5176471, a: 1}
+    - _UltimateColor: {r: 2.0397954, g: 2.9960785, b: 0.07843135, a: 1}
+    - _UltimateTiling: {r: 10, g: 10, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!114 &5366177582167285581
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Editor::UnityEditor.Rendering.Universal.AssetVersion
+  version: 10

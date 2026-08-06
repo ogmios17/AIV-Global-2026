@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "InputSystem_Actions",
     "maps": [
         {
@@ -19,6 +20,15 @@
                     "type": "Button",
                     "id": "7607c7b6-cd76-4816-beef-bd0341cfe950",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Point",
+                    "type": "PassThrough",
+                    "id": "fb9c9e25-4f7f-46fe-a0be-3cf1723d77bd",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -156,6 +166,28 @@
                     "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47c0dc8f-db85-42d0-b165-2122d7cf4863",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "199fd69c-e097-42bd-9df1-133bc0dd7c88",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -194,6 +226,24 @@
                     "name": "Shove",
                     "type": "Button",
                     "id": "e8eef054-7269-460e-9c84-40c89739bc09",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Ability",
+                    "type": "Button",
+                    "id": "936d34ae-e40f-48b0-8b95-c5971c04c8d2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Ulti",
+                    "type": "Button",
+                    "id": "ad1bc097-2091-44be-aa92-7b54bb4eeeb2",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -286,6 +336,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ced49636-687f-4c0b-9716-6ef6c115f28b",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9138dd3a-fd67-48c5-aa46-fe438682e89f",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "73993cd7-2bcb-486a-baa4-4a51c9dec720",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ulti",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d846580-2d2c-4adf-b2c3-0fd709942b79",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ulti",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

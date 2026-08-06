@@ -21,6 +21,7 @@ public class MashHandler : MonoBehaviour
     public int randomAdvantage_chance;
     public bool randomizeAdvantage = true;
     public float advantageStrength;
+    private Animator m_animator;
 
     [Header("CPU Settings")]
     public float cpuMashInterval  = 0.15f; // CPU masha ogni {cpuMashInterval} secondi
@@ -29,13 +30,17 @@ public class MashHandler : MonoBehaviour
     private bool isFinished = false;
     private bool isEnding = false; // Per evitare chiamate multiple a EndMinigame
     public bool IsFinished { get => isFinished; }
+
     private float timer =0;
     private List<string> loveSentences;
     private bool timerActive = true;
+    private bool canPress = false;
+    private float timerCountdown = 3f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        m_animator = GetComponent<Animator>();
         loveSentences = GlobalData.Instance.stateManager.MiniMashState.loveSentences;
         points = 0;
         player1 = GlobalData.Instance.Player1;
@@ -51,10 +56,31 @@ public class MashHandler : MonoBehaviour
     {
         if (isFinished || isEnding) return;
 
-        if (player2.IsCPUMode)
+        if (!canPress)
+        {
+            timerCountdown -= Time.deltaTime;
+            if (timerCountdown <= 0)
+            {
+                canPress = true;
+                GlobalData.Instance.text.SetTextMessage("");
+            }
+            else if (timerCountdown >= 2)
+            {
+                GlobalData.Instance.text.SetTextMessage("Ready...");
+            }
+            else if (timerCountdown >= 1)
+            {
+                GlobalData.Instance.text.SetTextMessage("Set...");
+            }
+            else
+            {
+                GlobalData.Instance.text.SetTextMessage("Go!");
+            }
+        }
+
+        if (canPress && player2.IsCPUMode)
         {
             cpuMashTimer += Time.deltaTime;
-            Debug.Log("cpuMashTimer: " + cpuMashTimer);
 
             if (cpuMashTimer >= cpuMashInterval)
             {
@@ -86,11 +112,11 @@ public class MashHandler : MonoBehaviour
     {
         if (isFinished || isEnding) return;
 
-        if (randomizeAdvantage && Random.Range(0, randomAdvantage_chance) == 0) //p1 gets a help!
+        if (canPress && randomizeAdvantage && Random.Range(0, randomAdvantage_chance) == 0) //p1 gets a help!
         {
             points -= advantageStrength;
         }
-        if (randomizeAdvantage && Random.Range(0, randomAdvantage_chance) == 0) //p2 gets a help!
+        if (canPress && randomizeAdvantage && Random.Range(0, randomAdvantage_chance) == 0) //p2 gets a help!
         {
             points += advantageStrength;
         }
@@ -100,12 +126,14 @@ public class MashHandler : MonoBehaviour
 
     public void Onp1Mash()
     {
+        if (!canPress) return;
         points += mashStrength + Random.Range(0, modifierRange);
 
     }
 
     public void Onp2Mash()
     {
+        if (!canPress) return;
         points -= mashStrength + Random.Range(0, modifierRange);
     }
 
@@ -130,6 +158,10 @@ public class MashHandler : MonoBehaviour
 
         // Il perdente viene colpito (usa GlobalData per assicurarsi che la vita venga aggiornata)
         globalLoser.CharacterPrefab.GetComponent<FightersDataBinder>().GetHit(globalLoser);
+        winner.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(2, winner);
+        loser.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1, loser);
+        winner.onMoveHits?.Invoke();
+        loser.onMoveMisses?.Invoke();
         if (globalLoser.FighterAnim != null)
             globalLoser.FighterAnim.SetTrigger("Damage");
 
@@ -141,6 +173,7 @@ public class MashHandler : MonoBehaviour
 
     private IEnumerator WaitAndFinish()
     {
+        m_animator.SetTrigger("Out");
         yield return new WaitForSeconds(3f);
         GlobalData.Instance.text.SetTextMessage("");
         isFinished = true;
