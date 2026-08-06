@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="MixerVCA" id="{ee40ef45-ce82-48e3-9855-19911723424b}">
 		<property name="volume">
-			<value>-10.5</value>
+			<value>-30</value>
 		</property>
 		<property name="name">
 			<value>SPAM</value>
