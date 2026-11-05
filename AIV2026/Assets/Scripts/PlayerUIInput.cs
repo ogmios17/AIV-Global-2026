@@ -26,7 +26,7 @@ public class PlayerUIInput : MonoBehaviour
 
     public void OnSubmitPressed(InputAction.CallbackContext ctx)
     {
-        idleState.Handler.OnSubmitPressed(playerType);
+        idleState.Handler.OnSubmitPressed(playerType, ctx.control.device is Mouse);
     }
 
     public void Navigate(InputAction.CallbackContext ctx)

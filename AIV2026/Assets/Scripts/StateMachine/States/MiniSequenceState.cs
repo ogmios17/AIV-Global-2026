@@ -23,7 +23,7 @@ public class MiniSequenceState : ScriptableObject, StateInterface
         Vector3 position = Vector3.zero;
         GameObject fight = GameObject.Find("Fight");
         if(fight != null)
-            position = fight.transform.position + new Vector3(0, -14, -1);
+            position = fight.transform.position + new Vector3(0, -12.5f, -1);
 
         prefabClone = Instantiate(prefab, position, Quaternion.identity);
         handler = prefabClone.GetComponent<SequenceHandler>();
