@@ -23,7 +23,7 @@ public class MiniMashState : ScriptableObject, StateInterface
         Vector3 position = Vector3.zero;
         GameObject fight = GameObject.Find("Fight");
         if(fight != null)
-            position = fight.transform.position + new Vector3(0, -12, -1);
+            position = fight.transform.position + new Vector3(0, -10.5f, -1);
 
         prefabClone = Instantiate(prefab, position, Quaternion.identity);
         handler = prefabClone.GetComponent<MashHandler>();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
@@ -121,8 +122,9 @@ public class CharacterSelectionInputManager : MonoBehaviour
         }
     }
 
-    public void OnSubmitPressed(PlayerType player)
+    public void OnSubmitPressed(PlayerType player, bool isMouse)
     {
+        if (isMouse) return;
         if(player == PlayerType.Player1 && _player1CharacterChoice != null) return;
         if(player == PlayerType.Player2 && _player2CharacterChoice != null) return;
         
@@ -323,7 +325,7 @@ public class CharacterSelectionInputManager : MonoBehaviour
     {
         if (_player1SubmitAction != null)
         {
-            _player1SubmitAction.performed -= ctx => OnSubmitPressed(PlayerType.Player1);
+            _player1SubmitAction.performed -= ctx => OnSubmitPressed(PlayerType.Player1, false);
         }
         _player1NavigateAction?.Disable();
         _player1SubmitAction?.Disable();
@@ -335,7 +337,7 @@ public class CharacterSelectionInputManager : MonoBehaviour
     {
         if (_player2SubmitAction != null)
         {
-            _player2SubmitAction.performed -= ctx => OnSubmitPressed(PlayerType.Player2);
+            _player2SubmitAction.performed -= ctx => OnSubmitPressed(PlayerType.Player2, false);
         }
         _player2NavigateAction?.Disable();
         _player2NavigateAction?.Dispose();

@@ -147,4 +147,5 @@ public class CharacterSelectionItem : MonoBehaviour
     /// Returns true if this card is being hovered by any player.
     /// </summary>
     public bool IsHovered => _isPlayer1Hovering || _isPlayer2Hovering;
+
 }
