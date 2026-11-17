@@ -1,3 +1,5 @@
+using FMOD;
+using FMODUnity;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
@@ -31,6 +33,11 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
     [Header("Available Move Cards")]
     public MoveCard[] availableMoves;
+
+    [Header("Sound List")]
+    [SerializeField] EventReference crowdSfx;
+    [SerializeField] EventReference cancelCardSfx;
+    [SerializeField] EventReference[] miniGameSfx;
 
     public int NextMinigame { get => nextMinigame; }
 
@@ -78,7 +85,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             HandleFighterAnimationsP2();
 
             // player2.ChosenMove = availableMoves[0]; // DEBUG: Attack
-            Debug.Log($"CPU sceglie: {player2.ChosenMove.cardName}");
+            UnityEngine.Debug.Log($"CPU sceglie: {player2.ChosenMove.cardName}");
         }
     
         // Controllo se entrambi i giocatori hanno risposto
@@ -205,8 +212,8 @@ public class ChooseMoveState : ScriptableObject, StateInterface
 
     private void Resolve(MoveCard P1Move, MoveCard P2Move)
     {
-        Debug.Log(P1Move.cardName);
-        Debug.Log(P2Move.cardName);
+        UnityEngine.Debug.Log(P1Move.cardName);
+        UnityEngine.Debug.Log(P2Move.cardName);
         timer = 10f;
         timerActive = false;
 
@@ -228,9 +235,11 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             player1.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1, player1);
             player2.CharacterPrefab.GetComponent<FightersDataBinder>().GainMana(1, player2);
 
-            Debug.Log("DRAW");
-            AudioManager.Instance.PlayCancelCard();
-            AudioManager.Instance.PlayCrowdPanic(1f);
+            UnityEngine.Debug.Log("DRAW");
+            //AudioManager.Instance.PlayCancelCard();
+            FMODAudioManager.Instance.PlaySimpleSFX(cancelCardSfx);
+            FMODAudioManager.Instance.PlaySimpleSFX(crowdSfx);
+            //AudioManager.Instance.PlayCrowdPanic(1f);
             GlobalData.Instance.Player1.ChosenMove = null;
             GlobalData.Instance.Player2.ChosenMove = null;
         }
@@ -238,14 +247,17 @@ public class ChooseMoveState : ScriptableObject, StateInterface
         {
             player2.FighterAnim.SetTrigger("Next");
             player1.FighterAnim.SetTrigger("Next");
-            AudioManager.Instance.PlayCancelCard();
-            AudioManager.Instance.PlayCrowdPanic(1f);
-            if(fade == null)
+            //AudioManager.Instance.PlayCancelCard();
+            //AudioManager.Instance.PlayCrowdPanic(1f);
+            FMODAudioManager.Instance.PlaySimpleSFX(cancelCardSfx);
+            FMODAudioManager.Instance.PlaySimpleSFX(crowdSfx);
+            if (fade == null)
                 fade = GameObject.Find("Fight/Canvas/Fader");
             fade.GetComponent<Animator>().ResetTrigger("Out");
             fade.GetComponent<Animator>().SetTrigger("In");
             ChooseMinigame();
-            Debug.Log("Clash");
+            FMODAudioManager.Instance.PlaySimpleSFX(miniGameSfx[nextMinigame]);
+            UnityEngine.Debug.Log("Clash");
         }
         else if (P1Move.wins == P2Move)
         {
@@ -262,8 +274,9 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             FMODAudioManager.Instance.PlaySimpleSFX(P1Move.sfxCard);
            //AudioManager.Instance.PlayCardSound(P1Move);
            //AudioManager.Instance.PlayCardSound(P1Move);
-            Debug.Log("PLAYER 1 WINS");
-            AudioManager.Instance.PlayCrowdPanic(1f);
+            UnityEngine.Debug.Log("PLAYER 1 WINS");
+           //AudioManager.Instance.PlayCrowdPanic(1f);
+            FMODAudioManager.Instance.PlaySimpleSFX(crowdSfx);
             player1.onMoveHits?.Invoke();
             player2.onMoveMisses?.Invoke();
             GlobalData.Instance.Player1.ChosenMove = null;
@@ -280,10 +293,11 @@ public class ChooseMoveState : ScriptableObject, StateInterface
             AudioManager.Instance.CheckLastHP(player1.Health, player2.Health);
             FMODAudioManager.Instance.PlaySimpleSFX(P2Move.sfxCard);
             //AudioManager.Instance.PlayCardSound(P2Move);
-            AudioManager.Instance.PlayCrowdPanic(1f);
+            FMODAudioManager.Instance.PlaySimpleSFX(crowdSfx);
+            //AudioManager.Instance.PlayCrowdPanic(1f);
             FMODAudioManager.Instance.PlaySimpleSFX(P2Move.sfxCard);
             //AudioManager.Instance.PlayCardSound(P2Move);
-            Debug.Log("PLAYER 1 LOSE");
+            UnityEngine.Debug.Log("PLAYER 1 LOSE");
             player2.onMoveHits?.Invoke();
             player1.onMoveMisses?.Invoke();
             GlobalData.Instance.Player1.ChosenMove = null;
@@ -335,7 +349,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     public void OnP1Ability()
     {
         int cost = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player1.CharacterType].abilityCost;
-        Debug.Log("p1 ability");
+        UnityEngine.Debug.Log("p1 ability");
         if (player1.Mana >= cost && !player1.characterMethods.AbilityTriggeredThisTurn)
         {
             player1.characterMethods?.TriggerAbility();
@@ -356,7 +370,7 @@ public class ChooseMoveState : ScriptableObject, StateInterface
     public void OnP1Ulti()
     {
         int cost = GlobalData.Instance.Characters[(int)GlobalData.Instance.Player1.CharacterType].ultCost;
-        Debug.Log("p1 ult");
+        UnityEngine.Debug.Log("p1 ult");
         if (player1.Mana >= cost && !player1.characterMethods.UltiTriggeredThisTurn)
         {
             player1.characterMethods?.TriggerUlt();

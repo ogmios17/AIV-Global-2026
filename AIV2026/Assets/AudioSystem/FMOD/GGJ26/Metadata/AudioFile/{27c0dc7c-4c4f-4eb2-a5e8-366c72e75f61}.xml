@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{27c0dc7c-4c4f-4eb2-a5e8-366c72e75f61}">
 		<property name="assetPath">
-			<value>Card Spingi.mp3</value>
+			<value>CARDS/Card Spingi.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

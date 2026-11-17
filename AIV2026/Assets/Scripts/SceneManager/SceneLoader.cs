@@ -54,10 +54,7 @@ public class SceneLoader : MonoBehaviour
 
         asyncLoad.allowSceneActivation = true;
         // chiamata ridondante, la gestiamo da handle scene music
-      // if (IsCombatScene(sceneName))
-      // {
-      //     musicCombatInstance = FMODAudioManager.Instance.PlayAudioInstance(musicCombat);
-      // }
+      
 
         asyncLoad.allowSceneActivation = true;
 

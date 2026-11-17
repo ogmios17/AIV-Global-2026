@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{8696189a-d0da-4187-8e0d-ad89ea3cfff6}">
 		<property name="assetPath">
-			<value>NotZilla Verse 2.mp3</value>
+			<value>MONSTERS/NotZilla Verse 2.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

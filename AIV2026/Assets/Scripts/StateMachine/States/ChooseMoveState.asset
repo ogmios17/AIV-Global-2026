@@ -36,3 +36,30 @@ MonoBehaviour:
   - {fileID: 11400000, guid: deedce562fbabdc4393926caf3958233, type: 2}
   - {fileID: 11400000, guid: afae40f2ee318994080bf3c7d883d965, type: 2}
   - {fileID: 11400000, guid: 5a9c8d9bd837f714d81c4c0ab6d0cedf, type: 2}
+  crowdSfx:
+    Guid:
+      Data1: -512699001
+      Data2: 1117377399
+      Data3: -478680442
+      Data4: -1577607745
+    Path: event:/Ambience/Crowd
+  cancelCardSfx:
+    Guid:
+      Data1: -211611286
+      Data2: 1178560988
+      Data3: 1505424256
+      Data4: 1183590158
+    Path: event:/SFX/Cards/Card Annulla
+  miniGameSfx:
+  - Guid:
+      Data1: -557504681
+      Data2: 1194043186
+      Data3: -355349573
+      Data4: -683681456
+    Path: event:/SFX/Minigame/MashGame
+  - Guid:
+      Data1: 795750690
+      Data2: 1262595096
+      Data3: -556635493
+      Data4: -661455840
+    Path: event:/SFX/Cards/CardClash

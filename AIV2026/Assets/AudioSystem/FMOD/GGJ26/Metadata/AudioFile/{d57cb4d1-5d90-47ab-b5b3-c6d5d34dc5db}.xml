@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{d57cb4d1-5d90-47ab-b5b3-c6d5d34dc5db}">
+		<property name="assetPath">
+			<value>CARDS/VoiceCards_DEFENSE.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>2</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{edc35293-a4a0-4d3c-b2f7-7990a28a7e99}</destination>
+		</relationship>
+	</object>
+</objects>

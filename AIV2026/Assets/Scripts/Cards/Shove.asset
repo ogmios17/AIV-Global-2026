@@ -17,11 +17,11 @@ MonoBehaviour:
   loses: {fileID: 11400000, guid: 96c812eeab7b7bd4a912e045313c3420, type: 2}
   sfxCard:
     Guid:
-      Data1: -338343400
-      Data2: 1088481090
-      Data3: -1012333404
-      Data4: 893270211
-    Path: event:/SFX/Cards/Card Spingi
+      Data1: -1131796049
+      Data2: 1304776891
+      Data3: 41464978
+      Data4: -1624639646
+    Path: event:/SFX/Cards/CardPush
   draws:
   - {fileID: 11400000}
   - {fileID: 11400000, guid: deedce562fbabdc4393926caf3958233, type: 2}

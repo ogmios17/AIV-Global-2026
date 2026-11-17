@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{fbaa72ae-619d-4a0d-b799-5c16e8e34d7b}">
 		<property name="assetPath">
-			<value>Card Afferra.mp3</value>
+			<value>CARDS/Card Afferra.mp3</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
